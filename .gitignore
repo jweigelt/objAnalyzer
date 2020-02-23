@@ -1,0 +1,9 @@
+x64
+x86
+bin
+Release
+Debug
+packages
+.vs
+.tmp
+.idea
