@@ -10,49 +10,44 @@ namespace ObjMonitor
 {
     class Program
     {
+        public static bool IsSteam { get; set; } = true;
 
-        static long Millis()
+        public static readonly int TEAM_TABLE_OFFSET = IsSteam ? 0x1AAFCD4 : 0x0;
+
+        public static List<InGameTeamObj> GetTeamList(ProcessMemoryReader reader, ObjForm form)
         {
-            return DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
+            List<InGameTeamObj> objList = new List<InGameTeamObj>();
+            for (int i = 0; i < 2; i++) //only want two teams
+            {
+                IntPtr basePtr = reader.ReadPtr(IntPtr.Add(reader.GetModuleBase(TEAM_TABLE_OFFSET), i * 4));
+                InGameTeamObj obj = new InGameTeamObj(basePtr, reader);
+                obj.IsHost = form.IsHost;
+                objList.Add(obj);
+            }
+            return objList;
         }
 
         static void Main(string[] args)
         {
-            var reader = new BF2MemoryReader();
+            var reader = new ProcessMemoryReader();
             reader.Open("BattlefrontII");
 
             var form = new ObjForm();
             Application.EnableVisualStyles();
             form.Show();
 
-            int updates = -1;
-            long updateMillis = -1;
-            int ctr = 0;
 
             while (true)
             {
-                if (++ctr % 5 == 0)
-                {
-                    form.UpdateObjList(reader.ReadObjTable());
-                }
+                List<InGameTeamObj> teamObjList = GetTeamList(reader, form);
+                form.UpdateTeamLabels(teamObjList[0].TeamName, teamObjList[1].TeamName);
+                ObjList objList = new ObjList(reader, form);
+                form.UpdateTeam1ObjList(objList.Team1);
+                form.UpdateTeam2ObjList(objList.Team2);
+                form.UpdateGameInfo(teamObjList);
 
-                if(++ctr %100 == 0)
-                {
-                    if (updates > 0)
-                    {
-                        float du = reader.GetClientUpdates() - updates;
-                        long dt = Millis() - updateMillis;
-                        du /= dt;
-                        du *= 1000;
-
-                        form.UpdateStats(du);
-                    }
-                    updates = reader.GetClientUpdates();
-                    updateMillis = Millis();
-                }
                 Application.DoEvents();
                 Thread.Sleep(20);
-
             }
         }
     }

@@ -21,37 +21,88 @@ namespace ObjMonitor
         {
 
         }
-        public void UpdateObjList(List<BF2IngameObject> objList)
+        public bool IsHost
         {
-            lvObjects.BeginUpdate();
-            lvObjects.Items.Clear();
+            get
+            {
+                return cbHost.Checked;
+            }
+        }
+        public void UpdateGameInfo(List<InGameTeamObj> teamObjs)
+        {
+            lvGameInfo.BeginUpdate();
+            lvGameInfo.Items.Clear();
+            foreach (var obj in teamObjs)
+            {
+                var li = new ListViewItem();
+                li.Text = obj.TeamName;
+                li.SubItems.Add(obj.isCTF ? obj.CTFScore.ToString() : obj.CONScore.ToString());
+                li.SubItems.Add(obj.NumKills.ToString());
+                li.SubItems.Add(obj.NumAlive.ToString());
+                lvGameInfo.Items.Add(li);
+            }
+            lvGameInfo.EndUpdate();
+        }
+        public void UpdateTeam1ObjList(List<InGameObj> objList)
+        {
+            lvTeam1Objects.BeginUpdate();
+            lvTeam1Objects.Items.Clear();
             foreach(var obj in objList)
             {
                 var li = new ListViewItem();
-                li.Text = obj.Hash.ToString();
-                li.SubItems.Add(obj.Index.ToString());
-                li.SubItems.Add(obj.LastUpdate.ToString());
-                li.SubItems.Add(obj.ClientLag.ToString());
-                li.SubItems.Add(obj.Name);
-                li.SubItems.Add(obj.ClassName);
+                li.Text = obj.Character.Index.ToString();
+                li.SubItems.Add(obj.Character.Name);
+                li.SubItems.Add(obj.SoldierClass.Name);
+                li.SubItems.Add(obj.Character.Score.Kills.ToString());
+                li.SubItems.Add(obj.Health.ToString("n0"));
 
-                if (obj.Exists) { 
-                    if (obj.ClientLag == 0)
-                        li.BackColor = Color.PaleGreen;
-                    else if (obj.ClientLag < 5)
+                //Color the row based off object health
+                if (obj.Exists)
+                {
+                    if (obj.Health < (obj.MaxHealth/3))
+                        li.BackColor = Color.Coral;
+                    else if (obj.Health < (obj.MaxHealth/3)*2)
                         li.BackColor = Color.Wheat;
                     else
-                        li.BackColor = Color.Coral;
+                        li.BackColor = Color.PaleGreen;
                 }
 
-                lvObjects.Items.Add(li);
+                lvTeam1Objects.Items.Add(li);
             }
-            lvObjects.EndUpdate();
+            lvTeam1Objects.EndUpdate();
         }
-
-        public void UpdateStats(float ups)
+        public void UpdateTeam2ObjList(List<InGameObj> objList)
         {
-            Text = string.Format("Object Update Analyzer - {0} updates/s", ups.ToString("n2"));
+            lvTeam2Objects.BeginUpdate();
+            lvTeam2Objects.Items.Clear();
+            foreach (var obj in objList)
+            {
+                var li = new ListViewItem();
+                li.Text = obj.Character.Index.ToString();
+                li.SubItems.Add(obj.Character.Name);
+                li.SubItems.Add(obj.SoldierClass.Name);
+                li.SubItems.Add(obj.Character.Score.Kills.ToString());
+                li.SubItems.Add(obj.Health.ToString("n0"));
+
+                //Color the row based off object health
+                if (obj.Exists)
+                {
+                    if (obj.Health < (obj.MaxHealth / 3))
+                        li.BackColor = Color.Coral;
+                    else if (obj.Health < (obj.MaxHealth / 3) * 2)
+                        li.BackColor = Color.Wheat;
+                    else
+                        li.BackColor = Color.PaleGreen;
+                }
+
+                lvTeam2Objects.Items.Add(li);
+            }
+            lvTeam2Objects.EndUpdate();
+        }
+        public void UpdateTeamLabels(string team1Name, string team2Name)
+        {
+            lbTeam1Name.Text = team1Name;
+            lbTeam2Name.Text = team2Name;
         }
     }
 }
