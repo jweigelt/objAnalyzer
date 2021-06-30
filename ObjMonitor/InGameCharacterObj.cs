@@ -63,7 +63,7 @@ namespace ObjMonitor
         {
             get
             {
-                IntPtr scoreBaseAddr = IntPtr.Add(reader.GetModuleBase(0x1ACC108), Index*0x60);
+                IntPtr scoreBaseAddr = IntPtr.Add(reader.GetModuleBase(0x1ACC108), (Index-1)*0x60);
                 return new Score2(scoreBaseAddr, reader);
 
                 //TODO IsHost -- Clients can only see kills (tab screen) -- Server does not broadcast any other stat

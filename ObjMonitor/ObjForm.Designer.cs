@@ -32,6 +32,10 @@ namespace ObjMonitor
         {
             this.label1 = new System.Windows.Forms.Label();
             this.cbHost = new System.Windows.Forms.CheckBox();
+            this.lbTeam1Name = new System.Windows.Forms.Label();
+            this.lbTeam2Name = new System.Windows.Forms.Label();
+            this.CommandPosts = new System.Windows.Forms.Label();
+            this.lvCommandPosts = new ObjMonitor.DoubleBufferedListView();
             this.lvGameInfo = new ObjMonitor.DoubleBufferedListView();
             this.chTeamName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chScore = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -49,15 +53,13 @@ namespace ObjMonitor
             this.chClassName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chKills = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chHealth = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lbTeam1Name = new System.Windows.Forms.Label();
-            this.lbTeam2Name = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(174, 73);
+            this.label1.Location = new System.Drawing.Point(217, 30);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(69, 36);
             this.label1.TabIndex = 2;
@@ -73,9 +75,52 @@ namespace ObjMonitor
             this.cbHost.Text = "host?";
             this.cbHost.UseVisualStyleBackColor = true;
             // 
+            // lbTeam1Name
+            // 
+            this.lbTeam1Name.AutoSize = true;
+            this.lbTeam1Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTeam1Name.Location = new System.Drawing.Point(511, 5);
+            this.lbTeam1Name.Name = "lbTeam1Name";
+            this.lbTeam1Name.Size = new System.Drawing.Size(71, 22);
+            this.lbTeam1Name.TabIndex = 6;
+            this.lbTeam1Name.Text = "Team1";
+            // 
+            // lbTeam2Name
+            // 
+            this.lbTeam2Name.AutoSize = true;
+            this.lbTeam2Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTeam2Name.Location = new System.Drawing.Point(511, 222);
+            this.lbTeam2Name.Name = "lbTeam2Name";
+            this.lbTeam2Name.Size = new System.Drawing.Size(71, 22);
+            this.lbTeam2Name.TabIndex = 7;
+            this.lbTeam2Name.Text = "Team2";
+            // 
+            // CommandPosts
+            // 
+            this.CommandPosts.AutoSize = true;
+            this.CommandPosts.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.CommandPosts.Location = new System.Drawing.Point(123, 208);
+            this.CommandPosts.Name = "CommandPosts";
+            this.CommandPosts.Size = new System.Drawing.Size(245, 36);
+            this.CommandPosts.TabIndex = 9;
+            this.CommandPosts.Text = "Command Posts";
+            // 
+            // lvCommandPosts
+            // 
+            this.lvCommandPosts.BackColor = System.Drawing.Color.White;
+            this.lvCommandPosts.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvCommandPosts.HideSelection = false;
+            this.lvCommandPosts.Location = new System.Drawing.Point(12, 267);
+            this.lvCommandPosts.Name = "lvCommandPosts";
+            this.lvCommandPosts.Size = new System.Drawing.Size(492, 91);
+            this.lvCommandPosts.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.lvCommandPosts.TabIndex = 8;
+            this.lvCommandPosts.UseCompatibleStateImageBehavior = false;
+            this.lvCommandPosts.View = System.Windows.Forms.View.Details;
+            // 
             // lvGameInfo
             // 
-            this.lvGameInfo.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.lvGameInfo.BackColor = System.Drawing.Color.White;
             this.lvGameInfo.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.chTeamName,
             this.chScore,
@@ -83,9 +128,9 @@ namespace ObjMonitor
             this.chNumAlive});
             this.lvGameInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvGameInfo.HideSelection = false;
-            this.lvGameInfo.Location = new System.Drawing.Point(34, 156);
+            this.lvGameInfo.Location = new System.Drawing.Point(63, 73);
             this.lvGameInfo.Name = "lvGameInfo";
-            this.lvGameInfo.Size = new System.Drawing.Size(324, 86);
+            this.lvGameInfo.Size = new System.Drawing.Size(376, 86);
             this.lvGameInfo.TabIndex = 5;
             this.lvGameInfo.UseCompatibleStateImageBehavior = false;
             this.lvGameInfo.View = System.Windows.Forms.View.Details;
@@ -93,24 +138,26 @@ namespace ObjMonitor
             // chTeamName
             // 
             this.chTeamName.Text = "Name";
+            this.chTeamName.Width = 79;
             // 
             // chScore
             // 
             this.chScore.Text = "Score";
+            this.chScore.Width = 55;
             // 
             // chNumKills
             // 
             this.chNumKills.Text = "Team # Kills";
-            this.chNumKills.Width = 97;
+            this.chNumKills.Width = 106;
             // 
             // chNumAlive
             // 
             this.chNumAlive.Text = "Team # Alive";
-            this.chNumAlive.Width = 103;
+            this.chNumAlive.Width = 132;
             // 
             // lvTeam2Objects
             // 
-            this.lvTeam2Objects.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.lvTeam2Objects.BackColor = System.Drawing.Color.White;
             this.lvTeam2Objects.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.chTeam2ID,
             this.chTeam2Name,
@@ -121,7 +168,7 @@ namespace ObjMonitor
             this.lvTeam2Objects.FullRowSelect = true;
             this.lvTeam2Objects.GridLines = true;
             this.lvTeam2Objects.HideSelection = false;
-            this.lvTeam2Objects.Location = new System.Drawing.Point(447, 236);
+            this.lvTeam2Objects.Location = new System.Drawing.Point(515, 247);
             this.lvTeam2Objects.Name = "lvTeam2Objects";
             this.lvTeam2Objects.Size = new System.Drawing.Size(341, 129);
             this.lvTeam2Objects.TabIndex = 3;
@@ -160,7 +207,7 @@ namespace ObjMonitor
             // 
             // lvTeam1Objects
             // 
-            this.lvTeam1Objects.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.lvTeam1Objects.BackColor = System.Drawing.Color.White;
             this.lvTeam1Objects.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.chId,
             this.chName,
@@ -171,7 +218,7 @@ namespace ObjMonitor
             this.lvTeam1Objects.FullRowSelect = true;
             this.lvTeam1Objects.GridLines = true;
             this.lvTeam1Objects.HideSelection = false;
-            this.lvTeam1Objects.Location = new System.Drawing.Point(447, 30);
+            this.lvTeam1Objects.Location = new System.Drawing.Point(515, 30);
             this.lvTeam1Objects.Name = "lvTeam1Objects";
             this.lvTeam1Objects.Size = new System.Drawing.Size(341, 129);
             this.lvTeam1Objects.TabIndex = 0;
@@ -208,31 +255,13 @@ namespace ObjMonitor
             this.chHealth.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.chHealth.Width = 46;
             // 
-            // lbTeam1Name
-            // 
-            this.lbTeam1Name.AutoSize = true;
-            this.lbTeam1Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTeam1Name.Location = new System.Drawing.Point(604, 5);
-            this.lbTeam1Name.Name = "lbTeam1Name";
-            this.lbTeam1Name.Size = new System.Drawing.Size(71, 22);
-            this.lbTeam1Name.TabIndex = 6;
-            this.lbTeam1Name.Text = "Team1";
-            // 
-            // lbTeam2Name
-            // 
-            this.lbTeam2Name.AutoSize = true;
-            this.lbTeam2Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTeam2Name.Location = new System.Drawing.Point(604, 211);
-            this.lbTeam2Name.Name = "lbTeam2Name";
-            this.lbTeam2Name.Size = new System.Drawing.Size(71, 22);
-            this.lbTeam2Name.TabIndex = 7;
-            this.lbTeam2Name.Text = "Team2";
-            // 
             // ObjForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 411);
+            this.ClientSize = new System.Drawing.Size(884, 411);
+            this.Controls.Add(this.CommandPosts);
+            this.Controls.Add(this.lvCommandPosts);
             this.Controls.Add(this.lbTeam2Name);
             this.Controls.Add(this.lbTeam1Name);
             this.Controls.Add(this.lvGameInfo);
@@ -271,5 +300,7 @@ namespace ObjMonitor
         private ColumnHeader chNumAlive;
         private Label lbTeam1Name;
         private Label lbTeam2Name;
+        private DoubleBufferedListView lvCommandPosts;
+        private Label CommandPosts;
     }
 }

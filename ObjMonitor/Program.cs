@@ -45,6 +45,7 @@ namespace ObjMonitor
                 form.UpdateTeam1ObjList(objList.Team1);
                 form.UpdateTeam2ObjList(objList.Team2);
                 form.UpdateGameInfo(teamObjList);
+                form.UpdateCommandPosts(objList.CommandPosts, teamObjList[0].TeamName, teamObjList[1].TeamName);
 
                 Application.DoEvents();
                 Thread.Sleep(20);

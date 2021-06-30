@@ -43,6 +43,7 @@ namespace ObjMonitor
             }
             lvGameInfo.EndUpdate();
         }
+        
         public void UpdateTeam1ObjList(List<InGameObj> objList)
         {
             lvTeam1Objects.BeginUpdate();
@@ -71,6 +72,7 @@ namespace ObjMonitor
             }
             lvTeam1Objects.EndUpdate();
         }
+
         public void UpdateTeam2ObjList(List<InGameObj> objList)
         {
             lvTeam2Objects.BeginUpdate();
@@ -99,6 +101,46 @@ namespace ObjMonitor
             }
             lvTeam2Objects.EndUpdate();
         }
+
+        public void UpdateCommandPosts(List<IngameCPObject> objList, string team1Name, string team2Name)
+        {
+            lvCommandPosts.BeginUpdate();
+            lvCommandPosts.Items.Clear();
+
+            //Create Command Post index Row
+            if (lvCommandPosts.Columns.Count < 1){
+                lvCommandPosts.Columns.Add("Hud Index", 90);
+                foreach (var obj in objList)
+                {
+                    lvCommandPosts.Columns.Insert(lvCommandPosts.Columns.Count, obj.HudIndex.ToString(), 55);
+                }
+            }
+
+            var li2 = new ListViewItem();
+            foreach (var obj in objList)
+            {
+                li2.Text = "Team";
+                li2.SubItems.Add(GetTeamName(obj.Team, team1Name, team2Name));
+            }
+            lvCommandPosts.Items.Add(li2);
+            lvCommandPosts.EndUpdate();
+        }
+
+        public string GetTeamName(int team, string team1Name, string team2Name)
+        {
+            if (team == 1)
+            {
+                return team1Name;
+            }else if(team == 2)
+            {
+                return team2Name;
+            }
+            else
+            {
+                return "Neutral";
+            }
+        }
+
         public void UpdateTeamLabels(string team1Name, string team2Name)
         {
             lbTeam1Name.Text = team1Name;

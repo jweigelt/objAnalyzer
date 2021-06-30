@@ -50,6 +50,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="InGameCharacterObj.cs" />
+    <Compile Include="IngameCPObject.cs" />
     <Compile Include="InGameObj.cs" />
     <Compile Include="InGameSoldierClassObj.cs" />
     <Compile Include="InGameTeamObj.cs" />

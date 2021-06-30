@@ -86,7 +86,7 @@ namespace ObjMonitor
         {
             get
             {
-                return IsHost ? ConMaxScore - CONScore : 1024 - CONScore;
+                return isCON ? 0 : 1024 - CONScore;
             }
         }
         public bool isCTF
@@ -100,7 +100,7 @@ namespace ObjMonitor
         {
             get
             {
-                return ConMaxScore > 20000;
+                return ConMaxScore < 20000;
             }
         }
     }
