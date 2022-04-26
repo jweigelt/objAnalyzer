@@ -102,28 +102,89 @@ namespace ObjMonitor
             lvTeam2Objects.EndUpdate();
         }
 
+        public Color getCPBackColor(IngameCPObject obj)
+        {
+
+            //CP behavior
+            // Neutralize 0.0 -> 12.0
+            // Capture 0.0 -> 10.0
+            // Hardcap 12.0 -> 0.0
+
+            //Color the row based off object health
+            if (obj.Exists)
+            {
+                if (obj.NeutralizeTime <= 0.5)
+                    return Color.White;
+                else if (0.5 < obj.CaptureTime || obj.CaptureTime < 9.5)
+                    return Color.Gray;
+            }
+            return Color.Blue;
+        }
+
         public void UpdateCommandPosts(List<IngameCPObject> objList, string team1Name, string team2Name)
         {
             lvCommandPosts.BeginUpdate();
             lvCommandPosts.Items.Clear();
 
-            //Create Command Post index Row
+            //Create Command Post team Row
             if (lvCommandPosts.Columns.Count < 1){
-                lvCommandPosts.Columns.Add("Hud Index", 90);
-                foreach (var obj in objList)
+
+                for (int i = 0; i < objList.Count+1; i++)
                 {
-                    lvCommandPosts.Columns.Insert(lvCommandPosts.Columns.Count, obj.HudIndex.ToString(), 55);
+                    //First column
+                    if (i == 0)
+                    {
+                        lvCommandPosts.Columns.Insert(i, "CP", 100);
+                    }
+                    else
+                    {
+                        lvCommandPosts.Columns.Insert(i, "", 25);
+                    }
                 }
             }
 
-            var li2 = new ListViewItem();
-            foreach (var obj in objList)
+            var team1CP = GetTeamCPS(objList, 1);
+            var team2CP = GetTeamCPS(objList, 2);
+
+            //Team 1 CP's --- "Rebels | 0 | 3 | 4 |"
+            var li1 = new ListViewItem();
+            li1.Text = team1Name;
+            foreach (var obj in team1CP)
             {
-                li2.Text = "Team";
-                li2.SubItems.Add(GetTeamName(obj.Team, team1Name, team2Name));
+                li1.SubItems.Add(obj.HudIndex.ToString());
+                //li1.UseItemStyleForSubItems = false;
+                //li1.SubItems.Add(new ListViewItem.ListViewSubItem(li1, obj.HudIndex.ToString(), Color.Black, getCPBackColor(obj), li1.Font));
+
             }
+
+            //Team 2 CP's --- "Empire | 1 | 2 | 5 |"
+            var li2 = new ListViewItem();
+            li2.Text = team2Name;
+            foreach (var obj in team2CP)
+            {
+                li2.SubItems.Add(obj.HudIndex.ToString());
+                //li2.UseItemStyleForSubItems = false;
+                //li2.SubItems.Add(new ListViewItem.ListViewSubItem(li2, obj.HudIndex.ToString(), Color.Black, getCPBackColor(obj), li1.Font));
+            }
+
+            lvCommandPosts.Items.Add(li1);
             lvCommandPosts.Items.Add(li2);
+
             lvCommandPosts.EndUpdate();
+        }
+
+        public List<IngameCPObject> GetTeamCPS(List<IngameCPObject> objList, int team)
+        {
+            List<IngameCPObject> newObjList = new List<IngameCPObject> { };
+            foreach(var obj in objList)
+            {
+                if (obj.Team == team)
+                {
+                    newObjList.Add(obj);
+                }
+            }
+
+            return newObjList;
         }
 
         public string GetTeamName(int team, string team1Name, string team2Name)

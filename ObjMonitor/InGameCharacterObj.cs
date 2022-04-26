@@ -9,11 +9,13 @@ namespace ObjMonitor
     public class InGameCharacterObject
     {
         public static readonly int[] NAME_OFFSET =                  { 0x30 };
-        public static readonly int[] INDEX_OFFSET =                 { 0x130 };
+        public static readonly int[] INDEX_OFFSET =                 { 0x130 };  //WILL BE 0xFFFFFFFF IF AI IS POPULATING CHARACTER
         public static readonly int[] TEAMID_OFFSET =                { 0x134 };
         public static readonly int[] TEAM_OBJ_OFFSET =              { 0x138 };
         public static readonly int[] SOLDIER_CLASSID_OFFSET =       { 0x13C };
         public static readonly int[] SOLDIER_CLASS_OBJ_OFFSET =     { 0x140 };
+        public static readonly int[] CP_OBJ_SPAWNED_AT =            { 0X144 };
+        public static readonly int[] ENTITY_SOLDIER =               { 0x148 }; // NOTE: this is not the same as ingame obj. You can get that address by subtracting 0x240 from the address this points to
 
         public IntPtr baseAddr;
         public ProcessMemoryReader reader;

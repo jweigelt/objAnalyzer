@@ -79,7 +79,7 @@ namespace ObjMonitor
             // 
             this.lbTeam1Name.AutoSize = true;
             this.lbTeam1Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTeam1Name.Location = new System.Drawing.Point(511, 5);
+            this.lbTeam1Name.Location = new System.Drawing.Point(530, 5);
             this.lbTeam1Name.Name = "lbTeam1Name";
             this.lbTeam1Name.Size = new System.Drawing.Size(71, 22);
             this.lbTeam1Name.TabIndex = 6;
@@ -89,7 +89,7 @@ namespace ObjMonitor
             // 
             this.lbTeam2Name.AutoSize = true;
             this.lbTeam2Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTeam2Name.Location = new System.Drawing.Point(511, 222);
+            this.lbTeam2Name.Location = new System.Drawing.Point(530, 244);
             this.lbTeam2Name.Name = "lbTeam2Name";
             this.lbTeam2Name.Size = new System.Drawing.Size(71, 22);
             this.lbTeam2Name.TabIndex = 7;
@@ -99,7 +99,7 @@ namespace ObjMonitor
             // 
             this.CommandPosts.AutoSize = true;
             this.CommandPosts.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.CommandPosts.Location = new System.Drawing.Point(123, 208);
+            this.CommandPosts.Location = new System.Drawing.Point(136, 221);
             this.CommandPosts.Name = "CommandPosts";
             this.CommandPosts.Size = new System.Drawing.Size(245, 36);
             this.CommandPosts.TabIndex = 9;
@@ -107,12 +107,13 @@ namespace ObjMonitor
             // 
             // lvCommandPosts
             // 
-            this.lvCommandPosts.BackColor = System.Drawing.Color.White;
-            this.lvCommandPosts.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvCommandPosts.BackColor = System.Drawing.Color.Black;
+            this.lvCommandPosts.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvCommandPosts.ForeColor = System.Drawing.Color.White;
             this.lvCommandPosts.HideSelection = false;
-            this.lvCommandPosts.Location = new System.Drawing.Point(12, 267);
+            this.lvCommandPosts.Location = new System.Drawing.Point(129, 269);
             this.lvCommandPosts.Name = "lvCommandPosts";
-            this.lvCommandPosts.Size = new System.Drawing.Size(492, 91);
+            this.lvCommandPosts.Size = new System.Drawing.Size(261, 98);
             this.lvCommandPosts.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lvCommandPosts.TabIndex = 8;
             this.lvCommandPosts.UseCompatibleStateImageBehavior = false;
@@ -120,17 +121,18 @@ namespace ObjMonitor
             // 
             // lvGameInfo
             // 
-            this.lvGameInfo.BackColor = System.Drawing.Color.White;
+            this.lvGameInfo.BackColor = System.Drawing.Color.Black;
             this.lvGameInfo.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.chTeamName,
             this.chScore,
             this.chNumKills,
             this.chNumAlive});
-            this.lvGameInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvGameInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvGameInfo.ForeColor = System.Drawing.Color.White;
             this.lvGameInfo.HideSelection = false;
             this.lvGameInfo.Location = new System.Drawing.Point(63, 73);
             this.lvGameInfo.Name = "lvGameInfo";
-            this.lvGameInfo.Size = new System.Drawing.Size(376, 86);
+            this.lvGameInfo.Size = new System.Drawing.Size(349, 105);
             this.lvGameInfo.TabIndex = 5;
             this.lvGameInfo.UseCompatibleStateImageBehavior = false;
             this.lvGameInfo.View = System.Windows.Forms.View.Details;
@@ -138,39 +140,39 @@ namespace ObjMonitor
             // chTeamName
             // 
             this.chTeamName.Text = "Name";
-            this.chTeamName.Width = 79;
+            this.chTeamName.Width = 100;
             // 
             // chScore
             // 
             this.chScore.Text = "Score";
-            this.chScore.Width = 55;
+            this.chScore.Width = 70;
             // 
             // chNumKills
             // 
-            this.chNumKills.Text = "Team # Kills";
-            this.chNumKills.Width = 106;
+            this.chNumKills.Text = "Kills";
+            this.chNumKills.Width = 75;
             // 
             // chNumAlive
             // 
-            this.chNumAlive.Text = "Team # Alive";
-            this.chNumAlive.Width = 132;
+            this.chNumAlive.Text = "# Alive";
+            this.chNumAlive.Width = 100;
             // 
             // lvTeam2Objects
             // 
-            this.lvTeam2Objects.BackColor = System.Drawing.Color.White;
+            this.lvTeam2Objects.BackColor = System.Drawing.Color.Black;
             this.lvTeam2Objects.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.chTeam2ID,
             this.chTeam2Name,
             this.chTeam2Class,
             this.chTeam2Kills,
             this.chTeam2Health});
+            this.lvTeam2Objects.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvTeam2Objects.ForeColor = System.Drawing.Color.Black;
             this.lvTeam2Objects.FullRowSelect = true;
-            this.lvTeam2Objects.GridLines = true;
             this.lvTeam2Objects.HideSelection = false;
-            this.lvTeam2Objects.Location = new System.Drawing.Point(515, 247);
+            this.lvTeam2Objects.Location = new System.Drawing.Point(534, 269);
             this.lvTeam2Objects.Name = "lvTeam2Objects";
-            this.lvTeam2Objects.Size = new System.Drawing.Size(341, 129);
+            this.lvTeam2Objects.Size = new System.Drawing.Size(518, 190);
             this.lvTeam2Objects.TabIndex = 3;
             this.lvTeam2Objects.UseCompatibleStateImageBehavior = false;
             this.lvTeam2Objects.View = System.Windows.Forms.View.Details;
@@ -178,49 +180,48 @@ namespace ObjMonitor
             // chTeam2ID
             // 
             this.chTeam2ID.Text = "ID";
-            this.chTeam2ID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.chTeam2ID.Width = 30;
+            this.chTeam2ID.Width = 35;
             // 
             // chTeam2Name
             // 
             this.chTeam2Name.Text = "Client Name";
             this.chTeam2Name.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.chTeam2Name.Width = 99;
+            this.chTeam2Name.Width = 180;
             // 
             // chTeam2Class
             // 
             this.chTeam2Class.Text = "Class";
             this.chTeam2Class.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.chTeam2Class.Width = 121;
+            this.chTeam2Class.Width = 150;
             // 
             // chTeam2Kills
             // 
             this.chTeam2Kills.Text = "Kills";
             this.chTeam2Kills.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.chTeam2Kills.Width = 40;
+            this.chTeam2Kills.Width = 51;
             // 
             // chTeam2Health
             // 
             this.chTeam2Health.Text = "Health";
             this.chTeam2Health.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.chTeam2Health.Width = 46;
+            this.chTeam2Health.Width = 74;
             // 
             // lvTeam1Objects
             // 
-            this.lvTeam1Objects.BackColor = System.Drawing.Color.White;
+            this.lvTeam1Objects.BackColor = System.Drawing.Color.Black;
             this.lvTeam1Objects.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.chId,
             this.chName,
             this.chClassName,
             this.chKills,
             this.chHealth});
+            this.lvTeam1Objects.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvTeam1Objects.ForeColor = System.Drawing.Color.Black;
             this.lvTeam1Objects.FullRowSelect = true;
-            this.lvTeam1Objects.GridLines = true;
             this.lvTeam1Objects.HideSelection = false;
-            this.lvTeam1Objects.Location = new System.Drawing.Point(515, 30);
+            this.lvTeam1Objects.Location = new System.Drawing.Point(534, 30);
             this.lvTeam1Objects.Name = "lvTeam1Objects";
-            this.lvTeam1Objects.Size = new System.Drawing.Size(341, 129);
+            this.lvTeam1Objects.Size = new System.Drawing.Size(518, 190);
             this.lvTeam1Objects.TabIndex = 0;
             this.lvTeam1Objects.UseCompatibleStateImageBehavior = false;
             this.lvTeam1Objects.View = System.Windows.Forms.View.Details;
@@ -228,38 +229,37 @@ namespace ObjMonitor
             // chId
             // 
             this.chId.Text = "ID";
-            this.chId.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.chId.Width = 30;
+            this.chId.Width = 35;
             // 
             // chName
             // 
             this.chName.Text = "Client Name";
             this.chName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.chName.Width = 99;
+            this.chName.Width = 180;
             // 
             // chClassName
             // 
             this.chClassName.Text = "Class";
             this.chClassName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.chClassName.Width = 125;
+            this.chClassName.Width = 150;
             // 
             // chKills
             // 
             this.chKills.Text = "Kills";
             this.chKills.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.chKills.Width = 37;
+            this.chKills.Width = 51;
             // 
             // chHealth
             // 
             this.chHealth.Text = "Health";
             this.chHealth.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.chHealth.Width = 46;
+            this.chHealth.Width = 74;
             // 
             // ObjForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(884, 411);
+            this.ClientSize = new System.Drawing.Size(1064, 461);
             this.Controls.Add(this.CommandPosts);
             this.Controls.Add(this.lvCommandPosts);
             this.Controls.Add(this.lbTeam2Name);
