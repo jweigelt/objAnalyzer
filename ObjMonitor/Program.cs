@@ -34,7 +34,7 @@ namespace ObjMonitor
             return objList;
         }
 
-        private static void DumpDataString(string header, string map, string path, string datastring, string saveDir)
+        private static void DumpDataString(string header, string path, string datastring, string saveDir)
         {
             if (!Directory.Exists(saveDir))
             {
@@ -64,12 +64,12 @@ namespace ObjMonitor
             form.Show();
 
             var counter = 0;
-            var oldMap = reader.ReadString(reader.GetModuleBase(0x1A560E0), 10);
             var detectedEndgame = false;
 
-            DateTime localDate = DateTime.Now;
-            var culture = new CultureInfo("de-DE");
             var timeString = DateTime.Now.ToString("yyyy-MM-dd-h-mm-ss-tt");
+            String saveDir = "";
+            String playerDir = "";
+            String oldMap = "";
 
             while (true)
             {
@@ -90,15 +90,9 @@ namespace ObjMonitor
                 {
                     var endgame = reader.ReadInt32(reader.GetModuleBase(0x1AAFCA0));
                     var map = reader.ReadString(reader.GetModuleBase(0x1A560E0), 10);
+                    saveDir = $".\\{timeString}-data-{map}";
+                    Directory.CreateDirectory($"{saveDir}\\players");  // No op if it exists already
 
-                    int dirCount = 0; // Directory.GetDirectories(".\\data", "*", SearchOption.TopDirectoryOnly).Length; //Basically will be map number
-
-                    if (dirCount == 0)
-                    {
-                        Directory.CreateDirectory($".\\{timeString}-data-{map}\\players");
-                    }
-
-                    //detect new maps to move directories to hopefully split up data
                     if (endgame != 0) //Detects endgame if value is not 0
                     {
                         detectedEndgame = true;
@@ -109,12 +103,8 @@ namespace ObjMonitor
                     {
                         // Update the time-stamp so that we avoid writing to the same directory
                         timeString = DateTime.Now.ToString("yyyy-MM-dd-h-mm-ss-tt");
-
-                        // Directory.Move($".\\data\\{oldMap}", $".\\data\\{oldMap}{dirCount}");
-                        Directory.CreateDirectory($".\\{timeString}-data-{map}");
-
-                        oldMap = map;
-
+                        saveDir = $".\\{timeString}-data-{map}";
+                        Directory.CreateDirectory(saveDir);
                         detectedEndgame = false;
                     }
 
@@ -132,16 +122,16 @@ namespace ObjMonitor
                         {
                             //CP Data
                             datastring = string.Join("\n", objList.CommandPosts.Select(x => x.GetDataString()));
-                            strPath = $".\\{timeString}-data-{map}\\CommandPosts.csv";
+                            strPath = $"{saveDir}\\CommandPosts.csv";
                             header = "Timestamp,HUDIndex,Team";
-                            DumpDataString(header, map, strPath, datastring, $".\\{timeString}-data-{map}");
+                            DumpDataString(header, strPath, datastring, saveDir);
                         }
 
                         //Team Data
                         datastring = string.Join("\n", teamObjList.Where(x => x.Exists).Select(x => x.GetDataString));
-                        strPath = $".\\{timeString}-data-{map}\\TeamData.csv";
+                        strPath = $"{saveDir}\\TeamData.csv";
                         header = "Timestamp,TeamName,TeamID,Score";
-                        DumpDataString(header, map, strPath, datastring, $".\\{timeString}-data-{map}");
+                        DumpDataString(header, strPath, datastring, saveDir);
                         counter = 0;
                     }
                     counter += 20;
