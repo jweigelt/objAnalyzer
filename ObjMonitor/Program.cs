@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,9 +34,9 @@ namespace ObjMonitor
             return objList;
         }
 
-        private static void DumpDataString(string header, string map, string path, string datastring)
+        private static void DumpDataString(string header, string map, string path, string datastring, string saveDir)
         {
-            if (!Directory.Exists($".\\data\\{map}"))
+            if (!Directory.Exists(saveDir))
             {
                 return;
             }
@@ -66,6 +67,10 @@ namespace ObjMonitor
             var oldMap = reader.ReadString(reader.GetModuleBase(0x1A560E0), 10);
             var detectedEndgame = false;
 
+            DateTime localDate = DateTime.Now;
+            var culture = new CultureInfo("de-DE");
+            var timeString = DateTime.Now.ToString("yyyy-MM-dd-h-mm-ss-tt");
+
             while (true)
             {
                
@@ -86,11 +91,11 @@ namespace ObjMonitor
                     var endgame = reader.ReadInt32(reader.GetModuleBase(0x1AAFCA0));
                     var map = reader.ReadString(reader.GetModuleBase(0x1A560E0), 10);
 
-                    int dirCount = Directory.GetDirectories(".\\data", "*", SearchOption.TopDirectoryOnly).Length; //Basically will be map number
+                    int dirCount = 0; // Directory.GetDirectories(".\\data", "*", SearchOption.TopDirectoryOnly).Length; //Basically will be map number
 
                     if (dirCount == 0)
                     {
-                        Directory.CreateDirectory($".\\data\\{map}\\players");
+                        Directory.CreateDirectory($".\\{timeString}-data-{map}\\players");
                     }
 
                     //detect new maps to move directories to hopefully split up data
@@ -102,9 +107,11 @@ namespace ObjMonitor
                     //if endgame was detected but value is 0 that means new map has started
                     if (endgame == 0 && detectedEndgame == true)
                     {
+                        // Update the time-stamp so that we avoid writing to the same directory
+                        timeString = DateTime.Now.ToString("yyyy-MM-dd-h-mm-ss-tt");
 
-                        Directory.Move($".\\data\\{oldMap}", $".\\data\\{oldMap}{dirCount}");
-                        Directory.CreateDirectory($".\\data\\{map}");
+                        // Directory.Move($".\\data\\{oldMap}", $".\\data\\{oldMap}{dirCount}");
+                        Directory.CreateDirectory($".\\{timeString}-data-{map}");
 
                         oldMap = map;
 
@@ -125,16 +132,16 @@ namespace ObjMonitor
                         {
                             //CP Data
                             datastring = string.Join("\n", objList.CommandPosts.Select(x => x.GetDataString()));
-                            strPath = $".\\data\\{map}\\CommandPosts.csv";
+                            strPath = $".\\{timeString}-data-{map}\\CommandPosts.csv";
                             header = "Timestamp,HUDIndex,Team";
-                            DumpDataString(header, map, strPath, datastring);
+                            DumpDataString(header, map, strPath, datastring, $".\\{timeString}-data-{map}");
                         }
 
                         //Team Data
                         datastring = string.Join("\n", teamObjList.Where(x => x.Exists).Select(x => x.GetDataString));
-                        strPath = $".\\data\\{map}\\TeamData.csv";
+                        strPath = $".\\{timeString}-data-{map}\\TeamData.csv";
                         header = "Timestamp,TeamName,TeamID,Score";
-                        DumpDataString(header, map, strPath, datastring);
+                        DumpDataString(header, map, strPath, datastring, $".\\{timeString}-data-{map}");
                         counter = 0;
                     }
                     counter += 20;
