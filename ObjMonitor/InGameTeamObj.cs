@@ -103,5 +103,21 @@ namespace ObjMonitor
                 return ConMaxScore < 20000;
             }
         }
+        public int Score
+        {
+            get
+            {
+                return isCTF ? CTFScore : CONScore;
+            }
+        }
+
+        public string GetDataString
+        {
+            get
+            {
+                var timestamp = reader.ReadFloat(reader.GetModuleBase(0x1BA88E8));
+                return $"{timestamp},{TeamName},{TeamID},{Score}";
+            }
+        }
     }
 }

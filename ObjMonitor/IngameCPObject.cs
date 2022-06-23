@@ -86,5 +86,20 @@ namespace ObjMonitor
                 return TeamName;
             }
         }
+
+        public string Map
+        {
+            get
+            {
+                return reader.ReadString(reader.GetModuleBase(0x1A560E0), 10);
+            }
+        }
+
+        public string GetDataString()
+        {
+            var timestamp = reader.ReadFloat(reader.GetModuleBase(0x1BA88E8));
+
+            return $"{timestamp},{HudIndex},{Team}";
+        }
     }
 }

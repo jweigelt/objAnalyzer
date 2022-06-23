@@ -16,7 +16,8 @@ namespace ObjMonitor
         public static readonly int[] SOLDIER_CLASS_OBJ_OFFSET =     { 0x140 };
         public static readonly int[] CP_OBJ_SPAWNED_AT =            { 0X144 };
         public static readonly int[] ENTITY_SOLDIER =               { 0x148 }; // NOTE: this is not the same as ingame obj. You can get that address by subtracting 0x240 from the address this points to
-
+        public static readonly int[] LAST_CP_IN_RANGE =             { 0x198 }; // This gets populated after first spawn
+        public static readonly int[] TIMESTAMP_OF_LAST_SPAWN =      { 0x188 }; // Timestamp is from when player joined server not server timestamp
         public IntPtr baseAddr;
         public ProcessMemoryReader reader;
         public InGameCharacterObject(IntPtr basePtr, ProcessMemoryReader reader)
@@ -86,6 +87,44 @@ namespace ObjMonitor
             {
                 return new InGameTeamObj(reader.ReadPtr(reader.GetOffsetIntPtr(baseAddr, TEAM_OBJ_OFFSET)), reader);
             }
+        }
+        public InGameObj EntitySoldier
+        {
+            get
+            {
+                return new InGameObj(reader.ReadPtr(reader.GetOffsetIntPtr(baseAddr, ENTITY_SOLDIER)) - 0x240, reader);
+            }
+        }
+        public IngameCPObject LastInRangeCP
+        {
+            get
+            {
+                return new IngameCPObject(reader.ReadPtr(reader.GetOffsetIntPtr(baseAddr, LAST_CP_IN_RANGE)), reader);
+            }
+        }
+        public float TimeStampOfLastSpawn
+        {
+            get
+            {
+                return reader.ReadFloat(reader.GetOffsetIntPtr(baseAddr, TIMESTAMP_OF_LAST_SPAWN));
+            }
+        }
+        public string Map
+        {
+            get
+            {
+                return reader.ReadString(reader.GetModuleBase(0x1A560E0), 10);
+            }
+        }
+        public string GetDataString()
+        {
+            var timestamp = reader.ReadFloat(reader.GetModuleBase(0x1BA88E8));
+            return $"{timestamp},{Index+1},{Name},{EntitySoldier.Health},{EntitySoldier.X},{EntitySoldier.Y},{EntitySoldier.Z}";
+        }
+        public string GetDataStringNoName()
+        {
+            var timestamp = reader.ReadFloat(reader.GetModuleBase(0x1BA88E8));
+            return $"{timestamp},{ClassID},{EntitySoldier.Health},{EntitySoldier.X},{EntitySoldier.Y},{EntitySoldier.Z}";
         }
     }
 }

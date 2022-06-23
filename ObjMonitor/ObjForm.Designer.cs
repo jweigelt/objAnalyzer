@@ -35,6 +35,18 @@ namespace ObjMonitor
             this.lbTeam1Name = new System.Windows.Forms.Label();
             this.lbTeam2Name = new System.Windows.Forms.Label();
             this.CommandPosts = new System.Windows.Forms.Label();
+            this.ipAddress = new System.Windows.Forms.TextBox();
+            this.port = new System.Windows.Forms.TextBox();
+            this.username = new System.Windows.Forms.TextBox();
+            this.password = new System.Windows.Forms.TextBox();
+            this.waCB = new System.Windows.Forms.CheckBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cbHideCPS = new System.Windows.Forms.CheckBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.bnSwapTeamViews = new System.Windows.Forms.Button();
             this.lvCommandPosts = new ObjMonitor.DoubleBufferedListView();
             this.lvGameInfo = new ObjMonitor.DoubleBufferedListView();
             this.chTeamName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -44,22 +56,25 @@ namespace ObjMonitor
             this.lvTeam2Objects = new ObjMonitor.DoubleBufferedListView();
             this.chTeam2ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chTeam2Name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.chTeam2Class = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chTeam2Points = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chTeam2Kills = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chTeam2Deaths = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chTeam2Health = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvTeam1Objects = new ObjMonitor.DoubleBufferedListView();
             this.chId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.chClassName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chPoints = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chKills = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chDeaths = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chHealth = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cbTrackStats = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(217, 30);
+            this.label1.Location = new System.Drawing.Point(189, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(69, 36);
             this.label1.TabIndex = 2;
@@ -79,7 +94,7 @@ namespace ObjMonitor
             // 
             this.lbTeam1Name.AutoSize = true;
             this.lbTeam1Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTeam1Name.Location = new System.Drawing.Point(530, 5);
+            this.lbTeam1Name.Location = new System.Drawing.Point(530, 13);
             this.lbTeam1Name.Name = "lbTeam1Name";
             this.lbTeam1Name.Size = new System.Drawing.Size(71, 22);
             this.lbTeam1Name.TabIndex = 6;
@@ -89,7 +104,7 @@ namespace ObjMonitor
             // 
             this.lbTeam2Name.AutoSize = true;
             this.lbTeam2Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTeam2Name.Location = new System.Drawing.Point(530, 244);
+            this.lbTeam2Name.Location = new System.Drawing.Point(530, 294);
             this.lbTeam2Name.Name = "lbTeam2Name";
             this.lbTeam2Name.Size = new System.Drawing.Size(71, 22);
             this.lbTeam2Name.TabIndex = 7;
@@ -99,21 +114,133 @@ namespace ObjMonitor
             // 
             this.CommandPosts.AutoSize = true;
             this.CommandPosts.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.CommandPosts.Location = new System.Drawing.Point(136, 221);
+            this.CommandPosts.Location = new System.Drawing.Point(57, 227);
             this.CommandPosts.Name = "CommandPosts";
             this.CommandPosts.Size = new System.Drawing.Size(245, 36);
             this.CommandPosts.TabIndex = 9;
             this.CommandPosts.Text = "Command Posts";
             // 
+            // ipAddress
+            // 
+            this.ipAddress.AcceptsReturn = true;
+            this.ipAddress.Location = new System.Drawing.Point(63, 516);
+            this.ipAddress.Name = "ipAddress";
+            this.ipAddress.Size = new System.Drawing.Size(154, 20);
+            this.ipAddress.TabIndex = 10;
+            // 
+            // port
+            // 
+            this.port.AcceptsReturn = true;
+            this.port.Location = new System.Drawing.Point(63, 542);
+            this.port.Name = "port";
+            this.port.Size = new System.Drawing.Size(154, 20);
+            this.port.TabIndex = 11;
+            // 
+            // username
+            // 
+            this.username.AcceptsReturn = true;
+            this.username.Location = new System.Drawing.Point(63, 568);
+            this.username.Name = "username";
+            this.username.Size = new System.Drawing.Size(154, 20);
+            this.username.TabIndex = 12;
+            // 
+            // password
+            // 
+            this.password.AcceptsReturn = true;
+            this.password.Location = new System.Drawing.Point(63, 594);
+            this.password.Name = "password";
+            this.password.Size = new System.Drawing.Size(154, 20);
+            this.password.TabIndex = 13;
+            // 
+            // waCB
+            // 
+            this.waCB.AutoSize = true;
+            this.waCB.Location = new System.Drawing.Point(63, 493);
+            this.waCB.Name = "waCB";
+            this.waCB.Size = new System.Drawing.Size(106, 17);
+            this.waCB.TabIndex = 15;
+            this.waCB.Text = "Use WebAdmin?";
+            this.waCB.UseVisualStyleBackColor = true;
+            this.waCB.CheckedChanged += new System.EventHandler(this.waCB_CheckedChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.OrangeRed;
+            this.label2.Location = new System.Drawing.Point(3, 617);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(283, 13);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "Avoid updating info while the checkbox is active";
+            // 
+            // cbHideCPS
+            // 
+            this.cbHideCPS.AutoSize = true;
+            this.cbHideCPS.Location = new System.Drawing.Point(309, 245);
+            this.cbHideCPS.Name = "cbHideCPS";
+            this.cbHideCPS.Size = new System.Drawing.Size(72, 17);
+            this.cbHideCPS.TabIndex = 17;
+            this.cbHideCPS.Text = "Hide CPS";
+            this.cbHideCPS.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(223, 519);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(17, 13);
+            this.label3.TabIndex = 18;
+            this.label3.Text = "IP";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(223, 545);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(37, 13);
+            this.label4.TabIndex = 19;
+            this.label4.Text = "PORT";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(223, 571);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(68, 13);
+            this.label5.TabIndex = 20;
+            this.label5.Text = "USERNAME";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(223, 597);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(70, 13);
+            this.label6.TabIndex = 21;
+            this.label6.Text = "PASSWORD";
+            // 
+            // bnSwapTeamViews
+            // 
+            this.bnSwapTeamViews.Location = new System.Drawing.Point(1097, 283);
+            this.bnSwapTeamViews.Name = "bnSwapTeamViews";
+            this.bnSwapTeamViews.Size = new System.Drawing.Size(75, 23);
+            this.bnSwapTeamViews.TabIndex = 22;
+            this.bnSwapTeamViews.Text = "SWAP";
+            this.bnSwapTeamViews.UseVisualStyleBackColor = true;
+            this.bnSwapTeamViews.Click += new System.EventHandler(this.bnSwapTeamViews_Click);
+            // 
             // lvCommandPosts
             // 
-            this.lvCommandPosts.BackColor = System.Drawing.Color.Black;
+            this.lvCommandPosts.AutoArrange = false;
+            this.lvCommandPosts.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(41)))));
             this.lvCommandPosts.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvCommandPosts.ForeColor = System.Drawing.Color.White;
+            this.lvCommandPosts.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvCommandPosts.HideSelection = false;
-            this.lvCommandPosts.Location = new System.Drawing.Point(129, 269);
+            this.lvCommandPosts.Location = new System.Drawing.Point(63, 283);
             this.lvCommandPosts.Name = "lvCommandPosts";
-            this.lvCommandPosts.Size = new System.Drawing.Size(261, 98);
+            this.lvCommandPosts.Size = new System.Drawing.Size(349, 101);
             this.lvCommandPosts.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lvCommandPosts.TabIndex = 8;
             this.lvCommandPosts.UseCompatibleStateImageBehavior = false;
@@ -121,7 +248,7 @@ namespace ObjMonitor
             // 
             // lvGameInfo
             // 
-            this.lvGameInfo.BackColor = System.Drawing.Color.Black;
+            this.lvGameInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(41)))));
             this.lvGameInfo.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.chTeamName,
             this.chScore,
@@ -129,6 +256,7 @@ namespace ObjMonitor
             this.chNumAlive});
             this.lvGameInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvGameInfo.ForeColor = System.Drawing.Color.White;
+            this.lvGameInfo.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvGameInfo.HideSelection = false;
             this.lvGameInfo.Location = new System.Drawing.Point(63, 73);
             this.lvGameInfo.Name = "lvGameInfo";
@@ -159,20 +287,23 @@ namespace ObjMonitor
             // 
             // lvTeam2Objects
             // 
-            this.lvTeam2Objects.BackColor = System.Drawing.Color.Black;
+            this.lvTeam2Objects.AutoArrange = false;
+            this.lvTeam2Objects.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(41)))));
             this.lvTeam2Objects.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.chTeam2ID,
             this.chTeam2Name,
-            this.chTeam2Class,
+            this.chTeam2Points,
             this.chTeam2Kills,
+            this.chTeam2Deaths,
             this.chTeam2Health});
             this.lvTeam2Objects.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lvTeam2Objects.ForeColor = System.Drawing.Color.Black;
+            this.lvTeam2Objects.ForeColor = System.Drawing.Color.White;
             this.lvTeam2Objects.FullRowSelect = true;
+            this.lvTeam2Objects.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvTeam2Objects.HideSelection = false;
-            this.lvTeam2Objects.Location = new System.Drawing.Point(534, 269);
+            this.lvTeam2Objects.Location = new System.Drawing.Point(534, 330);
             this.lvTeam2Objects.Name = "lvTeam2Objects";
-            this.lvTeam2Objects.Size = new System.Drawing.Size(518, 190);
+            this.lvTeam2Objects.Size = new System.Drawing.Size(549, 190);
             this.lvTeam2Objects.TabIndex = 3;
             this.lvTeam2Objects.UseCompatibleStateImageBehavior = false;
             this.lvTeam2Objects.View = System.Windows.Forms.View.Details;
@@ -184,44 +315,52 @@ namespace ObjMonitor
             // 
             // chTeam2Name
             // 
-            this.chTeam2Name.Text = "Client Name";
-            this.chTeam2Name.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.chTeam2Name.Width = 180;
+            this.chTeam2Name.Text = "Player";
+            this.chTeam2Name.Width = 320;
             // 
-            // chTeam2Class
+            // chTeam2Points
             // 
-            this.chTeam2Class.Text = "Class";
-            this.chTeam2Class.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.chTeam2Class.Width = 150;
+            this.chTeam2Points.Text = "P";
+            this.chTeam2Points.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.chTeam2Points.Width = 45;
             // 
             // chTeam2Kills
             // 
-            this.chTeam2Kills.Text = "Kills";
+            this.chTeam2Kills.Text = "K";
             this.chTeam2Kills.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.chTeam2Kills.Width = 51;
+            this.chTeam2Kills.Width = 35;
+            // 
+            // chTeam2Deaths
+            // 
+            this.chTeam2Deaths.Text = "D";
+            this.chTeam2Deaths.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.chTeam2Deaths.Width = 35;
             // 
             // chTeam2Health
             // 
-            this.chTeam2Health.Text = "Health";
+            this.chTeam2Health.Text = "H";
             this.chTeam2Health.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.chTeam2Health.Width = 74;
+            this.chTeam2Health.Width = 45;
             // 
             // lvTeam1Objects
             // 
-            this.lvTeam1Objects.BackColor = System.Drawing.Color.Black;
+            this.lvTeam1Objects.AutoArrange = false;
+            this.lvTeam1Objects.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(41)))));
             this.lvTeam1Objects.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.chId,
             this.chName,
-            this.chClassName,
+            this.chPoints,
             this.chKills,
+            this.chDeaths,
             this.chHealth});
             this.lvTeam1Objects.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lvTeam1Objects.ForeColor = System.Drawing.Color.Black;
+            this.lvTeam1Objects.ForeColor = System.Drawing.Color.White;
             this.lvTeam1Objects.FullRowSelect = true;
+            this.lvTeam1Objects.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvTeam1Objects.HideSelection = false;
-            this.lvTeam1Objects.Location = new System.Drawing.Point(534, 30);
+            this.lvTeam1Objects.Location = new System.Drawing.Point(534, 53);
             this.lvTeam1Objects.Name = "lvTeam1Objects";
-            this.lvTeam1Objects.Size = new System.Drawing.Size(518, 190);
+            this.lvTeam1Objects.Size = new System.Drawing.Size(549, 190);
             this.lvTeam1Objects.TabIndex = 0;
             this.lvTeam1Objects.UseCompatibleStateImageBehavior = false;
             this.lvTeam1Objects.View = System.Windows.Forms.View.Details;
@@ -233,33 +372,63 @@ namespace ObjMonitor
             // 
             // chName
             // 
-            this.chName.Text = "Client Name";
-            this.chName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.chName.Width = 180;
+            this.chName.Text = "Player";
+            this.chName.Width = 320;
             // 
-            // chClassName
+            // chPoints
             // 
-            this.chClassName.Text = "Class";
-            this.chClassName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.chClassName.Width = 150;
+            this.chPoints.Text = "P";
+            this.chPoints.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.chPoints.Width = 45;
             // 
             // chKills
             // 
-            this.chKills.Text = "Kills";
+            this.chKills.Text = "K";
             this.chKills.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.chKills.Width = 51;
+            this.chKills.Width = 35;
+            // 
+            // chDeaths
+            // 
+            this.chDeaths.Text = "D";
+            this.chDeaths.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.chDeaths.Width = 35;
             // 
             // chHealth
             // 
-            this.chHealth.Text = "Health";
+            this.chHealth.Text = "H";
             this.chHealth.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.chHealth.Width = 74;
+            this.chHealth.Width = 45;
+            // 
+            // cbTrackStats
+            // 
+            this.cbTrackStats.AutoSize = true;
+            this.cbTrackStats.Checked = true;
+            this.cbTrackStats.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbTrackStats.Location = new System.Drawing.Point(13, 37);
+            this.cbTrackStats.Name = "cbTrackStats";
+            this.cbTrackStats.Size = new System.Drawing.Size(81, 17);
+            this.cbTrackStats.TabIndex = 23;
+            this.cbTrackStats.Text = "Track Stats";
+            this.cbTrackStats.UseVisualStyleBackColor = true;
             // 
             // ObjForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1064, 461);
+            this.ClientSize = new System.Drawing.Size(1184, 711);
+            this.Controls.Add(this.cbTrackStats);
+            this.Controls.Add(this.bnSwapTeamViews);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.cbHideCPS);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.waCB);
+            this.Controls.Add(this.password);
+            this.Controls.Add(this.username);
+            this.Controls.Add(this.port);
+            this.Controls.Add(this.ipAddress);
             this.Controls.Add(this.CommandPosts);
             this.Controls.Add(this.lvCommandPosts);
             this.Controls.Add(this.lbTeam2Name);
@@ -281,17 +450,17 @@ namespace ObjMonitor
         #endregion
         private System.Windows.Forms.ColumnHeader chId;
         private System.Windows.Forms.ColumnHeader chName;
-        private System.Windows.Forms.ColumnHeader chClassName;
-        private System.Windows.Forms.ColumnHeader chHealth;
+        private System.Windows.Forms.ColumnHeader chPoints;
+        private System.Windows.Forms.ColumnHeader chDeaths;
         private DoubleBufferedListView lvTeam1Objects;
         private ColumnHeader chKills;
         private Label label1;
         private DoubleBufferedListView lvTeam2Objects;
         private ColumnHeader chTeam2ID;
         private ColumnHeader chTeam2Name;
-        private ColumnHeader chTeam2Class;
+        private ColumnHeader chTeam2Points;
         private ColumnHeader chTeam2Kills;
-        private ColumnHeader chTeam2Health;
+        private ColumnHeader chTeam2Deaths;
         private CheckBox cbHost;
         private DoubleBufferedListView lvGameInfo;
         private ColumnHeader chTeamName;
@@ -302,5 +471,20 @@ namespace ObjMonitor
         private Label lbTeam2Name;
         private DoubleBufferedListView lvCommandPosts;
         private Label CommandPosts;
+        private TextBox ipAddress;
+        private TextBox port;
+        private TextBox username;
+        private TextBox password;
+        private CheckBox waCB;
+        private Label label2;
+        private ColumnHeader chTeam2Health;
+        private ColumnHeader chHealth;
+        public CheckBox cbHideCPS;
+        private Label label3;
+        private Label label4;
+        private Label label5;
+        private Label label6;
+        private Button bnSwapTeamViews;
+        public CheckBox cbTrackStats;
     }
 }
