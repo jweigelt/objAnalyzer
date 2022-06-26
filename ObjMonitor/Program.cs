@@ -64,56 +64,71 @@ namespace ObjMonitor
 
             var counter = 0;
             var detectedEndgame = false;
+            var map = reader.ReadString(reader.GetModuleBase(0x1A560E0), 10);
 
+            var endgame = reader.ReadInt32(reader.GetModuleBase(0x1AAFCA0));
+            Console.WriteLine($"Outside loop: map = {map}, isEmpty = {String.IsNullOrEmpty(map)}, endgame = {endgame}");
             var timeString = DateTime.Now.ToString("yyyy-MM-dd-h-mm-ss-tt");
-            String saveDir = "";
-            String playerDir = "";
+            var saveDir = $".\\{timeString}-data-{map}";
             String oldMap = "";
+            bool savePlayerData = false;
+            DateTime playerDataTime = DateTime.UtcNow;
+
 
             while (true)
             {
-               
-
+                // Invariant: map has a value
                 List<InGameTeamObj> teamObjList = GetTeamList(reader, form);
                 form.UpdateTeamLabels(teamObjList[0].TeamName, teamObjList[1].TeamName);
                 ObjList objList = new ObjList(reader, form);
                 CharList charList = new CharList(reader);
-                form.UpdateTeam1ObjList(charList.Team1);
-                form.UpdateTeam2ObjList(charList.Team2);
+                //dump only every 1/2 second
+                savePlayerData = DateTime.UtcNow > playerDataTime.AddSeconds(0.5) && form.cbTrackStats.Checked;
+                if (savePlayerData)
+                {
+                    playerDataTime = DateTime.UtcNow;
+                }
+                // TODO: save data in memory and only dump data once in a while
+                form.UpdateTeam1ObjList(charList.Team1, saveDir, savePlayerData);
+                form.UpdateTeam2ObjList(charList.Team2, saveDir, savePlayerData);
                 form.UpdateGameInfo(teamObjList);
                 form.UpdateCommandPosts(objList.CommandPosts, teamObjList[0], teamObjList[1]);
                 Application.DoEvents();
-
-
                 if (form.cbTrackStats.Checked)
                 {
-                    var endgame = reader.ReadInt32(reader.GetModuleBase(0x1AAFCA0));
-                    var map = reader.ReadString(reader.GetModuleBase(0x1A560E0), 10);
-                    saveDir = $".\\{timeString}-data-{map}";
-                    Directory.CreateDirectory($"{saveDir}\\players");  // No op if it exists already
+                    endgame = reader.ReadInt32(reader.GetModuleBase(0x1AAFCA0));
+                    map = reader.ReadString(reader.GetModuleBase(0x1A560E0), 10);
 
-                    if (endgame != 0) //Detects endgame if value is not 0
+                    if (endgame != 0) // Detects endgame if value is not 0
                     {
                         detectedEndgame = true;
                     }
-
-                    //if endgame was detected but value is 0 that means new map has started
-                    if (endgame == 0 && detectedEndgame == true)
+                    Boolean mapStartDetected = !String.IsNullOrEmpty(map) && (
+                        (map != oldMap) // map change. Only checking endgame isn't enough because if someone join the server after starting this program, there will not have been an endgame
+                        || (
+                            // only checking map != oldMap isn't enough because there might be the same map twice in a row
+                            endgame == 0 && detectedEndgame == true  // if endgame was detected but value is 0 that means new map has started
+                        ) || (
+                            !saveDir.Contains(map) // TODO: figure out why the previous two conditions aren't enough
+                        )
+                    );
+                    if (mapStartDetected)
                     {
-                        // Update the time-stamp so that we avoid writing to the same directory
+                        Console.WriteLine($"Map start detected. oldMap={oldMap}, map={map}, endgame={endgame}, detectedEndgame={detectedEndgame}");
+                        Console.WriteLine($"old saveDir = {saveDir}");
                         timeString = DateTime.Now.ToString("yyyy-MM-dd-h-mm-ss-tt");
                         saveDir = $".\\{timeString}-data-{map}";
-                        Directory.CreateDirectory(saveDir);
+                        Console.WriteLine($"new saveDir = {saveDir}");
+                        Directory.CreateDirectory($"{saveDir}\\players");
                         detectedEndgame = false;
                     }
+                    oldMap = map;
 
                     string datastring;
                     string strPath;
                     string header;
 
                     //Have to dump player data within form update for webadmin updates
-
-
                     //Dump data every 1 seconds
                     if (counter >= 1000 && form.cbTrackStats.Checked)
                     {
