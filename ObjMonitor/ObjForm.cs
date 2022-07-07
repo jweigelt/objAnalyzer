@@ -78,7 +78,9 @@ namespace ObjMonitor
         
         public void UpdateTeam1ObjList(List<InGameCharacterObject> objList, bool savePlayerData, StreamWriter save_sw)
         {
-            //chart_map.Series[0].AxisX.Minimum = -100;
+            // TODO: set the min/max automatically based on the map
+            // TODO: overlay image of the minimaps under the chart
+            //chart_map.ChartAreas[0].AxisX.Minimum = -100;
             chart_map.Series[0].Points.Clear();
 
             if (waCB.Checked && DateTime.UtcNow >= time.AddSeconds(5) )  //Make sure we are only updating values from webadmin every 10 seconds or we will ddos the server
@@ -409,6 +411,11 @@ namespace ObjMonitor
         }
 
         private void chart1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
         {
 
         }
