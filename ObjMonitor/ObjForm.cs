@@ -48,22 +48,24 @@ namespace ObjMonitor
 
             wapList = new WebAdminPlayerList(ipAddress.Text, port.Text, username.Text, password.Text);
 
-            map_to_image_file["tat2"] = "..\\..\\assets\\minimaps_trimmed\\tat2_trimmed.png";
-            map_to_image_file["C0R"] = "..\\..\\assets\\minimaps_trimmed\\C0R_trimmed.png";
-            map_to_image_file["TI2"] = "..\\..\\assets\\minimaps_trimmed\\TI2_trimmed.png";
-            map_to_image_file["mus1"] = "..\\..\\assets\\minimaps_trimmed\\mus1_trimmed.png";
-            map_to_image_file["tat3"] = "..\\..\\assets\\minimaps_trimmed\\tat3_trimmed.png";
-            map_to_image_file["KEK"] = "..\\..\\assets\\minimaps_trimmed\\KEK_trimmed_grayscale.png";
-            map_to_image_file["DG2"] = "..\\..\\assets\\minimaps_trimmed\\dag1_trimmed.png";
-            map_to_image_file["ED9"] = "..\\..\\assets\\minimaps_trimmed\\ed9_trimmed.png";
-            map_to_image_file["RVN"] = "..\\..\\assets\\minimaps_trimmed\\Rhn1_trimmed2.png";
-            map_to_image_file["RVC"] = "..\\..\\assets\\minimaps_trimmed\\Rhn2_trimmed_grayscale.png";
-            map_to_image_file["uta1"] = "..\\..\\assets\\minimaps_trimmed\\uta1_trimmed2.png";
+            map_to_image_file["tat2"] = ".\\minimaps_trimmed\\tat2_trimmed.png";
+            map_to_image_file["C0R"] = ".\\minimaps_trimmed\\C0R_trimmed.png";
+            map_to_image_file["TI2"] = ".\\minimaps_trimmed\\TI2_trimmed.png";
+            map_to_image_file["tan1"] = ".\\minimaps_trimmed\\TI2_trimmed.png";
+            map_to_image_file["mus1"] = ".\\minimaps_trimmed\\mus1_trimmed.png";
+            map_to_image_file["tat3"] = ".\\minimaps_trimmed\\tat3_trimmed.png";
+            map_to_image_file["KEK"] = ".\\minimaps_trimmed\\KEK_trimmed_grayscale.png";
+            map_to_image_file["DG2"] = ".\\minimaps_trimmed\\dag1_trimmed.png";
+            map_to_image_file["ED9"] = ".\\minimaps_trimmed\\ed9_trimmed.png";
+            map_to_image_file["RVN"] = ".\\minimaps_trimmed\\Rhn1_trimmed2.png";
+            map_to_image_file["RVC"] = ".\\minimaps_trimmed\\Rhn2_trimmed_grayscale.png";
+            map_to_image_file["uta1"] = ".\\minimaps_trimmed\\uta1_trimmed2.png";
             // You can quickly find these coordinates in freecam mode.
             // The ymin and ymax listed below correspond to the zmin and ymin from the game because the game uses xz-coordinates.
             map_to_xminmax_yminmax["tat2"] = Tuple.Create(-137.59, 139.11, -103.86, 94.15);
             map_to_xminmax_yminmax["C0R"] = Tuple.Create(-68.06, 111.82, -184.14, 36.38);
             map_to_xminmax_yminmax["TI2"] = Tuple.Create(-385.19, -210.20, 67.09, 203.39);
+            map_to_xminmax_yminmax["tan1"] = Tuple.Create(-385.19, -210.20, 67.09, 203.39);
             map_to_xminmax_yminmax["mus1"] = Tuple.Create(-106.4, 143.0, -59.0, 152.0);
             map_to_xminmax_yminmax["tat3"] = Tuple.Create(-127.7, 4.9, 50.1, 196.9);
             map_to_xminmax_yminmax["KEK"] = Tuple.Create(-180.0, 135.9, 64.24, 288.3);
@@ -76,6 +78,7 @@ namespace ObjMonitor
             map_to_xdir_ydir["tat2"] = Tuple.Create(1, -1);
             map_to_xdir_ydir["C0R"] = Tuple.Create(-1, 1); // For some reason, Cor patched has the x and z reversed.
             map_to_xdir_ydir["TI2"] = Tuple.Create(1, -1);
+            map_to_xdir_ydir["tan1"] = Tuple.Create(1, -1);
             map_to_xdir_ydir["mus1"] = Tuple.Create(1, -1);
             map_to_xdir_ydir["tat3"] = Tuple.Create(1, -1);
             map_to_xdir_ydir["KEK"] = Tuple.Create(1, -1);
