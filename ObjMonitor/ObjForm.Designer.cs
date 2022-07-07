@@ -53,7 +53,7 @@ namespace ObjMonitor
             this.bnSwapTeamViews = new System.Windows.Forms.Button();
             this.cbTrackStats = new System.Windows.Forms.CheckBox();
             this.chart_map = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.label7 = new System.Windows.Forms.Label();
+            this.label_minimap = new System.Windows.Forms.Label();
             this.comboBox_map = new System.Windows.Forms.ComboBox();
             this.text_map_dropdown_label = new System.Windows.Forms.Label();
             this.lvCommandPosts = new ObjMonitor.DoubleBufferedListView();
@@ -83,7 +83,7 @@ namespace ObjMonitor
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(139, 78);
+            this.label1.Location = new System.Drawing.Point(189, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(69, 36);
             this.label1.TabIndex = 2;
@@ -103,7 +103,7 @@ namespace ObjMonitor
             // 
             this.lbTeam1Name.AutoSize = true;
             this.lbTeam1Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTeam1Name.Location = new System.Drawing.Point(372, 13);
+            this.lbTeam1Name.Location = new System.Drawing.Point(530, 13);
             this.lbTeam1Name.Name = "lbTeam1Name";
             this.lbTeam1Name.Size = new System.Drawing.Size(71, 22);
             this.lbTeam1Name.TabIndex = 6;
@@ -113,7 +113,7 @@ namespace ObjMonitor
             // 
             this.lbTeam2Name.AutoSize = true;
             this.lbTeam2Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTeam2Name.Location = new System.Drawing.Point(372, 284);
+            this.lbTeam2Name.Location = new System.Drawing.Point(530, 294);
             this.lbTeam2Name.Name = "lbTeam2Name";
             this.lbTeam2Name.Size = new System.Drawing.Size(71, 22);
             this.lbTeam2Name.TabIndex = 7;
@@ -123,7 +123,7 @@ namespace ObjMonitor
             // 
             this.CommandPosts.AutoSize = true;
             this.CommandPosts.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.CommandPosts.Location = new System.Drawing.Point(7, 292);
+            this.CommandPosts.Location = new System.Drawing.Point(57, 227);
             this.CommandPosts.Name = "CommandPosts";
             this.CommandPosts.Size = new System.Drawing.Size(245, 36);
             this.CommandPosts.TabIndex = 9;
@@ -186,7 +186,7 @@ namespace ObjMonitor
             // cbHideCPS
             // 
             this.cbHideCPS.AutoSize = true;
-            this.cbHideCPS.Location = new System.Drawing.Point(259, 310);
+            this.cbHideCPS.Location = new System.Drawing.Point(309, 245);
             this.cbHideCPS.Name = "cbHideCPS";
             this.cbHideCPS.Size = new System.Drawing.Size(72, 17);
             this.cbHideCPS.TabIndex = 17;
@@ -253,14 +253,18 @@ namespace ObjMonitor
             // 
             // chart_map
             // 
+            chartArea1.AxisX.LabelStyle.Enabled = false;
             chartArea1.AxisX.MajorGrid.Enabled = false;
+            chartArea1.AxisX.MajorTickMark.Enabled = false;
+            chartArea1.AxisY.LabelStyle.Enabled = false;
             chartArea1.AxisY.MajorGrid.Enabled = false;
+            chartArea1.AxisY.MajorTickMark.Enabled = false;
             chartArea1.BackColor = System.Drawing.Color.Transparent;
             chartArea1.Name = "chartarea_minimap";
             this.chart_map.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chart_map.Legends.Add(legend1);
-            this.chart_map.Location = new System.Drawing.Point(931, 53);
+            this.chart_map.Location = new System.Drawing.Point(1188, 53);
             this.chart_map.Name = "chart_map";
             series1.ChartArea = "chartarea_minimap";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastPoint;
@@ -277,21 +281,21 @@ namespace ObjMonitor
             series2.Name = "Team2";
             this.chart_map.Series.Add(series1);
             this.chart_map.Series.Add(series2);
-            this.chart_map.Size = new System.Drawing.Size(621, 457);
+            this.chart_map.Size = new System.Drawing.Size(353, 311);
             this.chart_map.TabIndex = 24;
             this.chart_map.Text = "chart1";
             this.chart_map.Click += new System.EventHandler(this.chart1_Click);
             // 
-            // label7
+            // label_minimap
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold);
-            this.label7.Location = new System.Drawing.Point(1158, 13);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(90, 22);
-            this.label7.TabIndex = 25;
-            this.label7.Text = "Mini-Map";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
+            this.label_minimap.AutoSize = true;
+            this.label_minimap.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold);
+            this.label_minimap.Location = new System.Drawing.Point(1184, 13);
+            this.label_minimap.Name = "label_minimap";
+            this.label_minimap.Size = new System.Drawing.Size(90, 22);
+            this.label_minimap.TabIndex = 25;
+            this.label_minimap.Text = "Mini-Map";
+            this.label_minimap.Click += new System.EventHandler(this.label7_Click);
             // 
             // comboBox_map
             // 
@@ -309,7 +313,7 @@ namespace ObjMonitor
             "tat3",
             "TI2",
             "uta1"});
-            this.comboBox_map.Location = new System.Drawing.Point(1007, 562);
+            this.comboBox_map.Location = new System.Drawing.Point(1250, 390);
             this.comboBox_map.Name = "comboBox_map";
             this.comboBox_map.Size = new System.Drawing.Size(179, 21);
             this.comboBox_map.TabIndex = 26;
@@ -318,7 +322,7 @@ namespace ObjMonitor
             // 
             this.text_map_dropdown_label.AutoSize = true;
             this.text_map_dropdown_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.text_map_dropdown_label.Location = new System.Drawing.Point(944, 560);
+            this.text_map_dropdown_label.Location = new System.Drawing.Point(1187, 388);
             this.text_map_dropdown_label.Name = "text_map_dropdown_label";
             this.text_map_dropdown_label.Size = new System.Drawing.Size(47, 22);
             this.text_map_dropdown_label.TabIndex = 27;
@@ -332,7 +336,7 @@ namespace ObjMonitor
             this.lvCommandPosts.ForeColor = System.Drawing.Color.White;
             this.lvCommandPosts.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvCommandPosts.HideSelection = false;
-            this.lvCommandPosts.Location = new System.Drawing.Point(13, 348);
+            this.lvCommandPosts.Location = new System.Drawing.Point(63, 283);
             this.lvCommandPosts.Name = "lvCommandPosts";
             this.lvCommandPosts.Size = new System.Drawing.Size(349, 101);
             this.lvCommandPosts.Sorting = System.Windows.Forms.SortOrder.Ascending;
@@ -352,7 +356,7 @@ namespace ObjMonitor
             this.lvGameInfo.ForeColor = System.Drawing.Color.White;
             this.lvGameInfo.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvGameInfo.HideSelection = false;
-            this.lvGameInfo.Location = new System.Drawing.Point(13, 138);
+            this.lvGameInfo.Location = new System.Drawing.Point(63, 73);
             this.lvGameInfo.Name = "lvGameInfo";
             this.lvGameInfo.Size = new System.Drawing.Size(349, 105);
             this.lvGameInfo.TabIndex = 5;
@@ -395,7 +399,7 @@ namespace ObjMonitor
             this.lvTeam2Objects.FullRowSelect = true;
             this.lvTeam2Objects.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvTeam2Objects.HideSelection = false;
-            this.lvTeam2Objects.Location = new System.Drawing.Point(376, 320);
+            this.lvTeam2Objects.Location = new System.Drawing.Point(534, 330);
             this.lvTeam2Objects.Name = "lvTeam2Objects";
             this.lvTeam2Objects.Size = new System.Drawing.Size(549, 190);
             this.lvTeam2Objects.TabIndex = 3;
@@ -452,7 +456,7 @@ namespace ObjMonitor
             this.lvTeam1Objects.FullRowSelect = true;
             this.lvTeam1Objects.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvTeam1Objects.HideSelection = false;
-            this.lvTeam1Objects.Location = new System.Drawing.Point(376, 53);
+            this.lvTeam1Objects.Location = new System.Drawing.Point(534, 53);
             this.lvTeam1Objects.Name = "lvTeam1Objects";
             this.lvTeam1Objects.Size = new System.Drawing.Size(549, 190);
             this.lvTeam1Objects.TabIndex = 0;
@@ -500,7 +504,7 @@ namespace ObjMonitor
             this.ClientSize = new System.Drawing.Size(1584, 711);
             this.Controls.Add(this.text_map_dropdown_label);
             this.Controls.Add(this.comboBox_map);
-            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label_minimap);
             this.Controls.Add(this.chart_map);
             this.Controls.Add(this.cbTrackStats);
             this.Controls.Add(this.bnSwapTeamViews);
@@ -574,7 +578,7 @@ namespace ObjMonitor
         private Button bnSwapTeamViews;
         public CheckBox cbTrackStats;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart_map;
-        private Label label7;
+        private Label label_minimap;
         private ComboBox comboBox_map;
         private Label text_map_dropdown_label;
     }
