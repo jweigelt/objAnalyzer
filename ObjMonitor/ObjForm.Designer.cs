@@ -299,11 +299,11 @@ namespace ObjMonitor
             this.comboBox_map.FormattingEnabled = true;
             this.comboBox_map.Items.AddRange(new object[] {
             "C0R",
-            "dag1",
+            "DG2",
             "ed9",
             "KEK",
             "mus1",
-            "Rhn1",
+            "RVN",
             "Rhn2",
             "tat2",
             "tat3",

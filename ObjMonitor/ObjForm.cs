@@ -54,12 +54,11 @@ namespace ObjMonitor
             map_to_image_file["mus1"] = "..\\..\\assets\\minimaps_trimmed\\mus1_trimmed.png";
             map_to_image_file["tat3"] = "..\\..\\assets\\minimaps_trimmed\\tat3_trimmed.png";
             map_to_image_file["KEK"] = "..\\..\\assets\\minimaps_trimmed\\KEK_trimmed_grayscale.png";
-            map_to_image_file["DG2"] = "..\\..\\assets\\minimaps_trimmed\\DG2_trimmed.png";
-            map_to_image_file["ed9"] = "..\\..\\assets\\minimaps_trimmed\\ed9_trimmed.png";
+            map_to_image_file["DG2"] = "..\\..\\assets\\minimaps_trimmed\\dag1_trimmed.png";
+            map_to_image_file["ED9"] = "..\\..\\assets\\minimaps_trimmed\\ed9_trimmed.png";
             map_to_image_file["RVN"] = "..\\..\\assets\\minimaps_trimmed\\Rhn1_trimmed2.png";
-            map_to_image_file["Rhn2"] = "..\\..\\assets\\minimaps_trimmed\\Rhn2_trimmed_grayscale.png";
-            map_to_image_file["uta"] = "..\\..\\assets\\minimaps_trimmed\\uta_trimmed.png";
-            //map_to_xminmax_yminmax["tat2g_con"] = Tuple.Create(-137.59, 139.11, -103.86, 94.15);
+            map_to_image_file["RVC"] = "..\\..\\assets\\minimaps_trimmed\\Rhn2_trimmed_grayscale.png";
+            map_to_image_file["uta1"] = "..\\..\\assets\\minimaps_trimmed\\uta1_trimmed2.png";
             // You can quickly find these coordinates in freecam mode.
             // The ymin and ymax listed below correspond to the zmin and ymin from the game because the game uses xz-coordinates.
             map_to_xminmax_yminmax["tat2"] = Tuple.Create(-137.59, 139.11, -103.86, 94.15);
@@ -69,21 +68,22 @@ namespace ObjMonitor
             map_to_xminmax_yminmax["tat3"] = Tuple.Create(-127.7, 4.9, 50.1, 196.9);
             map_to_xminmax_yminmax["KEK"] = Tuple.Create(-180.0, 135.9, 64.24, 288.3);
             map_to_xminmax_yminmax["DG2"] = Tuple.Create(-75.6, 148.11, -167.1, 188.9);
-            //todo
-            map_to_xminmax_yminmax["RVN"] = Tuple.Create(108.0, 305.85, 270.0, 460.1); //106.7, 295.85, 270.0, 460.1);
-            map_to_xminmax_yminmax["Rhn2"] = Tuple.Create(-320.32, -88.65, -290.2, -64.4);
-            map_to_xminmax_yminmax["uta"] = Tuple.Create(-222.0, 125.5, 82.0, 297.3);  //82->92?a
-            // Sometimes, the game
+            map_to_xminmax_yminmax["RVN"] = Tuple.Create(108.0, 305.85, 270.0, 460.1);
+            map_to_xminmax_yminmax["RVC"] = Tuple.Create(-320.32, -86.65, -292.2, -63.4);
+            map_to_xminmax_yminmax["uta1"] = Tuple.Create(-223.0, 134.2, 81.0, 304.3);
+            map_to_xminmax_yminmax["ED9"] = Tuple.Create(-70.0, 202.3, 8.48, 160.3);
+            // Some coordinates need to be reversed.
             map_to_xdir_ydir["tat2"] = Tuple.Create(1, -1);
-            map_to_xdir_ydir["C0R"] = Tuple.Create(-1, 1);
+            map_to_xdir_ydir["C0R"] = Tuple.Create(-1, 1); // For some reason, Cor patched has the x and z reversed.
             map_to_xdir_ydir["TI2"] = Tuple.Create(1, -1);
             map_to_xdir_ydir["mus1"] = Tuple.Create(1, -1);
             map_to_xdir_ydir["tat3"] = Tuple.Create(1, -1);
             map_to_xdir_ydir["KEK"] = Tuple.Create(1, -1);
             map_to_xdir_ydir["DG2"] = Tuple.Create(1, -1);
             map_to_xdir_ydir["RVN"] = Tuple.Create(1, -1);
-            map_to_xdir_ydir["Rhn2"] = Tuple.Create(1, -1);
-            map_to_xdir_ydir["uta"] = Tuple.Create(1, -1);
+            map_to_xdir_ydir["RVC"] = Tuple.Create(1, -1);
+            map_to_xdir_ydir["uta1"] = Tuple.Create(1, -1);
+            map_to_xdir_ydir["ED9"] = Tuple.Create(1, -1);
         }
 
         private void ObjForm_Load(object sender, EventArgs e)
@@ -176,10 +176,10 @@ namespace ObjMonitor
                 if (obj.EntitySoldier.Health > 0)
                 {
                     chart_map.Series[0].Points.Add(new DataPoint(obj.EntitySoldier.X * current_xdir, obj.EntitySoldier.Z * current_ydir));
-                    if (obj.Name.Contains("Widow"))
-                    {
-                        Console.WriteLine($"Widow (x, z) = ({obj.EntitySoldier.X}, {obj.EntitySoldier.Z}, (xdir, ydir) = ({current_xdir}, {current_ydir})");
-                    }
+                    //if (obj.Name.Contains("Widow"))
+                    //{
+                    //    Console.WriteLine($"Widow (x, z) = ({obj.EntitySoldier.X}, {obj.EntitySoldier.Z}, (xdir, ydir) = ({current_xdir}, {current_ydir})");
+                    //}
                 }
                 //Create listview item
                 var li = new ListViewItem();
@@ -278,10 +278,10 @@ namespace ObjMonitor
                 if (obj.EntitySoldier.Health > 0)
                 {
                     chart_map.Series[1].Points.Add(new DataPoint(obj.EntitySoldier.X * current_xdir, obj.EntitySoldier.Z * current_ydir));
-                    if (obj.Name.Contains("Widow"))
-                    {
-                        Console.WriteLine($"Widow (x, z) = ({obj.EntitySoldier.X}, {obj.EntitySoldier.Z}, (xdir, ydir) = ({current_xdir}, {current_ydir})");
-                    }
+                    //if (obj.Name.Contains("Widow"))
+                    //{
+                    //    Console.WriteLine($"Widow (x, z) = ({obj.EntitySoldier.X}, {obj.EntitySoldier.Z}, (xdir, ydir) = ({current_xdir}, {current_ydir})");
+                    //}
                 }
 
                 var li = new ListViewItem();
