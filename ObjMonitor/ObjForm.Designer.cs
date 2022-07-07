@@ -54,6 +54,8 @@ namespace ObjMonitor
             this.cbTrackStats = new System.Windows.Forms.CheckBox();
             this.chart_map = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label7 = new System.Windows.Forms.Label();
+            this.comboBox_map = new System.Windows.Forms.ComboBox();
+            this.text_map_dropdown_label = new System.Windows.Forms.Label();
             this.lvCommandPosts = new ObjMonitor.DoubleBufferedListView();
             this.lvGameInfo = new ObjMonitor.DoubleBufferedListView();
             this.chTeamName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -251,20 +253,23 @@ namespace ObjMonitor
             // 
             // chart_map
             // 
-            chartArea1.Name = "ChartArea1";
+            chartArea1.AxisX.MajorGrid.Enabled = false;
+            chartArea1.AxisY.MajorGrid.Enabled = false;
+            chartArea1.BackColor = System.Drawing.Color.Transparent;
+            chartArea1.Name = "chartarea_minimap";
             this.chart_map.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chart_map.Legends.Add(legend1);
             this.chart_map.Location = new System.Drawing.Point(931, 53);
             this.chart_map.Name = "chart_map";
-            series1.ChartArea = "ChartArea1";
+            series1.ChartArea = "chartarea_minimap";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastPoint;
             series1.Legend = "Legend1";
             series1.MarkerColor = System.Drawing.Color.Red;
             series1.MarkerSize = 6;
             series1.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
             series1.Name = "Team1";
-            series2.ChartArea = "ChartArea1";
+            series2.ChartArea = "chartarea_minimap";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastPoint;
             series2.Legend = "Legend1";
             series2.MarkerColor = System.Drawing.Color.Blue;
@@ -287,6 +292,29 @@ namespace ObjMonitor
             this.label7.TabIndex = 25;
             this.label7.Text = "Mini-Map";
             this.label7.Click += new System.EventHandler(this.label7_Click);
+            // 
+            // comboBox_map
+            // 
+            this.comboBox_map.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_map.FormattingEnabled = true;
+            this.comboBox_map.Items.AddRange(new object[] {
+            "C0R",
+            "tat2",
+            "tan"});
+            this.comboBox_map.Location = new System.Drawing.Point(1007, 562);
+            this.comboBox_map.Name = "comboBox_map";
+            this.comboBox_map.Size = new System.Drawing.Size(179, 21);
+            this.comboBox_map.TabIndex = 26;
+            // 
+            // text_map_dropdown_label
+            // 
+            this.text_map_dropdown_label.AutoSize = true;
+            this.text_map_dropdown_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.text_map_dropdown_label.Location = new System.Drawing.Point(944, 560);
+            this.text_map_dropdown_label.Name = "text_map_dropdown_label";
+            this.text_map_dropdown_label.Size = new System.Drawing.Size(47, 22);
+            this.text_map_dropdown_label.TabIndex = 27;
+            this.text_map_dropdown_label.Text = "map";
             // 
             // lvCommandPosts
             // 
@@ -462,6 +490,8 @@ namespace ObjMonitor
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1584, 711);
+            this.Controls.Add(this.text_map_dropdown_label);
+            this.Controls.Add(this.comboBox_map);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.chart_map);
             this.Controls.Add(this.cbTrackStats);
@@ -537,5 +567,7 @@ namespace ObjMonitor
         public CheckBox cbTrackStats;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart_map;
         private Label label7;
+        private ComboBox comboBox_map;
+        private Label text_map_dropdown_label;
     }
 }

@@ -26,6 +26,11 @@ namespace ObjMonitor
         Font myFont;
         WebAdminPlayerList wapList;
         DateTime time = DateTime.UtcNow;
+        Dictionary<string, string> map_to_image_file = new Dictionary<string, string>();
+        Dictionary<string, Tuple<double, double, double, double>> map_to_xminmax_yminmax = new Dictionary<string, Tuple<double, double, double, double>>();
+        Dictionary<string, Tuple<int, int>> map_to_xdir_ydir = new Dictionary<string, Tuple<int, int>>();
+        int current_xdir = 1;
+        int current_ydir = 1;
 
         public ObjForm()
         {
@@ -42,6 +47,29 @@ namespace ObjMonitor
             myFont = new Font(fonts.Families[0], 16.0F);
 
             wapList = new WebAdminPlayerList(ipAddress.Text, port.Text, username.Text, password.Text);
+
+            map_to_image_file["tat2"] = "..\\..\\assets\\minimaps_trimmed\\tat2_trimmed.png";
+            map_to_image_file["C0R"] = "..\\..\\assets\\minimaps_trimmed\\C0R_trimmed.png";
+            map_to_image_file["tan"] = "..\\..\\assets\\minimaps_trimmed\\tan_trimmed.png";
+            map_to_image_file["Mos Eisley"] = "..\\..\\assets\\minimaps_trimmed\\tat2_trimmed.png";
+            map_to_image_file["Coruscant"] = "..\\..\\assets\\minimaps_trimmed\\C0R_trimmed.png";
+            map_to_image_file["Tantive"] = "..\\..\\assets\\minimaps_trimmed\\tan_trimmed.png";
+            //map_to_xminmax_yminmax["tat2g_con"] = Tuple.Create(-137.59, 139.11, -103.86, 94.15);
+            // You can quickly find these coordinates in freecam mode.
+            // The ymin and ymax listed below correspond to the zmin and ymin from the game because the game uses xz-coordinates.
+            map_to_xminmax_yminmax["tat2"] = Tuple.Create(-137.59, 139.11, -103.86, 94.15);
+            map_to_xminmax_yminmax["C0R"] = Tuple.Create(-68.06, 111.82, -184.14, 36.38);
+            map_to_xminmax_yminmax["tan"] = Tuple.Create(-384.14, -208.97, 69.89, 202.35);
+            map_to_xminmax_yminmax["Mos Eisley"] = Tuple.Create(-137.59, 139.11, -103.86, 94.15);
+            map_to_xminmax_yminmax["Coruscant"] = Tuple.Create(-68.06, 111.82, -184.14, 36.38);
+            map_to_xminmax_yminmax["Tantive"] = Tuple.Create(-384.14, -208.97, 69.89, 202.35);
+            // Sometimes, the game
+            map_to_xdir_ydir["tat2"] = Tuple.Create(1, -1);
+            map_to_xdir_ydir["C0R"] = Tuple.Create(-1, 1);
+            map_to_xdir_ydir["tan"] = Tuple.Create(1, -1);
+            map_to_xdir_ydir["Mos Eisley"] = Tuple.Create(1, -1);
+            map_to_xdir_ydir["Coruscant"] = Tuple.Create(-1, 1);
+            map_to_xdir_ydir["Tantive"] = Tuple.Create(1, -1);
         }
 
         private void ObjForm_Load(object sender, EventArgs e)
@@ -75,6 +103,32 @@ namespace ObjMonitor
             }
             lvGameInfo.EndUpdate();
         }
+
+        public void SetMap(string map)
+        {
+            string map_key;
+            if (String.IsNullOrEmpty(map))
+            {
+                map_key = (string) comboBox_map.Text;
+            } else
+            {
+                map_key = map.Substring(0, map.Length - 5);
+                comboBox_map.SelectedItem = comboBox_map.Items.IndexOf(map);
+            }
+            if (!String.IsNullOrEmpty(map_key))
+            {
+                Console.WriteLine($"Setting up map {map} ({map_key})");
+                ChartArea ca_map = chart_map.ChartAreas.FindByName("chartarea_minimap");
+                ca_map.BackImage = map_to_image_file[map_key];
+                ca_map.BackImageWrapMode = ChartImageWrapMode.Scaled;
+                (double xmin, double xmax, double ymin, double ymax) = map_to_xminmax_yminmax[map_key];
+                (current_xdir, current_ydir) = map_to_xdir_ydir[map_key];
+                ca_map.AxisX.Minimum = Math.Min(xmin * current_xdir, xmax * current_xdir);
+                ca_map.AxisX.Maximum = Math.Max(xmin * current_xdir, xmax * current_xdir);
+                ca_map.AxisY.Minimum = Math.Min(ymin * current_ydir, ymax * current_ydir);
+                ca_map.AxisY.Maximum = Math.Max(ymin * current_ydir, ymax * current_ydir);
+            }
+        }
         
         public void UpdateTeam1ObjList(List<InGameCharacterObject> objList, bool savePlayerData, StreamWriter save_sw)
         {
@@ -82,6 +136,7 @@ namespace ObjMonitor
             // TODO: overlay image of the minimaps under the chart
             //chart_map.ChartAreas[0].AxisX.Minimum = -100;
             chart_map.Series[0].Points.Clear();
+            //chart_map.Series[0].Style.Images = new ChartImageCollection(this.imageList1.Images);
 
             if (waCB.Checked && DateTime.UtcNow >= time.AddSeconds(5) )  //Make sure we are only updating values from webadmin every 10 seconds or we will ddos the server
             {
@@ -104,8 +159,11 @@ namespace ObjMonitor
 
                 //For writing data to a file
                 var datastring = obj.GetDataString();
-                chart_map.Series[0].Points.Add(new DataPoint(obj.EntitySoldier.X, obj.EntitySoldier.Z));
-
+                if (obj.EntitySoldier.Health > 0)
+                {
+                    chart_map.Series[0].Points.Add(new DataPoint(obj.EntitySoldier.X * current_xdir, obj.EntitySoldier.Z * current_ydir));
+                    //Console.WriteLine($"(x, z) = ({obj.EntitySoldier.X}, {obj.EntitySoldier.Z}, (xdir, ydir) = ({current_xdir}, {current_ydir})");
+                }
                 //Create listview item
                 var li = new ListViewItem();
                 li.Font = new Font(myFont.FontFamily, 20, FontStyle.Regular);
@@ -200,7 +258,11 @@ namespace ObjMonitor
                 if (!(obj.TimeStampOfLastSpawn > 0)) continue;
 
                 var datastring = obj.GetDataString();
-                chart_map.Series[1].Points.Add(new DataPoint(obj.EntitySoldier.X, obj.EntitySoldier.Z));
+                if (obj.EntitySoldier.Health > 0)
+                {
+                    chart_map.Series[1].Points.Add(new DataPoint(obj.EntitySoldier.X * current_xdir, obj.EntitySoldier.Z * current_ydir));
+                    //Console.WriteLine($"(x, z) = ({obj.EntitySoldier.X}, {obj.EntitySoldier.Z}, (xdir, ydir) = ({current_xdir}, {current_ydir})");
+                }
 
                 var li = new ListViewItem();
                 li.Font = new Font(myFont.FontFamily, 20, FontStyle.Regular);
@@ -252,8 +314,6 @@ namespace ObjMonitor
                 //Dump data to file
                 if (savePlayerData)
                 {
-                    //var strPath = $"{saveDir}\\players\\{string.Concat(obj.Name.Split(Path.GetInvalidFileNameChars()))}_{obj.Team.TeamName}.csv";
-                    //DumpPlayerDataString(obj.Map, strPath, datastring);
                     datastring += $",{obj.Team.TeamName}";
                     save_sw.WriteLine(datastring);
                 }

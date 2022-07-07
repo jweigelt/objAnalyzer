@@ -60,14 +60,16 @@ namespace ObjMonitor
             var counter = 0;
             var detectedEndgame = false;
             var map = reader.ReadString(reader.GetModuleBase(0x1A560E0), 10);
+            form.SetMap(map);
 
             var endgame = reader.ReadInt32(reader.GetModuleBase(0x1AAFCA0));
             Console.WriteLine($"Outside loop: map = {map}, isEmpty = {String.IsNullOrEmpty(map)}, endgame = {endgame}");
             var timeString = DateTime.Now.ToString("yyyy-MM-dd-h-mm-ss-tt");
             var saveDir = $".\\{timeString}-data-{map}";
-            String oldMap = "";
+            String oldMap = "old";
             bool savePlayerData = false;
             DateTime playerDataTime = DateTime.UtcNow;
+            Console.WriteLine($"cwd = {System.IO.Directory.GetCurrentDirectory()}");
             StreamWriter player_sw = MakeStreamWriter("Timestamp,Index,Name,ClassID,Health,X,Y,Z,XCam,YCam,ZCam,Points,Kills,Deaths,Team", $"{saveDir}\\players.csv");
             StreamWriter team_sw = MakeStreamWriter("Timestamp,TeamName,TeamID,Score", $"{saveDir}\\TeamData.csv");
             StreamWriter cp_sw = MakeStreamWriter("Timestamp,HUDIndex,Team", $"{saveDir}\\CommandPosts.csv");
@@ -91,11 +93,13 @@ namespace ObjMonitor
                 form.UpdateTeam2ObjList(charList.Team2, savePlayerData, player_sw);
                 form.UpdateGameInfo(teamObjList);
                 form.UpdateCommandPosts(objList.CommandPosts, teamObjList[0], teamObjList[1]);
+                form.SetMap(map);
                 Application.DoEvents();
                 if (form.cbTrackStats.Checked)
                 {
                     endgame = reader.ReadInt32(reader.GetModuleBase(0x1AAFCA0));
                     map = reader.ReadString(reader.GetModuleBase(0x1A560E0), 10);
+                    //Console.WriteLine($"map = {map}");
 
                     if (endgame != 0) // Detects endgame if value is not 0
                     {
@@ -117,6 +121,7 @@ namespace ObjMonitor
                         timeString = DateTime.Now.ToString("yyyy-MM-dd-h-mm-ss-tt");
                         saveDir = $".\\{timeString}-data-{map}";
                         Console.WriteLine($"new saveDir = {saveDir}");
+                        form.SetMap(map);
                         detectedEndgame = false;
                         player_sw.Close();
                         player_sw = MakeStreamWriter("Timestamp,Index,Name,ClassID,Health,X,Y,Z,XCam,YCam,ZCam,Points,Kills,Deaths,Team", $"{saveDir}\\players.csv");
