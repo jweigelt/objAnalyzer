@@ -51,25 +51,16 @@ namespace ObjMonitor
             map_to_image_file["tat2"] = "..\\..\\assets\\minimaps_trimmed\\tat2_trimmed.png";
             map_to_image_file["C0R"] = "..\\..\\assets\\minimaps_trimmed\\C0R_trimmed.png";
             map_to_image_file["tan"] = "..\\..\\assets\\minimaps_trimmed\\tan_trimmed.png";
-            map_to_image_file["Mos Eisley"] = "..\\..\\assets\\minimaps_trimmed\\tat2_trimmed.png";
-            map_to_image_file["Coruscant"] = "..\\..\\assets\\minimaps_trimmed\\C0R_trimmed.png";
-            map_to_image_file["Tantive"] = "..\\..\\assets\\minimaps_trimmed\\tan_trimmed.png";
             //map_to_xminmax_yminmax["tat2g_con"] = Tuple.Create(-137.59, 139.11, -103.86, 94.15);
             // You can quickly find these coordinates in freecam mode.
             // The ymin and ymax listed below correspond to the zmin and ymin from the game because the game uses xz-coordinates.
             map_to_xminmax_yminmax["tat2"] = Tuple.Create(-137.59, 139.11, -103.86, 94.15);
             map_to_xminmax_yminmax["C0R"] = Tuple.Create(-68.06, 111.82, -184.14, 36.38);
-            map_to_xminmax_yminmax["tan"] = Tuple.Create(-384.14, -208.97, 69.89, 202.35);
-            map_to_xminmax_yminmax["Mos Eisley"] = Tuple.Create(-137.59, 139.11, -103.86, 94.15);
-            map_to_xminmax_yminmax["Coruscant"] = Tuple.Create(-68.06, 111.82, -184.14, 36.38);
-            map_to_xminmax_yminmax["Tantive"] = Tuple.Create(-384.14, -208.97, 69.89, 202.35);
+            map_to_xminmax_yminmax["tan"] = Tuple.Create(-385.19, -210.20, 67.09, 203.39);
             // Sometimes, the game
             map_to_xdir_ydir["tat2"] = Tuple.Create(1, -1);
             map_to_xdir_ydir["C0R"] = Tuple.Create(-1, 1);
             map_to_xdir_ydir["tan"] = Tuple.Create(1, -1);
-            map_to_xdir_ydir["Mos Eisley"] = Tuple.Create(1, -1);
-            map_to_xdir_ydir["Coruscant"] = Tuple.Create(-1, 1);
-            map_to_xdir_ydir["Tantive"] = Tuple.Create(1, -1);
         }
 
         private void ObjForm_Load(object sender, EventArgs e)
@@ -113,11 +104,11 @@ namespace ObjMonitor
             } else
             {
                 map_key = map.Substring(0, map.Length - 5);
-                comboBox_map.SelectedItem = comboBox_map.Items.IndexOf(map);
+                comboBox_map.SelectedIndex = comboBox_map.FindStringExact(map_key);
             }
             if (!String.IsNullOrEmpty(map_key))
             {
-                Console.WriteLine($"Setting up map {map} ({map_key})");
+                //Console.WriteLine($"Setting up map {map} ({map_key})");
                 ChartArea ca_map = chart_map.ChartAreas.FindByName("chartarea_minimap");
                 ca_map.BackImage = map_to_image_file[map_key];
                 ca_map.BackImageWrapMode = ChartImageWrapMode.Scaled;
@@ -162,7 +153,10 @@ namespace ObjMonitor
                 if (obj.EntitySoldier.Health > 0)
                 {
                     chart_map.Series[0].Points.Add(new DataPoint(obj.EntitySoldier.X * current_xdir, obj.EntitySoldier.Z * current_ydir));
-                    //Console.WriteLine($"(x, z) = ({obj.EntitySoldier.X}, {obj.EntitySoldier.Z}, (xdir, ydir) = ({current_xdir}, {current_ydir})");
+                    if (obj.Name.Contains("Widow"))
+                    {
+                        Console.WriteLine($"Widow (x, z) = ({obj.EntitySoldier.X}, {obj.EntitySoldier.Z}, (xdir, ydir) = ({current_xdir}, {current_ydir})");
+                    }
                 }
                 //Create listview item
                 var li = new ListViewItem();
@@ -261,7 +255,10 @@ namespace ObjMonitor
                 if (obj.EntitySoldier.Health > 0)
                 {
                     chart_map.Series[1].Points.Add(new DataPoint(obj.EntitySoldier.X * current_xdir, obj.EntitySoldier.Z * current_ydir));
-                    //Console.WriteLine($"(x, z) = ({obj.EntitySoldier.X}, {obj.EntitySoldier.Z}, (xdir, ydir) = ({current_xdir}, {current_ydir})");
+                    if (obj.Name.Contains("Widow"))
+                    {
+                        Console.WriteLine($"Widow (x, z) = ({obj.EntitySoldier.X}, {obj.EntitySoldier.Z}, (xdir, ydir) = ({current_xdir}, {current_ydir})");
+                    }
                 }
 
                 var li = new ListViewItem();

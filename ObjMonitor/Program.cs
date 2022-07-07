@@ -93,7 +93,10 @@ namespace ObjMonitor
                 form.UpdateTeam2ObjList(charList.Team2, savePlayerData, player_sw);
                 form.UpdateGameInfo(teamObjList);
                 form.UpdateCommandPosts(objList.CommandPosts, teamObjList[0], teamObjList[1]);
-                form.SetMap(map);
+                if (String.IsNullOrEmpty(map)) // If the map isn't being read properly, let the caster decide
+                {
+                    form.SetMap(map);
+                }
                 Application.DoEvents();
                 if (form.cbTrackStats.Checked)
                 {
