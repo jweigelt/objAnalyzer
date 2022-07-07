@@ -31,7 +31,6 @@ namespace ObjMonitor
         private void InitializeComponent()
         {
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.label1 = new System.Windows.Forms.Label();
@@ -132,7 +131,7 @@ namespace ObjMonitor
             // ipAddress
             // 
             this.ipAddress.AcceptsReturn = true;
-            this.ipAddress.Location = new System.Drawing.Point(63, 516);
+            this.ipAddress.Location = new System.Drawing.Point(881, 564);
             this.ipAddress.Name = "ipAddress";
             this.ipAddress.Size = new System.Drawing.Size(154, 20);
             this.ipAddress.TabIndex = 10;
@@ -140,7 +139,7 @@ namespace ObjMonitor
             // port
             // 
             this.port.AcceptsReturn = true;
-            this.port.Location = new System.Drawing.Point(63, 542);
+            this.port.Location = new System.Drawing.Point(881, 590);
             this.port.Name = "port";
             this.port.Size = new System.Drawing.Size(154, 20);
             this.port.TabIndex = 11;
@@ -148,7 +147,7 @@ namespace ObjMonitor
             // username
             // 
             this.username.AcceptsReturn = true;
-            this.username.Location = new System.Drawing.Point(63, 568);
+            this.username.Location = new System.Drawing.Point(881, 616);
             this.username.Name = "username";
             this.username.Size = new System.Drawing.Size(154, 20);
             this.username.TabIndex = 12;
@@ -156,7 +155,7 @@ namespace ObjMonitor
             // password
             // 
             this.password.AcceptsReturn = true;
-            this.password.Location = new System.Drawing.Point(63, 594);
+            this.password.Location = new System.Drawing.Point(881, 642);
             this.password.Name = "password";
             this.password.Size = new System.Drawing.Size(154, 20);
             this.password.TabIndex = 13;
@@ -164,7 +163,7 @@ namespace ObjMonitor
             // waCB
             // 
             this.waCB.AutoSize = true;
-            this.waCB.Location = new System.Drawing.Point(63, 493);
+            this.waCB.Location = new System.Drawing.Point(881, 541);
             this.waCB.Name = "waCB";
             this.waCB.Size = new System.Drawing.Size(106, 17);
             this.waCB.TabIndex = 15;
@@ -177,7 +176,7 @@ namespace ObjMonitor
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.OrangeRed;
-            this.label2.Location = new System.Drawing.Point(3, 617);
+            this.label2.Location = new System.Drawing.Point(821, 665);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(283, 13);
             this.label2.TabIndex = 16;
@@ -196,7 +195,7 @@ namespace ObjMonitor
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(223, 519);
+            this.label3.Location = new System.Drawing.Point(1041, 567);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(17, 13);
             this.label3.TabIndex = 18;
@@ -205,7 +204,7 @@ namespace ObjMonitor
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(223, 545);
+            this.label4.Location = new System.Drawing.Point(1041, 593);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(37, 13);
             this.label4.TabIndex = 19;
@@ -214,7 +213,7 @@ namespace ObjMonitor
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(223, 571);
+            this.label5.Location = new System.Drawing.Point(1041, 619);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(68, 13);
             this.label5.TabIndex = 20;
@@ -223,7 +222,7 @@ namespace ObjMonitor
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(223, 597);
+            this.label6.Location = new System.Drawing.Point(1041, 645);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(70, 13);
             this.label6.TabIndex = 21;
@@ -262,26 +261,22 @@ namespace ObjMonitor
             chartArea1.BackColor = System.Drawing.Color.Transparent;
             chartArea1.Name = "chartarea_minimap";
             this.chart_map.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart_map.Legends.Add(legend1);
-            this.chart_map.Location = new System.Drawing.Point(1188, 53);
+            this.chart_map.Location = new System.Drawing.Point(12, 411);
             this.chart_map.Name = "chart_map";
             series1.ChartArea = "chartarea_minimap";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastPoint;
-            series1.Legend = "Legend1";
             series1.MarkerColor = System.Drawing.Color.Red;
             series1.MarkerSize = 6;
             series1.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
             series1.Name = "Team1";
             series2.ChartArea = "chartarea_minimap";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastPoint;
-            series2.Legend = "Legend1";
             series2.MarkerColor = System.Drawing.Color.Blue;
             series2.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Square;
             series2.Name = "Team2";
             this.chart_map.Series.Add(series1);
             this.chart_map.Series.Add(series2);
-            this.chart_map.Size = new System.Drawing.Size(353, 311);
+            this.chart_map.Size = new System.Drawing.Size(290, 267);
             this.chart_map.TabIndex = 24;
             this.chart_map.Text = "chart1";
             this.chart_map.Click += new System.EventHandler(this.chart1_Click);
@@ -290,7 +285,7 @@ namespace ObjMonitor
             // 
             this.label_minimap.AutoSize = true;
             this.label_minimap.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold);
-            this.label_minimap.Location = new System.Drawing.Point(1184, 13);
+            this.label_minimap.Location = new System.Drawing.Point(12, 386);
             this.label_minimap.Name = "label_minimap";
             this.label_minimap.Size = new System.Drawing.Size(90, 22);
             this.label_minimap.TabIndex = 25;
@@ -313,7 +308,7 @@ namespace ObjMonitor
             "tat3",
             "TI2",
             "uta1"});
-            this.comboBox_map.Location = new System.Drawing.Point(1250, 390);
+            this.comboBox_map.Location = new System.Drawing.Point(397, 621);
             this.comboBox_map.Name = "comboBox_map";
             this.comboBox_map.Size = new System.Drawing.Size(179, 21);
             this.comboBox_map.TabIndex = 26;
@@ -322,7 +317,7 @@ namespace ObjMonitor
             // 
             this.text_map_dropdown_label.AutoSize = true;
             this.text_map_dropdown_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.text_map_dropdown_label.Location = new System.Drawing.Point(1187, 388);
+            this.text_map_dropdown_label.Location = new System.Drawing.Point(334, 619);
             this.text_map_dropdown_label.Name = "text_map_dropdown_label";
             this.text_map_dropdown_label.Size = new System.Drawing.Size(47, 22);
             this.text_map_dropdown_label.TabIndex = 27;
@@ -501,7 +496,7 @@ namespace ObjMonitor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1584, 711);
+            this.ClientSize = new System.Drawing.Size(1184, 711);
             this.Controls.Add(this.text_map_dropdown_label);
             this.Controls.Add(this.comboBox_map);
             this.Controls.Add(this.label_minimap);
