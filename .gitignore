@@ -7,3 +7,4 @@ packages
 .vs
 .tmp
 .idea
+generated-data/
