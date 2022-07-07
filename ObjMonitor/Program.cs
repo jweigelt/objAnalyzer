@@ -33,26 +33,21 @@ namespace ObjMonitor
             return objList;
         }
 
-        private static void DumpDataString(string header, string path, string datastring, string saveDir)
+        private static StreamWriter MakeStreamWriter(string header, string path)
         {
-            if (!Directory.Exists(saveDir))
-            {
-                return;
-            }
-
             if (!File.Exists(path))
             {
-                StreamWriter sw = new StreamWriter(path);
-                sw.WriteLine(header);
-                sw.Close();
+                var parentDir = Path.GetDirectoryName(path);
+                if (!Directory.Exists(parentDir))
+                {
+                    Directory.CreateDirectory(parentDir);
+                }
             }
-
-            StreamWriter sw1 = new StreamWriter(path, true, Encoding.ASCII);
-            sw1.WriteLine(datastring);
-            sw1.Close();
+            //Console.WriteLine(path);
+            StreamWriter sw = new StreamWriter(path);
+            sw.WriteLine(header);
+            return sw;
         }
-
-
         static void Main(string[] args)
         {
             var reader = new ProcessMemoryReader();
@@ -73,6 +68,9 @@ namespace ObjMonitor
             String oldMap = "";
             bool savePlayerData = false;
             DateTime playerDataTime = DateTime.UtcNow;
+            StreamWriter player_sw = MakeStreamWriter("Timestamp,Index,Name,ClassID,Health,X,Y,Z,XCam,YCam,ZCam,Points,Kills,Deaths,Team", $"{saveDir}\\players.csv");
+            StreamWriter team_sw = MakeStreamWriter("Timestamp,TeamName,TeamID,Score", $"{saveDir}\\TeamData.csv");
+            StreamWriter cp_sw = MakeStreamWriter("Timestamp,HUDIndex,Team", $"{saveDir}\\CommandPosts.csv");
 
 
             while (true)
@@ -89,8 +87,8 @@ namespace ObjMonitor
                     playerDataTime = DateTime.UtcNow;
                 }
                 // TODO: save data in memory and only dump data once in a while
-                form.UpdateTeam1ObjList(charList.Team1, saveDir, savePlayerData);
-                form.UpdateTeam2ObjList(charList.Team2, saveDir, savePlayerData);
+                form.UpdateTeam1ObjList(charList.Team1, savePlayerData, player_sw);
+                form.UpdateTeam2ObjList(charList.Team2, savePlayerData, player_sw);
                 form.UpdateGameInfo(teamObjList);
                 form.UpdateCommandPosts(objList.CommandPosts, teamObjList[0], teamObjList[1]);
                 Application.DoEvents();
@@ -119,14 +117,15 @@ namespace ObjMonitor
                         timeString = DateTime.Now.ToString("yyyy-MM-dd-h-mm-ss-tt");
                         saveDir = $".\\{timeString}-data-{map}";
                         Console.WriteLine($"new saveDir = {saveDir}");
-                        Directory.CreateDirectory($"{saveDir}\\players");
                         detectedEndgame = false;
+                        player_sw.Close();
+                        player_sw = MakeStreamWriter("Timestamp,Index,Name,ClassID,Health,X,Y,Z,XCam,YCam,ZCam,Points,Kills,Deaths,Team", $"{saveDir}\\players.csv");
+                        team_sw.Close();
+                        team_sw = MakeStreamWriter("Timestamp,TeamName,TeamID,Score", $"{saveDir}\\TeamData.csv");
+                        cp_sw.Close();
+                        cp_sw = MakeStreamWriter("Timestamp,HUDIndex,Team", $"{saveDir}\\CommandPosts.csv");
                     }
                     oldMap = map;
-
-                    string datastring;
-                    string strPath;
-                    string header;
 
                     //Have to dump player data within form update for webadmin updates
                     //Dump data every 1 seconds
@@ -135,17 +134,13 @@ namespace ObjMonitor
                         if (!form.cbHideCPS.Checked)
                         {
                             //CP Data
-                            datastring = string.Join("\n", objList.CommandPosts.Select(x => x.GetDataString()));
-                            strPath = $"{saveDir}\\CommandPosts.csv";
-                            header = "Timestamp,HUDIndex,Team";
-                            DumpDataString(header, strPath, datastring, saveDir);
+                            string cp_datastring = string.Join("\n", objList.CommandPosts.Select(x => x.GetDataString()));
+                            cp_sw.WriteLine(cp_datastring);
                         }
 
                         //Team Data
-                        datastring = string.Join("\n", teamObjList.Where(x => x.Exists).Select(x => x.GetDataString));
-                        strPath = $"{saveDir}\\TeamData.csv";
-                        header = "Timestamp,TeamName,TeamID,Score";
-                        DumpDataString(header, strPath, datastring, saveDir);
+                        string team_datastring = string.Join("\n", teamObjList.Where(x => x.Exists).Select(x => x.GetDataString));
+                        team_sw.WriteLine(team_datastring);
                         counter = 0;
                     }
                     counter += 20;

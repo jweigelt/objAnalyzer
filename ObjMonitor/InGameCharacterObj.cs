@@ -119,12 +119,7 @@ namespace ObjMonitor
         public string GetDataString()
         {
             var timestamp = reader.ReadFloat(reader.GetModuleBase(0x1BA88E8));
-            return $"{timestamp},{Index+1},{Name},{EntitySoldier.Health},{EntitySoldier.X},{EntitySoldier.Y},{EntitySoldier.Z}";
-        }
-        public string GetDataStringNoName()
-        {
-            var timestamp = reader.ReadFloat(reader.GetModuleBase(0x1BA88E8));
-            return $"{timestamp},{ClassID},{EntitySoldier.Health},{EntitySoldier.X},{EntitySoldier.Y},{EntitySoldier.Z}";
+            return $"{timestamp},{Index+1},{Name},{EntitySoldier.Health},{EntitySoldier.X},{EntitySoldier.Y},{EntitySoldier.Z},{EntitySoldier.xCamera},{EntitySoldier.yCamera},{EntitySoldier.zCamera}";
         }
     }
 }

@@ -75,7 +75,7 @@ namespace ObjMonitor
             lvGameInfo.EndUpdate();
         }
         
-        public void UpdateTeam1ObjList(List<InGameCharacterObject> objList, String saveDir, bool savePlayerData)
+        public void UpdateTeam1ObjList(List<InGameCharacterObject> objList, bool savePlayerData, StreamWriter save_sw)
         {
             if (waCB.Checked && DateTime.UtcNow >= time.AddSeconds(5) )  //Make sure we are only updating values from webadmin every 10 seconds or we will ddos the server
             {
@@ -97,7 +97,7 @@ namespace ObjMonitor
 
 
                 //For writing data to a file
-                var datastring = obj.GetDataStringNoName();
+                var datastring = obj.GetDataString();
 
                 //Create listview item
                 var li = new ListViewItem();
@@ -158,15 +158,17 @@ namespace ObjMonitor
                 if (savePlayerData)
                 {
                     //remove invalid characters for a file name
-                    var strPath = $"{saveDir}\\players\\{string.Concat(obj.Name.Split(Path.GetInvalidFileNameChars()))}_{obj.Team.TeamName}.csv";
-                    DumpPlayerDataString(obj.Map, strPath, datastring);
+                    //var strPath = $"{saveDir}\\players\\{string.Concat(obj.Name.Split(Path.GetInvalidFileNameChars()))}_{obj.Team.TeamName}.csv";
+                    //DumpPlayerDataString(obj.Map, strPath, datastring);
+                    datastring += $",{obj.Team.TeamName}";
+                    save_sw.WriteLine(datastring);
 
                 }   
             }
             lvTeam1Objects.EndUpdate();
         }
 
-        public void UpdateTeam2ObjList(List<InGameCharacterObject> objList, String saveDir, bool savePlayerData)
+        public void UpdateTeam2ObjList(List<InGameCharacterObject> objList, bool savePlayerData, StreamWriter save_sw)
         {
 
             //Bad implementation
@@ -189,7 +191,7 @@ namespace ObjMonitor
             {
                 if (!(obj.TimeStampOfLastSpawn > 0)) continue;
 
-                var datastring = obj.GetDataStringNoName();
+                var datastring = obj.GetDataString();
 
                 var li = new ListViewItem();
                 li.Font = new Font(myFont.FontFamily, 20, FontStyle.Regular);
@@ -241,8 +243,10 @@ namespace ObjMonitor
                 //Dump data to file
                 if (savePlayerData)
                 {
-                    var strPath = $"{saveDir}\\players\\{string.Concat(obj.Name.Split(Path.GetInvalidFileNameChars()))}_{obj.Team.TeamName}.csv";
-                    DumpPlayerDataString(obj.Map, strPath, datastring);
+                    //var strPath = $"{saveDir}\\players\\{string.Concat(obj.Name.Split(Path.GetInvalidFileNameChars()))}_{obj.Team.TeamName}.csv";
+                    //DumpPlayerDataString(obj.Map, strPath, datastring);
+                    datastring += $",{obj.Team.TeamName}";
+                    save_sw.WriteLine(datastring);
                 }
             }
             lvTeam2Objects.EndUpdate();
@@ -395,27 +399,6 @@ namespace ObjMonitor
             y = lvTeam1Objects.Location.Y;
             lvTeam1Objects.Location = new Point(lvTeam2Objects.Location.X, lvTeam2Objects.Location.Y);
             lvTeam2Objects.Location = new Point(x, y);
-        }
-
-        public void DumpPlayerDataString(string map, string path, string datastring)
-        {
-            if (!File.Exists(path))
-            {
-                var parentDir = Path.GetDirectoryName(path);
-                if (!Directory.Exists(parentDir))
-                {
-                    Directory.CreateDirectory(parentDir);
-                }
-                //Console.WriteLine(path);
-                StreamWriter sw = new StreamWriter(path);
-                sw.WriteLine("Timestamp,ClassID,Health,X,Y,Z,Points,Kills,Deaths");
-                sw.Close();
-
-            }
-
-            StreamWriter sw1 = new StreamWriter(path, true, Encoding.ASCII);
-            sw1.WriteLine(datastring);
-            sw1.Close();
         }
     }
 }
