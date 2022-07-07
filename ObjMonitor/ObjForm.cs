@@ -11,6 +11,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace ObjMonitor
 {
@@ -77,6 +78,9 @@ namespace ObjMonitor
         
         public void UpdateTeam1ObjList(List<InGameCharacterObject> objList, bool savePlayerData, StreamWriter save_sw)
         {
+            //chart_map.Series[0].AxisX.Minimum = -100;
+            chart_map.Series[0].Points.Clear();
+
             if (waCB.Checked && DateTime.UtcNow >= time.AddSeconds(5) )  //Make sure we are only updating values from webadmin every 10 seconds or we will ddos the server
             {
                 time = DateTime.UtcNow;
@@ -98,6 +102,7 @@ namespace ObjMonitor
 
                 //For writing data to a file
                 var datastring = obj.GetDataString();
+                chart_map.Series[0].Points.Add(new DataPoint(obj.EntitySoldier.X, obj.EntitySoldier.Z));
 
                 //Create listview item
                 var li = new ListViewItem();
@@ -174,7 +179,7 @@ namespace ObjMonitor
             //Bad implementation
 
             //Commenting this out so we aren't requesting info from the server needlessly 
-            
+
             //TODO: optimize 
             /*if (waCB.Checked && DateTime.UtcNow >= time.AddSeconds(5))
             {
@@ -184,6 +189,7 @@ namespace ObjMonitor
                     waCB.Checked = false;
                 }
             }*/
+            chart_map.Series[1].Points.Clear();
 
             lvTeam2Objects.BeginUpdate();
             lvTeam2Objects.Items.Clear();
@@ -192,6 +198,7 @@ namespace ObjMonitor
                 if (!(obj.TimeStampOfLastSpawn > 0)) continue;
 
                 var datastring = obj.GetDataString();
+                chart_map.Series[1].Points.Add(new DataPoint(obj.EntitySoldier.X, obj.EntitySoldier.Z));
 
                 var li = new ListViewItem();
                 li.Font = new Font(myFont.FontFamily, 20, FontStyle.Regular);
@@ -399,6 +406,11 @@ namespace ObjMonitor
             y = lvTeam1Objects.Location.Y;
             lvTeam1Objects.Location = new Point(lvTeam2Objects.Location.X, lvTeam2Objects.Location.Y);
             lvTeam2Objects.Location = new Point(x, y);
+        }
+
+        private void chart1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

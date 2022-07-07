@@ -30,6 +30,10 @@ namespace ObjMonitor
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.label1 = new System.Windows.Forms.Label();
             this.cbHost = new System.Windows.Forms.CheckBox();
             this.lbTeam1Name = new System.Windows.Forms.Label();
@@ -47,6 +51,8 @@ namespace ObjMonitor
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.bnSwapTeamViews = new System.Windows.Forms.Button();
+            this.cbTrackStats = new System.Windows.Forms.CheckBox();
+            this.chart_map = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.lvCommandPosts = new ObjMonitor.DoubleBufferedListView();
             this.lvGameInfo = new ObjMonitor.DoubleBufferedListView();
             this.chTeamName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -67,7 +73,7 @@ namespace ObjMonitor
             this.chKills = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chDeaths = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chHealth = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.cbTrackStats = new System.Windows.Forms.CheckBox();
+            ((System.ComponentModel.ISupportInitialize)(this.chart_map)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -229,6 +235,50 @@ namespace ObjMonitor
             this.bnSwapTeamViews.Text = "SWAP";
             this.bnSwapTeamViews.UseVisualStyleBackColor = true;
             this.bnSwapTeamViews.Click += new System.EventHandler(this.bnSwapTeamViews_Click);
+            // 
+            // cbTrackStats
+            // 
+            this.cbTrackStats.AutoSize = true;
+            this.cbTrackStats.Checked = true;
+            this.cbTrackStats.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbTrackStats.Location = new System.Drawing.Point(13, 37);
+            this.cbTrackStats.Name = "cbTrackStats";
+            this.cbTrackStats.Size = new System.Drawing.Size(81, 17);
+            this.cbTrackStats.TabIndex = 23;
+            this.cbTrackStats.Text = "Track Stats";
+            this.cbTrackStats.UseVisualStyleBackColor = true;
+            // 
+            // chart_map
+            // 
+            chartArea1.AxisX.Maximum = 0D;
+            chartArea1.AxisX.Minimum = -200D;
+            chartArea1.AxisY.Maximum = 0D;
+            chartArea1.AxisY.Minimum = -200D;
+            chartArea1.Name = "ChartArea1";
+            this.chart_map.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart_map.Legends.Add(legend1);
+            this.chart_map.Location = new System.Drawing.Point(1097, 53);
+            this.chart_map.Name = "chart_map";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastPoint;
+            series1.Legend = "Legend1";
+            series1.MarkerColor = System.Drawing.Color.Red;
+            series1.MarkerSize = 6;
+            series1.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
+            series1.Name = "Team1";
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastPoint;
+            series2.Legend = "Legend1";
+            series2.MarkerColor = System.Drawing.Color.Blue;
+            series2.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Square;
+            series2.Name = "Team2";
+            this.chart_map.Series.Add(series1);
+            this.chart_map.Series.Add(series2);
+            this.chart_map.Size = new System.Drawing.Size(455, 293);
+            this.chart_map.TabIndex = 24;
+            this.chart_map.Text = "chart1";
+            this.chart_map.Click += new System.EventHandler(this.chart1_Click);
             // 
             // lvCommandPosts
             // 
@@ -399,23 +449,12 @@ namespace ObjMonitor
             this.chHealth.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.chHealth.Width = 45;
             // 
-            // cbTrackStats
-            // 
-            this.cbTrackStats.AutoSize = true;
-            this.cbTrackStats.Checked = true;
-            this.cbTrackStats.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbTrackStats.Location = new System.Drawing.Point(13, 37);
-            this.cbTrackStats.Name = "cbTrackStats";
-            this.cbTrackStats.Size = new System.Drawing.Size(81, 17);
-            this.cbTrackStats.TabIndex = 23;
-            this.cbTrackStats.Text = "Track Stats";
-            this.cbTrackStats.UseVisualStyleBackColor = true;
-            // 
             // ObjForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1184, 711);
+            this.ClientSize = new System.Drawing.Size(1584, 711);
+            this.Controls.Add(this.chart_map);
             this.Controls.Add(this.cbTrackStats);
             this.Controls.Add(this.bnSwapTeamViews);
             this.Controls.Add(this.label6);
@@ -442,6 +481,7 @@ namespace ObjMonitor
             this.Name = "ObjForm";
             this.Text = "Game Info";
             this.Load += new System.EventHandler(this.ObjForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.chart_map)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -486,5 +526,6 @@ namespace ObjMonitor
         private Label label6;
         private Button bnSwapTeamViews;
         public CheckBox cbTrackStats;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart_map;
     }
 }
