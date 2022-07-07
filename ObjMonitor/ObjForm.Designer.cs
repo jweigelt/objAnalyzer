@@ -299,8 +299,16 @@ namespace ObjMonitor
             this.comboBox_map.FormattingEnabled = true;
             this.comboBox_map.Items.AddRange(new object[] {
             "C0R",
+            "dag1",
+            "ed9",
+            "KEK",
+            "mus1",
+            "Rhn1",
+            "Rhn2",
             "tat2",
-            "tan"});
+            "tat3",
+            "TI2",
+            "uta1"});
             this.comboBox_map.Location = new System.Drawing.Point(1007, 562);
             this.comboBox_map.Name = "comboBox_map";
             this.comboBox_map.Size = new System.Drawing.Size(179, 21);
