@@ -252,29 +252,41 @@ namespace ObjMonitor
             // 
             // chart_map
             // 
+            this.chart_map.BackColor = System.Drawing.Color.Lime;
+            this.chart_map.BackImageTransparentColor = System.Drawing.Color.Lime;
+            this.chart_map.BackImageWrapMode = System.Windows.Forms.DataVisualization.Charting.ChartImageWrapMode.Scaled;
+            this.chart_map.BorderlineColor = System.Drawing.Color.Transparent;
+            chartArea1.AxisX.InterlacedColor = System.Drawing.Color.Transparent;
             chartArea1.AxisX.LabelStyle.Enabled = false;
+            chartArea1.AxisX.LineColor = System.Drawing.Color.Transparent;
             chartArea1.AxisX.MajorGrid.Enabled = false;
             chartArea1.AxisX.MajorTickMark.Enabled = false;
+            chartArea1.AxisY.InterlacedColor = System.Drawing.Color.Transparent;
             chartArea1.AxisY.LabelStyle.Enabled = false;
+            chartArea1.AxisY.LineColor = System.Drawing.Color.Transparent;
             chartArea1.AxisY.MajorGrid.Enabled = false;
             chartArea1.AxisY.MajorTickMark.Enabled = false;
             chartArea1.BackColor = System.Drawing.Color.Transparent;
+            chartArea1.BackImageWrapMode = System.Windows.Forms.DataVisualization.Charting.ChartImageWrapMode.Scaled;
+            chartArea1.BackSecondaryColor = System.Drawing.Color.Transparent;
             chartArea1.Name = "chartarea_minimap";
             this.chart_map.ChartAreas.Add(chartArea1);
             this.chart_map.Location = new System.Drawing.Point(12, 411);
             this.chart_map.Name = "chart_map";
             series1.ChartArea = "chartarea_minimap";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastPoint;
-            series1.MarkerBorderColor = System.Drawing.Color.Maroon;
-            series1.MarkerColor = System.Drawing.Color.Red;
-            series1.MarkerSize = 6;
+            series1.IsValueShownAsLabel = true;
+            series1.MarkerBorderColor = System.Drawing.Color.Black;
+            series1.MarkerColor = System.Drawing.Color.Chocolate;
+            series1.MarkerSize = 8;
             series1.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
             series1.Name = "Team1";
             series2.ChartArea = "chartarea_minimap";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastPoint;
-            series2.MarkerBorderColor = System.Drawing.Color.DarkBlue;
-            series2.MarkerColor = System.Drawing.Color.RoyalBlue;
-            series2.MarkerSize = 6;
+            series2.IsValueShownAsLabel = true;
+            series2.MarkerBorderColor = System.Drawing.Color.Black;
+            series2.MarkerColor = System.Drawing.Color.LightBlue;
+            series2.MarkerSize = 8;
             series2.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
             series2.Name = "Team2";
             this.chart_map.Series.Add(series1);
@@ -288,7 +300,7 @@ namespace ObjMonitor
             // 
             this.label_minimap.AutoSize = true;
             this.label_minimap.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold);
-            this.label_minimap.Location = new System.Drawing.Point(12, 386);
+            this.label_minimap.Location = new System.Drawing.Point(322, 479);
             this.label_minimap.Name = "label_minimap";
             this.label_minimap.Size = new System.Drawing.Size(90, 22);
             this.label_minimap.TabIndex = 25;

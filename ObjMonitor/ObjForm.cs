@@ -49,44 +49,44 @@ namespace ObjMonitor
             wapList = new WebAdminPlayerList(ipAddress.Text, port.Text, username.Text, password.Text);
 
             map_to_image_file["tat2"] = ".\\minimaps_trimmed\\tat2_trimmed.png";
-            map_to_image_file["C0R"] = ".\\minimaps_trimmed\\C0R_trimmed.png";
-            map_to_image_file["TI2"] = ".\\minimaps_trimmed\\TI2_trimmed.png";
-            map_to_image_file["tan1"] = ".\\minimaps_trimmed\\TI2_trimmed.png";
+            map_to_image_file["c0r"] = ".\\minimaps_trimmed\\C0R_trimmed.png";
+            map_to_image_file["ti2"] = ".\\minimaps_trimmed\\tan_trimmed_transparent.png";
+            map_to_image_file["tan1"] = ".\\minimaps_trimmed\\tan_trimmed_transparent.png";
             map_to_image_file["mus1"] = ".\\minimaps_trimmed\\mus1_trimmed.png";
             map_to_image_file["tat3"] = ".\\minimaps_trimmed\\tat3_trimmed.png";
-            map_to_image_file["KEK"] = ".\\minimaps_trimmed\\KEK_trimmed_grayscale.png";
-            map_to_image_file["DG2"] = ".\\minimaps_trimmed\\dag1_trimmed.png";
-            map_to_image_file["ED9"] = ".\\minimaps_trimmed\\ed9_trimmed.png";
-            map_to_image_file["RVN"] = ".\\minimaps_trimmed\\Rhn1_trimmed2.png";
-            map_to_image_file["RVC"] = ".\\minimaps_trimmed\\Rhn2_trimmed_grayscale.png";
+            map_to_image_file["kek"] = ".\\minimaps_trimmed\\KEK_trimmed_grayscale.png";
+            map_to_image_file["dg2"] = ".\\minimaps_trimmed\\dag1_trimmed.png";
+            map_to_image_file["ed9"] = ".\\minimaps_trimmed\\ed9_trimmed.png";
+            map_to_image_file["rvn"] = ".\\minimaps_trimmed\\Rhn1_trimmed2.png";
+            map_to_image_file["rvc"] = ".\\minimaps_trimmed\\Rhn2_trimmed_grayscale.png";
             map_to_image_file["uta1"] = ".\\minimaps_trimmed\\uta1_trimmed2.png";
             // You can quickly find these coordinates in freecam mode.
             // The ymin and ymax listed below correspond to the zmin and ymin from the game because the game uses xz-coordinates.
             map_to_xminmax_yminmax["tat2"] = Tuple.Create(-137.59, 139.11, -103.86, 94.15);
-            map_to_xminmax_yminmax["C0R"] = Tuple.Create(-68.06, 111.82, -184.14, 36.38);
-            map_to_xminmax_yminmax["TI2"] = Tuple.Create(-385.19, -210.20, 67.09, 203.39);
+            map_to_xminmax_yminmax["c0r"] = Tuple.Create(-68.06, 111.82, -184.14, 36.38);
+            map_to_xminmax_yminmax["ti2"] = Tuple.Create(-385.19, -210.20, 67.09, 203.39);
             map_to_xminmax_yminmax["tan1"] = Tuple.Create(-385.19, -210.20, 67.09, 203.39);
             map_to_xminmax_yminmax["mus1"] = Tuple.Create(-106.4, 143.0, -59.0, 152.0);
             map_to_xminmax_yminmax["tat3"] = Tuple.Create(-127.7, 4.9, 50.1, 196.9);
-            map_to_xminmax_yminmax["KEK"] = Tuple.Create(-180.0, 135.9, 64.24, 288.3);
-            map_to_xminmax_yminmax["DG2"] = Tuple.Create(-75.6, 148.11, -167.1, 188.9);
-            map_to_xminmax_yminmax["RVN"] = Tuple.Create(108.0, 305.85, 270.0, 460.1);
-            map_to_xminmax_yminmax["RVC"] = Tuple.Create(-320.32, -86.65, -292.2, -63.4);
+            map_to_xminmax_yminmax["kek"] = Tuple.Create(-180.0, 135.9, 64.24, 288.3);
+            map_to_xminmax_yminmax["dg2"] = Tuple.Create(-75.6, 148.11, -167.1, 188.9);
+            map_to_xminmax_yminmax["rvn"] = Tuple.Create(108.0, 305.85, 270.0, 460.1);
+            map_to_xminmax_yminmax["rvc"] = Tuple.Create(-320.32, -86.65, -292.2, -63.4);
             map_to_xminmax_yminmax["uta1"] = Tuple.Create(-223.0, 134.2, 81.0, 304.3);
-            map_to_xminmax_yminmax["ED9"] = Tuple.Create(-70.0, 202.3, 8.48, 160.3);
+            map_to_xminmax_yminmax["ed9"] = Tuple.Create(-70.0, 202.3, 8.48, 160.3);
             // Some coordinates need to be reversed.
             map_to_xdir_ydir["tat2"] = Tuple.Create(1, -1);
-            map_to_xdir_ydir["C0R"] = Tuple.Create(-1, 1); // For some reason, Cor patched has the x and z reversed.
-            map_to_xdir_ydir["TI2"] = Tuple.Create(1, -1);
+            map_to_xdir_ydir["c0r"] = Tuple.Create(-1, 1); // For some reason, Cor patched has the x and z reversed.
+            map_to_xdir_ydir["ti2"] = Tuple.Create(1, -1);
             map_to_xdir_ydir["tan1"] = Tuple.Create(1, -1);
             map_to_xdir_ydir["mus1"] = Tuple.Create(1, -1);
             map_to_xdir_ydir["tat3"] = Tuple.Create(1, -1);
-            map_to_xdir_ydir["KEK"] = Tuple.Create(1, -1);
-            map_to_xdir_ydir["DG2"] = Tuple.Create(1, -1);
-            map_to_xdir_ydir["RVN"] = Tuple.Create(1, -1);
-            map_to_xdir_ydir["RVC"] = Tuple.Create(1, -1);
+            map_to_xdir_ydir["kek"] = Tuple.Create(1, -1);
+            map_to_xdir_ydir["dg2"] = Tuple.Create(1, -1);
+            map_to_xdir_ydir["rvn"] = Tuple.Create(1, -1);
+            map_to_xdir_ydir["rvc"] = Tuple.Create(1, -1);
             map_to_xdir_ydir["uta1"] = Tuple.Create(1, -1);
-            map_to_xdir_ydir["ED9"] = Tuple.Create(1, -1);
+            map_to_xdir_ydir["ed9"] = Tuple.Create(1, -1);
         }
 
         private void ObjForm_Load(object sender, EventArgs e)
@@ -132,12 +132,12 @@ namespace ObjMonitor
                 map_key = map.Substring(0, map.Length - 5);
                 comboBox_map.SelectedIndex = comboBox_map.FindStringExact(map_key);
             }
+            map_key = map_key.ToLower();
             if (!String.IsNullOrEmpty(map_key) && map_to_image_file.ContainsKey(map_key))
             {
                 Console.WriteLine($"Setting up map {map} ({map_key})");
                 ChartArea ca_map = chart_map.ChartAreas.FindByName("chartarea_minimap");
                 ca_map.BackImage = map_to_image_file[map_key];
-                ca_map.BackImageWrapMode = ChartImageWrapMode.Scaled;
                 (double xmin, double xmax, double ymin, double ymax) = map_to_xminmax_yminmax[map_key];
                 (current_xdir, current_ydir) = map_to_xdir_ydir[map_key];
                 ca_map.AxisX.Minimum = Math.Min(xmin * current_xdir, xmax * current_xdir);
@@ -149,11 +149,21 @@ namespace ObjMonitor
         
         public void UpdateTeam1ObjList(List<InGameCharacterObject> objList, bool savePlayerData, StreamWriter save_sw)
         {
-            // TODO: set the min/max automatically based on the map
-            // TODO: overlay image of the minimaps under the chart
-            //chart_map.ChartAreas[0].AxisX.Minimum = -100;
             chart_map.Series[0].Points.Clear();
-            //chart_map.Series[0].Style.Images = new ChartImageCollection(this.imageList1.Images);
+
+            if (objList.Count > 0)
+            {
+                bool is_white = (objList[0].Team.TeamName == "Empire") || (objList[0].Team.TeamName == "Republic");
+                if (is_white)
+                {
+                    chart_map.Series[0].MarkerColor = Color.LightBlue;
+                }
+                else
+                {
+                    chart_map.Series[0].MarkerColor = Color.Chocolate;
+                }
+            }
+            
 
             if (waCB.Checked && DateTime.UtcNow >= time.AddSeconds(5) )  //Make sure we are only updating values from webadmin every 10 seconds or we will ddos the server
             {
@@ -178,11 +188,15 @@ namespace ObjMonitor
                 var datastring = obj.GetDataString();
                 if (obj.EntitySoldier.Health > 0)
                 {
-                    chart_map.Series[0].Points.Add(new DataPoint(obj.EntitySoldier.X * current_xdir, obj.EntitySoldier.Z * current_ydir));
-                    //if (obj.Name.Contains("Widow"))
-                    //{
-                    //    Console.WriteLine($"Widow (x, z) = ({obj.EntitySoldier.X}, {obj.EntitySoldier.Z}, (xdir, ydir) = ({current_xdir}, {current_ydir})");
-                    //}
+                    var player_dot = new DataPoint(obj.EntitySoldier.X * current_xdir, obj.EntitySoldier.Z * current_ydir);
+                    //TODO: why doesn't this work?
+                    //player_dot.Label = "teseest";
+                    //player_dot.LabelForeColor = Color.Green;
+                    //chart_map.Series[0].IsValueShownAsLabel = true;
+                    //player_dot.LabelBorderWidth = 5;
+                    //Console.WriteLine($"player = {obj.Name}");
+                    //player_dot.IsValueShownAsLabel = true;
+                    chart_map.Series[0].Points.Add(player_dot);
                 }
                 //Create listview item
                 var li = new ListViewItem();
@@ -192,6 +206,14 @@ namespace ObjMonitor
                 if (obj.EntitySoldier.Health == 0)
                 {
                     li.ForeColor = Color.Gray;
+                }
+                else if (100 <= obj.EntitySoldier.Health && obj.EntitySoldier.Health < 200)
+                {
+                    li.ForeColor = Color.Orange;
+                }
+                else if (obj.EntitySoldier.Health < 100)
+                {
+                    li.ForeColor = Color.Red;
                 }
 
                 //add id and name
@@ -242,9 +264,6 @@ namespace ObjMonitor
                 //Dump data to file
                 if (savePlayerData)
                 {
-                    //remove invalid characters for a file name
-                    //var strPath = $"{saveDir}\\players\\{string.Concat(obj.Name.Split(Path.GetInvalidFileNameChars()))}_{obj.Team.TeamName}.csv";
-                    //DumpPlayerDataString(obj.Map, strPath, datastring);
                     datastring += $",{obj.Team.TeamName}";
                     save_sw.WriteLine(datastring);
 
@@ -255,21 +274,21 @@ namespace ObjMonitor
 
         public void UpdateTeam2ObjList(List<InGameCharacterObject> objList, bool savePlayerData, StreamWriter save_sw)
         {
-
-            //Bad implementation
-
-            //Commenting this out so we aren't requesting info from the server needlessly 
-
-            //TODO: optimize 
-            /*if (waCB.Checked && DateTime.UtcNow >= time.AddSeconds(5))
-            {
-                time = DateTime.UtcNow;
-                if (!wapList.Connect())
-                {
-                    waCB.Checked = false;
-                }
-            }*/
+            // TODO: merge with UpdateTeam1ObjList
             chart_map.Series[1].Points.Clear();
+
+            if (objList.Count > 0)
+            {
+                bool is_white = (objList[0].Team.TeamName == "Empire") || (objList[0].Team.TeamName == "Republic");
+                if (is_white)
+                {
+                    chart_map.Series[1].MarkerColor = Color.LightBlue;
+                }
+                else
+                {
+                    chart_map.Series[1].MarkerColor = Color.Chocolate;
+                }
+            }
 
             lvTeam2Objects.BeginUpdate();
             lvTeam2Objects.Items.Clear();
@@ -280,11 +299,8 @@ namespace ObjMonitor
                 var datastring = obj.GetDataString();
                 if (obj.EntitySoldier.Health > 0)
                 {
-                    chart_map.Series[1].Points.Add(new DataPoint(obj.EntitySoldier.X * current_xdir, obj.EntitySoldier.Z * current_ydir));
-                    //if (obj.Name.Contains("Widow"))
-                    //{
-                    //    Console.WriteLine($"Widow (x, z) = ({obj.EntitySoldier.X}, {obj.EntitySoldier.Z}, (xdir, ydir) = ({current_xdir}, {current_ydir})");
-                    //}
+                    var player_dot = new DataPoint(obj.EntitySoldier.X * current_xdir, obj.EntitySoldier.Z * current_ydir);
+                    chart_map.Series[1].Points.Add(player_dot);
                 }
 
                 var li = new ListViewItem();
@@ -294,7 +310,14 @@ namespace ObjMonitor
                 if (obj.EntitySoldier.Health == 0)
                 {
                     li.ForeColor = Color.Gray;
+                } else if (100 <= obj.EntitySoldier.Health && obj.EntitySoldier.Health < 200)
+                {
+                    li.ForeColor = Color.Orange;
+                } else if (obj.EntitySoldier.Health < 100)
+                {
+                    li.ForeColor = Color.Red;
                 }
+                
 
                 li.Text = (obj.Index + 1).ToString();
                 li.SubItems.Add(obj.Name);
