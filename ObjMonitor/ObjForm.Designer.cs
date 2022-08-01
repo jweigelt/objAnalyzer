@@ -278,7 +278,7 @@ namespace ObjMonitor
             series1.IsValueShownAsLabel = true;
             series1.MarkerBorderColor = System.Drawing.Color.Black;
             series1.MarkerColor = System.Drawing.Color.Chocolate;
-            series1.MarkerSize = 8;
+            series1.MarkerSize = 12;
             series1.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
             series1.Name = "Team1";
             series2.ChartArea = "chartarea_minimap";
@@ -286,7 +286,7 @@ namespace ObjMonitor
             series2.IsValueShownAsLabel = true;
             series2.MarkerBorderColor = System.Drawing.Color.Black;
             series2.MarkerColor = System.Drawing.Color.LightBlue;
-            series2.MarkerSize = 8;
+            series2.MarkerSize = 12;
             series2.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
             series2.Name = "Team2";
             this.chart_map.Series.Add(series1);

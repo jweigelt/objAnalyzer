@@ -93,10 +93,11 @@ namespace ObjMonitor
                 form.UpdateTeam2ObjList(charList.Team2, savePlayerData, player_sw);
                 form.UpdateGameInfo(teamObjList);
                 form.UpdateCommandPosts(objList.CommandPosts, teamObjList[0], teamObjList[1]);
-                if (String.IsNullOrEmpty(map)) // If the map isn't being read properly, let the caster decide
+                if (String.IsNullOrEmpty(map) && endgame == 0) // If the map isn't being read properly, let the caster decide
                 {
                     form.SetMap(map);
                 }
+                Console.WriteLine($"endgame = {endgame}");
                 Application.DoEvents();
                 if (form.cbTrackStats.Checked)
                 {
@@ -107,6 +108,7 @@ namespace ObjMonitor
                     if (endgame != 0) // Detects endgame if value is not 0
                     {
                         detectedEndgame = true;
+                        form.ClearMap();
                     }
                     Boolean mapStartDetected = !String.IsNullOrEmpty(map) && (
                         (map != oldMap) // map change. Only checking endgame isn't enough because if someone join the server after starting this program, there will not have been an endgame

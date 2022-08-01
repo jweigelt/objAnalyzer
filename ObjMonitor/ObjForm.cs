@@ -50,24 +50,24 @@ namespace ObjMonitor
 
             map_to_image_file["tat2"] = ".\\minimaps_trimmed\\tat2_trimmed.png";
             map_to_image_file["c0r"] = ".\\minimaps_trimmed\\C0R_trimmed.png";
-            map_to_image_file["ti2"] = ".\\minimaps_trimmed\\tan_trimmed_transparent.png";
-            map_to_image_file["tan1"] = ".\\minimaps_trimmed\\tan_trimmed_transparent.png";
+            map_to_image_file["ti2"] = ".\\minimaps_trimmed\\tan_trimmed.png";
+            map_to_image_file["tan1"] = ".\\minimaps_trimmed\\tan_trimmed.png";
             map_to_image_file["mus1"] = ".\\minimaps_trimmed\\mus1_trimmed.png";
             map_to_image_file["tat3"] = ".\\minimaps_trimmed\\tat3_trimmed.png";
-            map_to_image_file["kek"] = ".\\minimaps_trimmed\\KEK_trimmed_grayscale.png";
+            map_to_image_file["kek"] = ".\\minimaps_trimmed\\KEK_trimmed.png";
             map_to_image_file["dg2"] = ".\\minimaps_trimmed\\dag1_trimmed.png";
             map_to_image_file["ed9"] = ".\\minimaps_trimmed\\ed9_trimmed.png";
-            map_to_image_file["rvn"] = ".\\minimaps_trimmed\\Rhn1_trimmed2.png";
-            map_to_image_file["rvc"] = ".\\minimaps_trimmed\\Rhn2_trimmed_grayscale.png";
-            map_to_image_file["uta1"] = ".\\minimaps_trimmed\\uta1_trimmed2.png";
+            map_to_image_file["rvn"] = ".\\minimaps_trimmed\\Rhn1_trimmed.png";
+            map_to_image_file["rvc"] = ".\\minimaps_trimmed\\Rhn2_trimmed.png";
+            map_to_image_file["uta1"] = ".\\minimaps_trimmed\\uta1_trimmed.png";
             // You can quickly find these coordinates in freecam mode.
             // The ymin and ymax listed below correspond to the zmin and ymin from the game because the game uses xz-coordinates.
-            map_to_xminmax_yminmax["tat2"] = Tuple.Create(-137.59, 139.11, -103.86, 94.15);
+            map_to_xminmax_yminmax["tat2"] = Tuple.Create(-145.59, 143.11, -115.86, 96.0);
             map_to_xminmax_yminmax["c0r"] = Tuple.Create(-68.06, 111.82, -184.14, 36.38);
             map_to_xminmax_yminmax["ti2"] = Tuple.Create(-385.19, -210.20, 67.09, 203.39);
             map_to_xminmax_yminmax["tan1"] = Tuple.Create(-385.19, -210.20, 67.09, 203.39);
             map_to_xminmax_yminmax["mus1"] = Tuple.Create(-106.4, 143.0, -59.0, 152.0);
-            map_to_xminmax_yminmax["tat3"] = Tuple.Create(-127.7, 4.9, 50.1, 196.9);
+            map_to_xminmax_yminmax["tat3"] = Tuple.Create(-128.5, 5.5, 50.1, 197.5);
             map_to_xminmax_yminmax["kek"] = Tuple.Create(-180.0, 135.9, 64.24, 288.3);
             map_to_xminmax_yminmax["dg2"] = Tuple.Create(-75.6, 148.11, -167.1, 188.9);
             map_to_xminmax_yminmax["rvn"] = Tuple.Create(108.0, 305.85, 270.0, 460.1);
@@ -119,6 +119,13 @@ namespace ObjMonitor
                 lvGameInfo.Items.Add(li);
             }
             lvGameInfo.EndUpdate();
+        }
+
+        public void ClearMap()
+        {
+            Console.WriteLine($"Clearing map.");
+            ChartArea ca_map = chart_map.ChartAreas.FindByName("chartarea_minimap");
+            ca_map.BackImage = "";
         }
 
         public void SetMap(string map)
@@ -194,7 +201,6 @@ namespace ObjMonitor
                     //player_dot.LabelForeColor = Color.Green;
                     //chart_map.Series[0].IsValueShownAsLabel = true;
                     //player_dot.LabelBorderWidth = 5;
-                    //Console.WriteLine($"player = {obj.Name}");
                     //player_dot.IsValueShownAsLabel = true;
                     chart_map.Series[0].Points.Add(player_dot);
                 }
@@ -301,6 +307,7 @@ namespace ObjMonitor
                 {
                     var player_dot = new DataPoint(obj.EntitySoldier.X * current_xdir, obj.EntitySoldier.Z * current_ydir);
                     chart_map.Series[1].Points.Add(player_dot);
+
                 }
 
                 var li = new ListViewItem();
