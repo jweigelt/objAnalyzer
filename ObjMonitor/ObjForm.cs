@@ -196,12 +196,16 @@ namespace ObjMonitor
                 if (is_white)
                 {
                     chart_map.Series[series_index].MarkerColor = Color.LightBlue;
-                    chart_map.Series[series_direction_index].MarkerColor = Color.LightBlue;
+                    chart_map.Series[series_index].MarkerBorderColor = Color.DodgerBlue;
+                    chart_map.Series[series_direction_index].MarkerColor = Color.DodgerBlue;
+                    chart_map.Series[series_direction_index].MarkerBorderColor = Color.LightBlue;
                 }
                 else
                 {
                     chart_map.Series[series_index].MarkerColor = Color.Chocolate;
-                    chart_map.Series[series_direction_index].MarkerColor = Color.Chocolate;
+                    chart_map.Series[series_index].MarkerBorderColor = Color.Red;
+                    chart_map.Series[series_direction_index].MarkerColor = Color.Red;
+                    chart_map.Series[series_direction_index].MarkerBorderColor = Color.Chocolate;
                 }
             }
 
@@ -209,12 +213,13 @@ namespace ObjMonitor
             {
                 if (!(obj.TimeStampOfLastSpawn > 0)) continue;
 
+                string player_id = (obj.Index + 1).ToString();
                 var datastring = obj.GetDataString();
                 if (obj.EntitySoldier.Health > 0)
                 {
                     var player_direction_dot = new DataPoint(
-                        (obj.EntitySoldier.X + 1.75 * (map_x_delta / 64) * obj.EntitySoldier.xCamera) * current_xdir,
-                        (obj.EntitySoldier.Z + 1.75 * (map_y_delta / 64) * obj.EntitySoldier.zCamera) * current_ydir
+                        (obj.EntitySoldier.X + 1.5 * (map_x_delta / 64) * obj.EntitySoldier.xCamera) * current_xdir,
+                        (obj.EntitySoldier.Z + 1.5 * (map_y_delta / 64) * obj.EntitySoldier.zCamera) * current_ydir
                     );
                     var player_label_dot = new DataPoint(
                         (obj.EntitySoldier.X + 0.25) * current_xdir,
@@ -223,36 +228,88 @@ namespace ObjMonitor
                     //Console.WriteLine($"x = {obj.EntitySoldier.xCamera}, z = {obj.EntitySoldier.zCamera}");
                     //Console.WriteLine($"dot = {player_dot}, dir_dot = {player_direction_dot}");
                     var player_dot = new DataPoint(obj.EntitySoldier.X * current_xdir, obj.EntitySoldier.Z * current_ydir);
-                    string label = "x";
-                    player_label_dot.Label = label;
+                    player_label_dot.Label = player_id;
                     player_label_dot.LabelForeColor = Color.Black;
                     player_label_dot.SetCustomProperty("LabelStyle", "Top");
                     chart_map.Series[series_index].Points.Add(player_dot);
                     chart_map.Series[series_direction_index].Points.Add(player_direction_dot);
                     chart_map.Series[series_label_index].Points.Add(player_label_dot);
-
                 }
 
                 var li = new ListViewItem();
                 li.Font = new Font(myFont.FontFamily, 20, FontStyle.Regular);
 
+                int health_percent = (int) Math.Ceiling(100 * obj.EntitySoldier.Health / obj.EntitySoldier.MaxHealth);
+                ObjMonitor.CustomProgressBar health_bar;
+                if (is_team_one)
+                {
+                    switch (obj.Index)
+                    {
+                        case 0:
+                            health_bar = team1health_player0;
+                            break;
+                        case 1:
+                            health_bar = team1health_player1;
+                            break;
+                        case 2:
+                            health_bar = team1health_player2;
+                            break;
+                        case 3:
+                            health_bar = team1health_player3;
+                            break;
+                        default:
+                            health_bar = stub_progress_bar;
+                            break;
+                    }
+                }
+                else
+                {
+                    switch (obj.Index)
+                    {
+                        case 0:
+                            health_bar = team2health_player0;
+                            break;
+                        case 1:
+                            health_bar = team2health_player1;
+                            break;
+                        case 2:
+                            health_bar = team2health_player2;
+                            break;
+                        case 3:
+                            health_bar = team2health_player3;
+                            break;
+                        default:
+                            health_bar = stub_progress_bar;
+                            break;
+                    }
+                }
+
                 //Gray out the name if they're dead
-                if (obj.EntitySoldier.Health == 0)
+                if (health_percent <= 0)
                 {
                     li.ForeColor = Color.Gray;
+                    health_bar.Value = 0;
+                    health_bar.Value = 0;
+                    health_bar.ProgressColor = Color.Green;
                 }
-                else if (100 <= obj.EntitySoldier.Health && obj.EntitySoldier.Health < 200)
+                else if (30 <= health_percent && health_percent < 60)
                 {
                     li.ForeColor = Color.Orange;
+                    health_bar.ProgressColor = Color.Orange;
+                    health_bar.Value = health_percent;
                 }
-                else if (obj.EntitySoldier.Health < 100)
+                else if (0 < health_percent && health_percent < 30)
                 {
                     li.ForeColor = Color.Red;
+                    health_bar.ProgressColor = Color.Red;
+                    health_bar.Value = health_percent;
+                } else
+                {
+                    health_bar.Value = health_percent;
+                    health_bar.ProgressColor = Color.Green;
                 }
-
-
-                li.Text = (obj.Index + 1).ToString();
-                li.SubItems.Add(obj.Name);
+                li.Text = player_id;
+                li.SubItems.Add($"{player_id} {obj.Name}");
 
                 if (wapList != null && wapList.playerList != null)
                 {
@@ -466,11 +523,6 @@ namespace ObjMonitor
         }
 
         private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lvTeam2Objects_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

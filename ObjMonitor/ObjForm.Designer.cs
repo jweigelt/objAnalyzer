@@ -30,18 +30,13 @@ namespace ObjMonitor
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series13 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series14 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint3 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 0D);
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint4 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(3D, 1D);
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.label1 = new System.Windows.Forms.Label();
             this.cbHost = new System.Windows.Forms.CheckBox();
             this.lbTeam1Name = new System.Windows.Forms.Label();
@@ -64,19 +59,21 @@ namespace ObjMonitor
             this.label_minimap = new System.Windows.Forms.Label();
             this.comboBox_map = new System.Windows.Forms.ComboBox();
             this.text_map_dropdown_label = new System.Windows.Forms.Label();
+            this.stub_progress_bar = new ObjMonitor.CustomProgressBar();
+            this.team2health_player1 = new ObjMonitor.CustomProgressBar();
+            this.team2health_player0 = new ObjMonitor.CustomProgressBar();
+            this.team2health_player2 = new ObjMonitor.CustomProgressBar();
+            this.team2health_player3 = new ObjMonitor.CustomProgressBar();
+            this.team1health_player1 = new ObjMonitor.CustomProgressBar();
+            this.team1health_player0 = new ObjMonitor.CustomProgressBar();
+            this.team1health_player2 = new ObjMonitor.CustomProgressBar();
+            this.team1health_player3 = new ObjMonitor.CustomProgressBar();
             this.lvCommandPosts = new ObjMonitor.DoubleBufferedListView();
             this.lvGameInfo = new ObjMonitor.DoubleBufferedListView();
             this.chTeamName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chScore = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chNumKills = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chNumAlive = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lvTeam2Objects = new ObjMonitor.DoubleBufferedListView();
-            this.chTeam2ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.chTeam2Name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.chTeam2Points = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.chTeam2Kills = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.chTeam2Deaths = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.chTeam2Health = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvTeam1Objects = new ObjMonitor.DoubleBufferedListView();
             this.chId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -84,9 +81,14 @@ namespace ObjMonitor
             this.chKills = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chDeaths = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chHealth = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.lvTeam2Objects = new ObjMonitor.DoubleBufferedListView();
+            this.chTeam2ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chTeam2Name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chTeam2Points = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chTeam2Kills = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chTeam2Deaths = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chTeam2Health = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.chart_map)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -267,77 +269,79 @@ namespace ObjMonitor
             this.chart_map.BackImageTransparentColor = System.Drawing.Color.Lime;
             this.chart_map.BackImageWrapMode = System.Windows.Forms.DataVisualization.Charting.ChartImageWrapMode.Scaled;
             this.chart_map.BorderlineColor = System.Drawing.Color.Transparent;
-            chartArea3.AxisX.InterlacedColor = System.Drawing.Color.Transparent;
-            chartArea3.AxisX.LabelStyle.Enabled = false;
-            chartArea3.AxisX.LineColor = System.Drawing.Color.Transparent;
-            chartArea3.AxisX.MajorGrid.Enabled = false;
-            chartArea3.AxisX.MajorTickMark.Enabled = false;
-            chartArea3.AxisY.InterlacedColor = System.Drawing.Color.Transparent;
-            chartArea3.AxisY.LabelStyle.Enabled = false;
-            chartArea3.AxisY.LineColor = System.Drawing.Color.Transparent;
-            chartArea3.AxisY.MajorGrid.Enabled = false;
-            chartArea3.AxisY.MajorTickMark.Enabled = false;
-            chartArea3.BackColor = System.Drawing.Color.Transparent;
-            chartArea3.BackImageWrapMode = System.Windows.Forms.DataVisualization.Charting.ChartImageWrapMode.Scaled;
-            chartArea3.BackSecondaryColor = System.Drawing.Color.Transparent;
-            chartArea3.Name = "chartarea_minimap";
-            this.chart_map.ChartAreas.Add(chartArea3);
+            chartArea1.AxisX.InterlacedColor = System.Drawing.Color.Transparent;
+            chartArea1.AxisX.LabelStyle.Enabled = false;
+            chartArea1.AxisX.LineColor = System.Drawing.Color.Transparent;
+            chartArea1.AxisX.MajorGrid.Enabled = false;
+            chartArea1.AxisX.MajorTickMark.Enabled = false;
+            chartArea1.AxisY.InterlacedColor = System.Drawing.Color.Transparent;
+            chartArea1.AxisY.LabelStyle.Enabled = false;
+            chartArea1.AxisY.LineColor = System.Drawing.Color.Transparent;
+            chartArea1.AxisY.MajorGrid.Enabled = false;
+            chartArea1.AxisY.MajorTickMark.Enabled = false;
+            chartArea1.BackColor = System.Drawing.Color.Transparent;
+            chartArea1.BackImageWrapMode = System.Windows.Forms.DataVisualization.Charting.ChartImageWrapMode.Scaled;
+            chartArea1.BackSecondaryColor = System.Drawing.Color.Transparent;
+            chartArea1.Name = "chartarea_minimap";
+            this.chart_map.ChartAreas.Add(chartArea1);
             this.chart_map.Location = new System.Drawing.Point(12, 411);
             this.chart_map.Name = "chart_map";
-            series8.ChartArea = "chartarea_minimap";
-            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series8.LabelForeColor = System.Drawing.Color.Transparent;
-            series8.MarkerBorderColor = System.Drawing.Color.Black;
-            series8.MarkerColor = System.Drawing.Color.Chocolate;
-            series8.MarkerSize = 8;
-            series8.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
-            series8.Name = "Team1Direction";
-            series8.YValuesPerPoint = 2;
-            series9.ChartArea = "chartarea_minimap";
-            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series9.MarkerBorderColor = System.Drawing.Color.Black;
-            series9.MarkerColor = System.Drawing.Color.LightBlue;
-            series9.MarkerSize = 8;
-            series9.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
-            series9.Name = "Team2Direction";
-            series10.ChartArea = "chartarea_minimap";
-            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series10.MarkerBorderColor = System.Drawing.Color.Black;
-            series10.MarkerColor = System.Drawing.Color.LightBlue;
-            series10.MarkerSize = 12;
-            series10.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
-            series10.Name = "Team2_Dot";
-            series11.ChartArea = "chartarea_minimap";
-            series11.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series11.MarkerBorderColor = System.Drawing.Color.Black;
-            series11.MarkerColor = System.Drawing.Color.Chocolate;
-            series11.MarkerSize = 12;
-            series11.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
-            series11.Name = "Team1_Dot";
-            series12.ChartArea = "chartarea_minimap";
-            series12.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            series12.MarkerBorderColor = System.Drawing.Color.Transparent;
-            series12.MarkerColor = System.Drawing.Color.Transparent;
-            series12.MarkerSize = 6;
-            series12.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
-            series12.Name = "Team1DirectionLabel";
-            series12.SmartLabelStyle.Enabled = false;
-            series13.ChartArea = "chartarea_minimap";
-            series13.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            series13.MarkerBorderColor = System.Drawing.Color.Transparent;
-            series13.MarkerColor = System.Drawing.Color.Transparent;
-            series13.MarkerSize = 1;
-            series13.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
-            series13.Name = "Team2DirectionLabel";
-            series13.SmartLabelStyle.Enabled = false;
-            this.chart_map.Series.Add(series8);
-            this.chart_map.Series.Add(series9);
-            this.chart_map.Series.Add(series10);
-            this.chart_map.Series.Add(series11);
-            this.chart_map.Series.Add(series12);
-            this.chart_map.Series.Add(series13);
+            series1.ChartArea = "chartarea_minimap";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series1.LabelForeColor = System.Drawing.Color.Transparent;
+            series1.MarkerBorderColor = System.Drawing.Color.Red;
+            series1.MarkerColor = System.Drawing.Color.Red;
+            series1.MarkerSize = 8;
+            series1.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
+            series1.Name = "Team1Direction";
+            series1.YValuesPerPoint = 2;
+            series2.ChartArea = "chartarea_minimap";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series2.MarkerBorderColor = System.Drawing.Color.DodgerBlue;
+            series2.MarkerColor = System.Drawing.Color.DodgerBlue;
+            series2.MarkerSize = 8;
+            series2.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
+            series2.Name = "Team2Direction";
+            series3.ChartArea = "chartarea_minimap";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series3.MarkerBorderColor = System.Drawing.Color.Red;
+            series3.MarkerColor = System.Drawing.Color.DarkOrange;
+            series3.MarkerSize = 12;
+            series3.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
+            series3.Name = "Team1_Dot";
+            series3.SmartLabelStyle.Enabled = false;
+            series4.ChartArea = "chartarea_minimap";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series4.MarkerBorderColor = System.Drawing.Color.DodgerBlue;
+            series4.MarkerColor = System.Drawing.Color.LightBlue;
+            series4.MarkerSize = 12;
+            series4.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
+            series4.Name = "Team2_Dot";
+            series4.SmartLabelStyle.Enabled = false;
+            series5.ChartArea = "chartarea_minimap";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series5.MarkerBorderColor = System.Drawing.Color.Transparent;
+            series5.MarkerColor = System.Drawing.Color.Transparent;
+            series5.MarkerSize = 6;
+            series5.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
+            series5.Name = "Team1DirectionLabel";
+            series5.SmartLabelStyle.Enabled = false;
+            series6.ChartArea = "chartarea_minimap";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series6.MarkerBorderColor = System.Drawing.Color.Transparent;
+            series6.MarkerColor = System.Drawing.Color.Transparent;
+            series6.MarkerSize = 1;
+            series6.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
+            series6.Name = "Team2DirectionLabel";
+            series6.SmartLabelStyle.Enabled = false;
+            this.chart_map.Series.Add(series1);
+            this.chart_map.Series.Add(series2);
+            this.chart_map.Series.Add(series3);
+            this.chart_map.Series.Add(series4);
+            this.chart_map.Series.Add(series5);
+            this.chart_map.Series.Add(series6);
             this.chart_map.Size = new System.Drawing.Size(290, 267);
             this.chart_map.TabIndex = 24;
             this.chart_map.Text = "chart1";
@@ -384,6 +388,130 @@ namespace ObjMonitor
             this.text_map_dropdown_label.Size = new System.Drawing.Size(47, 22);
             this.text_map_dropdown_label.TabIndex = 27;
             this.text_map_dropdown_label.Text = "map";
+            // 
+            // stub_progress_bar
+            // 
+            this.stub_progress_bar.CustomText = "";
+            this.stub_progress_bar.Location = new System.Drawing.Point(472, 652);
+            this.stub_progress_bar.Name = "stub_progress_bar";
+            this.stub_progress_bar.ProgressColor = System.Drawing.Color.LightGreen;
+            this.stub_progress_bar.Size = new System.Drawing.Size(319, 10);
+            this.stub_progress_bar.TabIndex = 46;
+            this.stub_progress_bar.TextColor = System.Drawing.Color.Black;
+            this.stub_progress_bar.TextFont = new System.Drawing.Font("Times New Roman", 11F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.stub_progress_bar.Value = 50;
+            this.stub_progress_bar.VisualMode = ObjMonitor.ProgressBarDisplayMode.NoText;
+            // 
+            // team2health_player1
+            // 
+            this.team2health_player1.CustomText = "";
+            this.team2health_player1.Location = new System.Drawing.Point(711, 537);
+            this.team2health_player1.Margin = new System.Windows.Forms.Padding(1);
+            this.team2health_player1.Name = "team2health_player1";
+            this.team2health_player1.ProgressColor = System.Drawing.Color.LightGreen;
+            this.team2health_player1.Size = new System.Drawing.Size(130, 12);
+            this.team2health_player1.TabIndex = 44;
+            this.team2health_player1.TextColor = System.Drawing.Color.Black;
+            this.team2health_player1.TextFont = new System.Drawing.Font("Times New Roman", 11F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.team2health_player1.Value = 50;
+            this.team2health_player1.VisualMode = ObjMonitor.ProgressBarDisplayMode.NoText;
+            // 
+            // team2health_player0
+            // 
+            this.team2health_player0.CustomText = "";
+            this.team2health_player0.Location = new System.Drawing.Point(534, 538);
+            this.team2health_player0.Margin = new System.Windows.Forms.Padding(1);
+            this.team2health_player0.Name = "team2health_player0";
+            this.team2health_player0.ProgressColor = System.Drawing.Color.LightGreen;
+            this.team2health_player0.Size = new System.Drawing.Size(130, 12);
+            this.team2health_player0.TabIndex = 43;
+            this.team2health_player0.TextColor = System.Drawing.Color.Black;
+            this.team2health_player0.TextFont = new System.Drawing.Font("Times New Roman", 11F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.team2health_player0.Value = 50;
+            this.team2health_player0.VisualMode = ObjMonitor.ProgressBarDisplayMode.NoText;
+            // 
+            // team2health_player2
+            // 
+            this.team2health_player2.CustomText = "";
+            this.team2health_player2.Location = new System.Drawing.Point(534, 579);
+            this.team2health_player2.Margin = new System.Windows.Forms.Padding(1);
+            this.team2health_player2.Name = "team2health_player2";
+            this.team2health_player2.ProgressColor = System.Drawing.Color.LightGreen;
+            this.team2health_player2.Size = new System.Drawing.Size(130, 12);
+            this.team2health_player2.TabIndex = 42;
+            this.team2health_player2.TextColor = System.Drawing.Color.Black;
+            this.team2health_player2.TextFont = new System.Drawing.Font("Times New Roman", 11F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.team2health_player2.Value = 50;
+            this.team2health_player2.VisualMode = ObjMonitor.ProgressBarDisplayMode.NoText;
+            // 
+            // team2health_player3
+            // 
+            this.team2health_player3.CustomText = "";
+            this.team2health_player3.Location = new System.Drawing.Point(711, 579);
+            this.team2health_player3.Name = "team2health_player3";
+            this.team2health_player3.ProgressColor = System.Drawing.Color.LightGreen;
+            this.team2health_player3.Size = new System.Drawing.Size(130, 12);
+            this.team2health_player3.TabIndex = 41;
+            this.team2health_player3.TextColor = System.Drawing.Color.Black;
+            this.team2health_player3.TextFont = new System.Drawing.Font("Times New Roman", 11F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.team2health_player3.Value = 50;
+            this.team2health_player3.VisualMode = ObjMonitor.ProgressBarDisplayMode.NoText;
+            // 
+            // team1health_player1
+            // 
+            this.team1health_player1.CustomText = "";
+            this.team1health_player1.Location = new System.Drawing.Point(881, 247);
+            this.team1health_player1.Margin = new System.Windows.Forms.Padding(1);
+            this.team1health_player1.Name = "team1health_player1";
+            this.team1health_player1.ProgressColor = System.Drawing.Color.LightGreen;
+            this.team1health_player1.Size = new System.Drawing.Size(130, 12);
+            this.team1health_player1.TabIndex = 40;
+            this.team1health_player1.TextColor = System.Drawing.Color.Black;
+            this.team1health_player1.TextFont = new System.Drawing.Font("Times New Roman", 11F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.team1health_player1.Value = 50;
+            this.team1health_player1.VisualMode = ObjMonitor.ProgressBarDisplayMode.NoText;
+            // 
+            // team1health_player0
+            // 
+            this.team1health_player0.CustomText = "";
+            this.team1health_player0.Location = new System.Drawing.Point(633, 245);
+            this.team1health_player0.Margin = new System.Windows.Forms.Padding(1);
+            this.team1health_player0.Name = "team1health_player0";
+            this.team1health_player0.ProgressColor = System.Drawing.Color.LightGreen;
+            this.team1health_player0.Size = new System.Drawing.Size(130, 12);
+            this.team1health_player0.TabIndex = 39;
+            this.team1health_player0.TextColor = System.Drawing.Color.Black;
+            this.team1health_player0.TextFont = new System.Drawing.Font("Times New Roman", 11F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.team1health_player0.Value = 50;
+            this.team1health_player0.VisualMode = ObjMonitor.ProgressBarDisplayMode.NoText;
+            // 
+            // team1health_player2
+            // 
+            this.team1health_player2.CustomText = "";
+            this.team1health_player2.Location = new System.Drawing.Point(633, 285);
+            this.team1health_player2.Margin = new System.Windows.Forms.Padding(1);
+            this.team1health_player2.Name = "team1health_player2";
+            this.team1health_player2.ProgressColor = System.Drawing.Color.LightGreen;
+            this.team1health_player2.Size = new System.Drawing.Size(130, 12);
+            this.team1health_player2.TabIndex = 38;
+            this.team1health_player2.TextColor = System.Drawing.Color.Black;
+            this.team1health_player2.TextFont = new System.Drawing.Font("Times New Roman", 11F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.team1health_player2.Value = 50;
+            this.team1health_player2.VisualMode = ObjMonitor.ProgressBarDisplayMode.NoText;
+            // 
+            // team1health_player3
+            // 
+            this.team1health_player3.BackColor = System.Drawing.Color.Lime;
+            this.team1health_player3.CustomText = "";
+            this.team1health_player3.Location = new System.Drawing.Point(881, 285);
+            this.team1health_player3.Name = "team1health_player3";
+            this.team1health_player3.ProgressColor = System.Drawing.Color.LightGreen;
+            this.team1health_player3.Size = new System.Drawing.Size(130, 12);
+            this.team1health_player3.TabIndex = 37;
+            this.team1health_player3.TextColor = System.Drawing.Color.Black;
+            this.team1health_player3.TextFont = new System.Drawing.Font("Times New Roman", 11F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.team1health_player3.Value = 50;
+            this.team1health_player3.VisualMode = ObjMonitor.ProgressBarDisplayMode.NoText;
             // 
             // lvCommandPosts
             // 
@@ -439,64 +567,6 @@ namespace ObjMonitor
             // 
             this.chNumAlive.Text = "# Alive";
             this.chNumAlive.Width = 100;
-            // 
-            // lvTeam2Objects
-            // 
-            this.lvTeam2Objects.AutoArrange = false;
-            this.lvTeam2Objects.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(41)))));
-            this.lvTeam2Objects.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.chTeam2ID,
-            this.chTeam2Name,
-            this.chTeam2Points,
-            this.chTeam2Kills,
-            this.chTeam2Deaths,
-            this.chTeam2Health});
-            this.lvTeam2Objects.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lvTeam2Objects.ForeColor = System.Drawing.Color.White;
-            this.lvTeam2Objects.FullRowSelect = true;
-            this.lvTeam2Objects.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.lvTeam2Objects.HideSelection = false;
-            this.lvTeam2Objects.Location = new System.Drawing.Point(534, 330);
-            this.lvTeam2Objects.Name = "lvTeam2Objects";
-            this.lvTeam2Objects.Size = new System.Drawing.Size(549, 190);
-            this.lvTeam2Objects.TabIndex = 3;
-            this.lvTeam2Objects.UseCompatibleStateImageBehavior = false;
-            this.lvTeam2Objects.View = System.Windows.Forms.View.Details;
-            this.lvTeam2Objects.SelectedIndexChanged += new System.EventHandler(this.lvTeam2Objects_SelectedIndexChanged);
-            // 
-            // chTeam2ID
-            // 
-            this.chTeam2ID.Text = "ID";
-            this.chTeam2ID.Width = 35;
-            // 
-            // chTeam2Name
-            // 
-            this.chTeam2Name.Text = "Player";
-            this.chTeam2Name.Width = 320;
-            // 
-            // chTeam2Points
-            // 
-            this.chTeam2Points.Text = "P";
-            this.chTeam2Points.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.chTeam2Points.Width = 45;
-            // 
-            // chTeam2Kills
-            // 
-            this.chTeam2Kills.Text = "K";
-            this.chTeam2Kills.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.chTeam2Kills.Width = 35;
-            // 
-            // chTeam2Deaths
-            // 
-            this.chTeam2Deaths.Text = "D";
-            this.chTeam2Deaths.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.chTeam2Deaths.Width = 35;
-            // 
-            // chTeam2Health
-            // 
-            this.chTeam2Health.Text = "H";
-            this.chTeam2Health.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.chTeam2Health.Width = 45;
             // 
             // lvTeam1Objects
             // 
@@ -555,33 +625,77 @@ namespace ObjMonitor
             this.chHealth.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.chHealth.Width = 45;
             // 
-            // chart1
+            // lvTeam2Objects
             // 
-            chartArea4.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea4);
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
-            this.chart1.Location = new System.Drawing.Point(690, 541);
-            this.chart1.Name = "chart1";
-            series14.ChartArea = "ChartArea1";
-            series14.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series14.Legend = "Legend1";
-            series14.Name = "Series1";
-            dataPoint4.IsValueShownAsLabel = false;
-            dataPoint4.Label = "test";
-            series14.Points.Add(dataPoint3);
-            series14.Points.Add(dataPoint4);
-            this.chart1.Series.Add(series14);
-            this.chart1.Size = new System.Drawing.Size(151, 111);
-            this.chart1.TabIndex = 28;
-            this.chart1.Text = "chart1";
+            this.lvTeam2Objects.AutoArrange = false;
+            this.lvTeam2Objects.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(41)))));
+            this.lvTeam2Objects.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.chTeam2ID,
+            this.chTeam2Name,
+            this.chTeam2Points,
+            this.chTeam2Kills,
+            this.chTeam2Deaths,
+            this.chTeam2Health});
+            this.lvTeam2Objects.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvTeam2Objects.ForeColor = System.Drawing.Color.White;
+            this.lvTeam2Objects.FullRowSelect = true;
+            this.lvTeam2Objects.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lvTeam2Objects.HideSelection = false;
+            this.lvTeam2Objects.Location = new System.Drawing.Point(534, 330);
+            this.lvTeam2Objects.Name = "lvTeam2Objects";
+            this.lvTeam2Objects.Size = new System.Drawing.Size(549, 190);
+            this.lvTeam2Objects.TabIndex = 3;
+            this.lvTeam2Objects.UseCompatibleStateImageBehavior = false;
+            this.lvTeam2Objects.View = System.Windows.Forms.View.Details;
+            // 
+            // chTeam2ID
+            // 
+            this.chTeam2ID.Text = "ID";
+            this.chTeam2ID.Width = 35;
+            // 
+            // chTeam2Name
+            // 
+            this.chTeam2Name.Text = "Player";
+            this.chTeam2Name.Width = 320;
+            // 
+            // chTeam2Points
+            // 
+            this.chTeam2Points.Text = "P";
+            this.chTeam2Points.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.chTeam2Points.Width = 45;
+            // 
+            // chTeam2Kills
+            // 
+            this.chTeam2Kills.Text = "K";
+            this.chTeam2Kills.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.chTeam2Kills.Width = 35;
+            // 
+            // chTeam2Deaths
+            // 
+            this.chTeam2Deaths.Text = "D";
+            this.chTeam2Deaths.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.chTeam2Deaths.Width = 35;
+            // 
+            // chTeam2Health
+            // 
+            this.chTeam2Health.Text = "H";
+            this.chTeam2Health.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.chTeam2Health.Width = 45;
             // 
             // ObjForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 711);
-            this.Controls.Add(this.chart1);
+            this.Controls.Add(this.stub_progress_bar);
+            this.Controls.Add(this.team2health_player1);
+            this.Controls.Add(this.team2health_player0);
+            this.Controls.Add(this.team2health_player2);
+            this.Controls.Add(this.team2health_player3);
+            this.Controls.Add(this.team1health_player1);
+            this.Controls.Add(this.team1health_player0);
+            this.Controls.Add(this.team1health_player2);
+            this.Controls.Add(this.team1health_player3);
             this.Controls.Add(this.text_map_dropdown_label);
             this.Controls.Add(this.comboBox_map);
             this.Controls.Add(this.label_minimap);
@@ -605,15 +719,14 @@ namespace ObjMonitor
             this.Controls.Add(this.lbTeam1Name);
             this.Controls.Add(this.lvGameInfo);
             this.Controls.Add(this.cbHost);
-            this.Controls.Add(this.lvTeam2Objects);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lvTeam1Objects);
+            this.Controls.Add(this.lvTeam2Objects);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Name = "ObjForm";
             this.Text = "Game Info";
             this.Load += new System.EventHandler(this.ObjForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chart_map)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -662,6 +775,14 @@ namespace ObjMonitor
         private Label label_minimap;
         private ComboBox comboBox_map;
         private Label text_map_dropdown_label;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private CustomProgressBar team1health_player3;
+        private CustomProgressBar team1health_player2;
+        private CustomProgressBar team1health_player0;
+        private CustomProgressBar team1health_player1;
+        private CustomProgressBar team2health_player1;
+        private CustomProgressBar team2health_player0;
+        private CustomProgressBar team2health_player2;
+        private CustomProgressBar team2health_player3;
+        private CustomProgressBar stub_progress_bar;
     }
 }
