@@ -30,9 +30,18 @@ namespace ObjMonitor
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series13 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series14 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint3 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 0D);
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint4 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(3D, 1D);
             this.label1 = new System.Windows.Forms.Label();
             this.cbHost = new System.Windows.Forms.CheckBox();
             this.lbTeam1Name = new System.Windows.Forms.Label();
@@ -75,7 +84,9 @@ namespace ObjMonitor
             this.chKills = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chDeaths = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chHealth = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.chart_map)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -256,41 +267,77 @@ namespace ObjMonitor
             this.chart_map.BackImageTransparentColor = System.Drawing.Color.Lime;
             this.chart_map.BackImageWrapMode = System.Windows.Forms.DataVisualization.Charting.ChartImageWrapMode.Scaled;
             this.chart_map.BorderlineColor = System.Drawing.Color.Transparent;
-            chartArea1.AxisX.InterlacedColor = System.Drawing.Color.Transparent;
-            chartArea1.AxisX.LabelStyle.Enabled = false;
-            chartArea1.AxisX.LineColor = System.Drawing.Color.Transparent;
-            chartArea1.AxisX.MajorGrid.Enabled = false;
-            chartArea1.AxisX.MajorTickMark.Enabled = false;
-            chartArea1.AxisY.InterlacedColor = System.Drawing.Color.Transparent;
-            chartArea1.AxisY.LabelStyle.Enabled = false;
-            chartArea1.AxisY.LineColor = System.Drawing.Color.Transparent;
-            chartArea1.AxisY.MajorGrid.Enabled = false;
-            chartArea1.AxisY.MajorTickMark.Enabled = false;
-            chartArea1.BackColor = System.Drawing.Color.Transparent;
-            chartArea1.BackImageWrapMode = System.Windows.Forms.DataVisualization.Charting.ChartImageWrapMode.Scaled;
-            chartArea1.BackSecondaryColor = System.Drawing.Color.Transparent;
-            chartArea1.Name = "chartarea_minimap";
-            this.chart_map.ChartAreas.Add(chartArea1);
+            chartArea3.AxisX.InterlacedColor = System.Drawing.Color.Transparent;
+            chartArea3.AxisX.LabelStyle.Enabled = false;
+            chartArea3.AxisX.LineColor = System.Drawing.Color.Transparent;
+            chartArea3.AxisX.MajorGrid.Enabled = false;
+            chartArea3.AxisX.MajorTickMark.Enabled = false;
+            chartArea3.AxisY.InterlacedColor = System.Drawing.Color.Transparent;
+            chartArea3.AxisY.LabelStyle.Enabled = false;
+            chartArea3.AxisY.LineColor = System.Drawing.Color.Transparent;
+            chartArea3.AxisY.MajorGrid.Enabled = false;
+            chartArea3.AxisY.MajorTickMark.Enabled = false;
+            chartArea3.BackColor = System.Drawing.Color.Transparent;
+            chartArea3.BackImageWrapMode = System.Windows.Forms.DataVisualization.Charting.ChartImageWrapMode.Scaled;
+            chartArea3.BackSecondaryColor = System.Drawing.Color.Transparent;
+            chartArea3.Name = "chartarea_minimap";
+            this.chart_map.ChartAreas.Add(chartArea3);
             this.chart_map.Location = new System.Drawing.Point(12, 411);
             this.chart_map.Name = "chart_map";
-            series1.ChartArea = "chartarea_minimap";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastPoint;
-            series1.IsValueShownAsLabel = true;
-            series1.MarkerBorderColor = System.Drawing.Color.Black;
-            series1.MarkerColor = System.Drawing.Color.Chocolate;
-            series1.MarkerSize = 12;
-            series1.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
-            series1.Name = "Team1";
-            series2.ChartArea = "chartarea_minimap";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastPoint;
-            series2.IsValueShownAsLabel = true;
-            series2.MarkerBorderColor = System.Drawing.Color.Black;
-            series2.MarkerColor = System.Drawing.Color.LightBlue;
-            series2.MarkerSize = 12;
-            series2.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
-            series2.Name = "Team2";
-            this.chart_map.Series.Add(series1);
-            this.chart_map.Series.Add(series2);
+            series8.ChartArea = "chartarea_minimap";
+            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series8.LabelForeColor = System.Drawing.Color.Transparent;
+            series8.MarkerBorderColor = System.Drawing.Color.Black;
+            series8.MarkerColor = System.Drawing.Color.Chocolate;
+            series8.MarkerSize = 8;
+            series8.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
+            series8.Name = "Team1Direction";
+            series8.YValuesPerPoint = 2;
+            series9.ChartArea = "chartarea_minimap";
+            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series9.MarkerBorderColor = System.Drawing.Color.Black;
+            series9.MarkerColor = System.Drawing.Color.LightBlue;
+            series9.MarkerSize = 8;
+            series9.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
+            series9.Name = "Team2Direction";
+            series10.ChartArea = "chartarea_minimap";
+            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series10.MarkerBorderColor = System.Drawing.Color.Black;
+            series10.MarkerColor = System.Drawing.Color.LightBlue;
+            series10.MarkerSize = 12;
+            series10.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
+            series10.Name = "Team2_Dot";
+            series11.ChartArea = "chartarea_minimap";
+            series11.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series11.MarkerBorderColor = System.Drawing.Color.Black;
+            series11.MarkerColor = System.Drawing.Color.Chocolate;
+            series11.MarkerSize = 12;
+            series11.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
+            series11.Name = "Team1_Dot";
+            series12.ChartArea = "chartarea_minimap";
+            series12.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series12.MarkerBorderColor = System.Drawing.Color.Transparent;
+            series12.MarkerColor = System.Drawing.Color.Transparent;
+            series12.MarkerSize = 6;
+            series12.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
+            series12.Name = "Team1DirectionLabel";
+            series12.SmartLabelStyle.Enabled = false;
+            series13.ChartArea = "chartarea_minimap";
+            series13.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series13.MarkerBorderColor = System.Drawing.Color.Transparent;
+            series13.MarkerColor = System.Drawing.Color.Transparent;
+            series13.MarkerSize = 1;
+            series13.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
+            series13.Name = "Team2DirectionLabel";
+            series13.SmartLabelStyle.Enabled = false;
+            this.chart_map.Series.Add(series8);
+            this.chart_map.Series.Add(series9);
+            this.chart_map.Series.Add(series10);
+            this.chart_map.Series.Add(series11);
+            this.chart_map.Series.Add(series12);
+            this.chart_map.Series.Add(series13);
             this.chart_map.Size = new System.Drawing.Size(290, 267);
             this.chart_map.TabIndex = 24;
             this.chart_map.Text = "chart1";
@@ -415,6 +462,7 @@ namespace ObjMonitor
             this.lvTeam2Objects.TabIndex = 3;
             this.lvTeam2Objects.UseCompatibleStateImageBehavior = false;
             this.lvTeam2Objects.View = System.Windows.Forms.View.Details;
+            this.lvTeam2Objects.SelectedIndexChanged += new System.EventHandler(this.lvTeam2Objects_SelectedIndexChanged);
             // 
             // chTeam2ID
             // 
@@ -507,11 +555,33 @@ namespace ObjMonitor
             this.chHealth.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.chHealth.Width = 45;
             // 
+            // chart1
+            // 
+            chartArea4.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea4);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
+            this.chart1.Location = new System.Drawing.Point(690, 541);
+            this.chart1.Name = "chart1";
+            series14.ChartArea = "ChartArea1";
+            series14.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series14.Legend = "Legend1";
+            series14.Name = "Series1";
+            dataPoint4.IsValueShownAsLabel = false;
+            dataPoint4.Label = "test";
+            series14.Points.Add(dataPoint3);
+            series14.Points.Add(dataPoint4);
+            this.chart1.Series.Add(series14);
+            this.chart1.Size = new System.Drawing.Size(151, 111);
+            this.chart1.TabIndex = 28;
+            this.chart1.Text = "chart1";
+            // 
             // ObjForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 711);
+            this.Controls.Add(this.chart1);
             this.Controls.Add(this.text_map_dropdown_label);
             this.Controls.Add(this.comboBox_map);
             this.Controls.Add(this.label_minimap);
@@ -543,6 +613,7 @@ namespace ObjMonitor
             this.Text = "Game Info";
             this.Load += new System.EventHandler(this.ObjForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chart_map)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -591,5 +662,6 @@ namespace ObjMonitor
         private Label label_minimap;
         private ComboBox comboBox_map;
         private Label text_map_dropdown_label;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
     }
 }

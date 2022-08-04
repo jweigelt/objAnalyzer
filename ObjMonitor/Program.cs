@@ -89,21 +89,19 @@ namespace ObjMonitor
                     playerDataTime = DateTime.UtcNow;
                 }
                 // TODO: save data in memory and only dump data once in a while
-                form.UpdateTeam1ObjList(charList.Team1, savePlayerData, player_sw);
-                form.UpdateTeam2ObjList(charList.Team2, savePlayerData, player_sw);
+                form.UpdateTeamObjList(charList.Team1, savePlayerData, player_sw, true);
+                form.UpdateTeamObjList(charList.Team2, savePlayerData, player_sw, false);
                 form.UpdateGameInfo(teamObjList);
                 form.UpdateCommandPosts(objList.CommandPosts, teamObjList[0], teamObjList[1]);
                 if (String.IsNullOrEmpty(map) && endgame == 0) // If the map isn't being read properly, let the caster decide
                 {
                     form.SetMap(map);
                 }
-                Console.WriteLine($"endgame = {endgame}");
                 Application.DoEvents();
                 if (form.cbTrackStats.Checked)
                 {
                     endgame = reader.ReadInt32(reader.GetModuleBase(0x1AAFCA0));
                     map = reader.ReadString(reader.GetModuleBase(0x1A560E0), 10);
-                    //Console.WriteLine($"map = {map}");
 
                     if (endgame != 0) // Detects endgame if value is not 0
                     {

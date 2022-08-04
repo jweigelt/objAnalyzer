@@ -31,6 +31,8 @@ namespace ObjMonitor
         Dictionary<string, Tuple<int, int>> map_to_xdir_ydir = new Dictionary<string, Tuple<int, int>>();
         int current_xdir = 1;
         int current_ydir = 1;
+        double map_x_delta = 1.0;
+        double map_y_delta = 1.0;
 
         public ObjForm()
         {
@@ -123,7 +125,6 @@ namespace ObjMonitor
 
         public void ClearMap()
         {
-            Console.WriteLine($"Clearing map.");
             ChartArea ca_map = chart_map.ChartAreas.FindByName("chartarea_minimap");
             ca_map.BackImage = "";
         }
@@ -142,7 +143,6 @@ namespace ObjMonitor
             map_key = map_key.ToLower();
             if (!String.IsNullOrEmpty(map_key) && map_to_image_file.ContainsKey(map_key))
             {
-                Console.WriteLine($"Setting up map {map} ({map_key})");
                 ChartArea ca_map = chart_map.ChartAreas.FindByName("chartarea_minimap");
                 ca_map.BackImage = map_to_image_file[map_key];
                 (double xmin, double xmax, double ymin, double ymax) = map_to_xminmax_yminmax[map_key];
@@ -151,60 +151,88 @@ namespace ObjMonitor
                 ca_map.AxisX.Maximum = Math.Max(xmin * current_xdir, xmax * current_xdir);
                 ca_map.AxisY.Minimum = Math.Min(ymin * current_ydir, ymax * current_ydir);
                 ca_map.AxisY.Maximum = Math.Max(ymin * current_ydir, ymax * current_ydir);
+                map_x_delta = ca_map.AxisX.Maximum - ca_map.AxisX.Minimum;
+                map_y_delta = ca_map.AxisY.Maximum - ca_map.AxisY.Minimum;
             }
         }
-        
-        public void UpdateTeam1ObjList(List<InGameCharacterObject> objList, bool savePlayerData, StreamWriter save_sw)
+
+
+        public void UpdateTeamObjList(List<InGameCharacterObject> objList, bool savePlayerData, StreamWriter save_sw, bool is_team_one)
         {
-            chart_map.Series[0].Points.Clear();
+            int series_index;
+            int series_direction_index;
+            int series_label_index;
+            if (is_team_one)
+            {
+                lvTeam1Objects.BeginUpdate();
+                lvTeam1Objects.Items.Clear();
+                series_index = 2;
+                series_direction_index = 0;
+                series_label_index = 4;
+                //Make sure we are only updating values from webadmin every 5 seconds or we will ddos the server
+                if (waCB.Checked && DateTime.UtcNow >= time.AddSeconds(5))  
+                {
+                    time = DateTime.UtcNow;
+                    if (!wapList.Connect())
+                    {
+                        waCB.Checked = false;
+                    }
+                }
+            } else
+            {
+                lvTeam2Objects.BeginUpdate();
+                lvTeam2Objects.Items.Clear();
+                series_index = 3;
+                series_direction_index = 1;
+                series_label_index = 5;
+            }
+            chart_map.Series[series_index].Points.Clear();
+            chart_map.Series[series_direction_index].Points.Clear();
+            chart_map.Series[series_label_index].Points.Clear();
 
             if (objList.Count > 0)
             {
                 bool is_white = (objList[0].Team.TeamName == "Empire") || (objList[0].Team.TeamName == "Republic");
                 if (is_white)
                 {
-                    chart_map.Series[0].MarkerColor = Color.LightBlue;
+                    chart_map.Series[series_index].MarkerColor = Color.LightBlue;
+                    chart_map.Series[series_direction_index].MarkerColor = Color.LightBlue;
                 }
                 else
                 {
-                    chart_map.Series[0].MarkerColor = Color.Chocolate;
+                    chart_map.Series[series_index].MarkerColor = Color.Chocolate;
+                    chart_map.Series[series_direction_index].MarkerColor = Color.Chocolate;
                 }
             }
-            
-
-            if (waCB.Checked && DateTime.UtcNow >= time.AddSeconds(5) )  //Make sure we are only updating values from webadmin every 10 seconds or we will ddos the server
-            {
-                time = DateTime.UtcNow;
-                if (!wapList.Connect())
-                {
-                    waCB.Checked = false;
-                }
-            }
-
-            lvTeam1Objects.BeginUpdate();
-            lvTeam1Objects.Items.Clear();
 
             foreach (var obj in objList)
             {
-                //Skip objects that haven't spawned in yet
-                //We can use the characters last timestamp of spawn 
                 if (!(obj.TimeStampOfLastSpawn > 0)) continue;
 
-
-                //For writing data to a file
                 var datastring = obj.GetDataString();
                 if (obj.EntitySoldier.Health > 0)
                 {
+                    var player_direction_dot = new DataPoint(
+                        (obj.EntitySoldier.X + 1.75 * (map_x_delta / 64) * obj.EntitySoldier.xCamera) * current_xdir,
+                        (obj.EntitySoldier.Z + 1.75 * (map_y_delta / 64) * obj.EntitySoldier.zCamera) * current_ydir
+                    );
+                    var player_label_dot = new DataPoint(
+                        (obj.EntitySoldier.X + 0.25) * current_xdir,
+                        (obj.EntitySoldier.Z - 3 * current_ydir * (map_y_delta / 64)) * current_ydir
+                    );
+                    //Console.WriteLine($"x = {obj.EntitySoldier.xCamera}, z = {obj.EntitySoldier.zCamera}");
+                    //Console.WriteLine($"dot = {player_dot}, dir_dot = {player_direction_dot}");
                     var player_dot = new DataPoint(obj.EntitySoldier.X * current_xdir, obj.EntitySoldier.Z * current_ydir);
-                    //TODO: why doesn't this work?
-                    //player_dot.Label = "teseest";
-                    //player_dot.LabelForeColor = Color.Green;
-                    //chart_map.Series[0].IsValueShownAsLabel = true;
-                    //player_dot.LabelBorderWidth = 5;
-                    //player_dot.IsValueShownAsLabel = true;
-                    chart_map.Series[0].Points.Add(player_dot);
+                    string label = "x";
+                    player_label_dot.Label = label;
+                    player_label_dot.LabelForeColor = Color.Black;
+                    player_label_dot.SetCustomProperty("LabelStyle", "Top");
+                    chart_map.Series[series_index].Points.Add(player_dot);
+                    chart_map.Series[series_direction_index].Points.Add(player_direction_dot);
+                    chart_map.Series[series_label_index].Points.Add(player_label_dot);
+
                 }
-                //Create listview item
+
                 var li = new ListViewItem();
                 li.Font = new Font(myFont.FontFamily, 20, FontStyle.Regular);
 
@@ -222,109 +250,6 @@ namespace ObjMonitor
                     li.ForeColor = Color.Red;
                 }
 
-                //add id and name
-                li.Text = (obj.Index + 1).ToString();
-                li.SubItems.Add($"{obj.Name}");
-
-                if (wapList != null && wapList.playerList != null)
-                {
-                    WebAdminPlayer wap = wapList.playerList.FirstOrDefault(x => x.Slot == obj.Index + 1);
-                    if (wap != null)
-                    {   
-                        //add score/kills/deaths if using webadmin
-                        li.SubItems.Add(wap.Score.ToString());
-                        li.SubItems.Add(wap.Kills.ToString());
-                        li.SubItems.Add(wap.Deaths.ToString());
-
-                        //Add datastring
-                        datastring += $",{wap.Score},{wap.Kills},{wap.Deaths}";
-                    }
-                    else
-                    {   
-                        //add kills if not using webadmin and placeholders for rest
-                        li.SubItems.Add("?");
-                        li.SubItems.Add(obj.Score.Kills.ToString());
-                        li.SubItems.Add("?");
-
-                        //Add datastring
-                        datastring += $",?,{obj.Score.Kills},?";
-                    }
-                }
-                else
-                {
-                    //add kills if not using webadmin and placeholders for rest
-                    li.SubItems.Add("?");
-                    li.SubItems.Add(obj.Score.Kills.ToString());
-                    li.SubItems.Add("?");
-
-                    //Add datastring
-                    datastring += $",?,{obj.Score.Kills},?";
-
-                }
-
-                //Add health
-                li.SubItems.Add(Math.Round(obj.EntitySoldier.Health).ToString());
-                lvTeam1Objects.Items.Add(li);
-
-
-                //Dump data to file
-                if (savePlayerData)
-                {
-                    datastring += $",{obj.Team.TeamName}";
-                    save_sw.WriteLine(datastring);
-
-                }   
-            }
-            lvTeam1Objects.EndUpdate();
-        }
-
-        public void UpdateTeam2ObjList(List<InGameCharacterObject> objList, bool savePlayerData, StreamWriter save_sw)
-        {
-            // TODO: merge with UpdateTeam1ObjList
-            chart_map.Series[1].Points.Clear();
-
-            if (objList.Count > 0)
-            {
-                bool is_white = (objList[0].Team.TeamName == "Empire") || (objList[0].Team.TeamName == "Republic");
-                if (is_white)
-                {
-                    chart_map.Series[1].MarkerColor = Color.LightBlue;
-                }
-                else
-                {
-                    chart_map.Series[1].MarkerColor = Color.Chocolate;
-                }
-            }
-
-            lvTeam2Objects.BeginUpdate();
-            lvTeam2Objects.Items.Clear();
-            foreach (var obj in objList)
-            {
-                if (!(obj.TimeStampOfLastSpawn > 0)) continue;
-
-                var datastring = obj.GetDataString();
-                if (obj.EntitySoldier.Health > 0)
-                {
-                    var player_dot = new DataPoint(obj.EntitySoldier.X * current_xdir, obj.EntitySoldier.Z * current_ydir);
-                    chart_map.Series[1].Points.Add(player_dot);
-
-                }
-
-                var li = new ListViewItem();
-                li.Font = new Font(myFont.FontFamily, 20, FontStyle.Regular);
-
-                //Gray out the name if they're dead
-                if (obj.EntitySoldier.Health == 0)
-                {
-                    li.ForeColor = Color.Gray;
-                } else if (100 <= obj.EntitySoldier.Health && obj.EntitySoldier.Health < 200)
-                {
-                    li.ForeColor = Color.Orange;
-                } else if (obj.EntitySoldier.Health < 100)
-                {
-                    li.ForeColor = Color.Red;
-                }
-                
 
                 li.Text = (obj.Index + 1).ToString();
                 li.SubItems.Add(obj.Name);
@@ -362,7 +287,13 @@ namespace ObjMonitor
                 }
 
                 li.SubItems.Add(Math.Round(obj.EntitySoldier.Health).ToString());
-                lvTeam2Objects.Items.Add(li);
+                if (is_team_one)
+                {
+                    lvTeam1Objects.Items.Add(li);
+                } else
+                {
+                    lvTeam2Objects.Items.Add(li);
+                }
 
                 //Dump data to file
                 if (savePlayerData)
@@ -371,7 +302,13 @@ namespace ObjMonitor
                     save_sw.WriteLine(datastring);
                 }
             }
-            lvTeam2Objects.EndUpdate();
+            if (is_team_one)
+            {
+                lvTeam1Objects.EndUpdate();
+            } else
+            {
+                lvTeam2Objects.EndUpdate();
+            }
         }
 
         public Color getCPBackColor(IngameCPObject obj)
@@ -529,6 +466,11 @@ namespace ObjMonitor
         }
 
         private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lvTeam2Objects_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
