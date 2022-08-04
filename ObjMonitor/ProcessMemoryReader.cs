@@ -2,9 +2,12 @@
 using System.Text;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.ComponentModel;
+using System.Linq;
+
 namespace ObjMonitor
 {
-    public abstract class ProcessMemoryReader
+    public class ProcessMemoryReader
     {
         [Flags]
         private enum ProcessAccessFlags : uint
@@ -61,30 +64,46 @@ namespace ObjMonitor
             moduleBase = proc.MainModule.BaseAddress;
         }
 
-        protected IntPtr GetModuleBase(int offset)
+        public IntPtr GetModuleBase(int offset)
         {
             return IntPtr.Add(moduleBase, offset);
         }
 
-        protected float ReadFloat(IntPtr address)
+        public float ReadFloat(IntPtr address)
         {
             byte[] buf = new byte[4];
             ReadProcessMemory(hProc, address, buf, 4, out IntPtr read);
             return BitConverter.ToSingle(buf, 0);
         }
 
-        protected void WriteFloat(IntPtr address, float value)
+        public void WriteFloat(IntPtr address, float value)
         {
             byte[] buf = BitConverter.GetBytes(value);
-            WriteProcessMemory(hProc, address, buf, 4, out UIntPtr written);
+            if (!WriteProcessMemory(hProc, address, buf, 4, out UIntPtr written))
+            {
+                Console.WriteLine("hProc -> {0}", hProc);
+                throw new Win32Exception();
+            }
         }
-        protected int ReadInt32(IntPtr address)
+        public int ReadInt32(IntPtr address)
         {
             byte[] buf = new byte[4];
             ReadProcessMemory(hProc, address, buf, 4, out IntPtr read);
             return BitConverter.ToInt32(buf, 0);
         }
-        protected string ReadWString(IntPtr address, int len)
+        public int ReadInt16(IntPtr address)
+        {
+            byte[] buf = new byte[2];
+            ReadProcessMemory(hProc, address, buf, 2, out IntPtr read);
+            return BitConverter.ToInt16(buf, 0);
+        }
+        public int ReadInt8(IntPtr address)
+        {
+            byte[] buf = new byte[1];
+            ReadProcessMemory(hProc, address, buf, 1, out IntPtr read);
+            return Convert.ToByte(buf[0]);
+        }
+        public string ReadWString(IntPtr address, int len)
         {
             len *= 2;
             byte[] buf = new byte[len];
@@ -101,7 +120,7 @@ namespace ObjMonitor
             return Encoding.Unicode.GetString(buf, 0, strLen);
         }
 
-        protected string ReadString(IntPtr address, int len)
+        public string ReadString(IntPtr address, int len)
         {
             byte[] buf = new byte[len];
             ReadProcessMemory(hProc, address, buf, len, out IntPtr read);
@@ -117,11 +136,27 @@ namespace ObjMonitor
             return Encoding.ASCII.GetString(buf, 0, strLen);
         }
 
-        protected IntPtr ReadPtr(IntPtr address)
+        public IntPtr ReadPtr(IntPtr address)
         {
             byte[] buf = new byte[4];
             ReadProcessMemory(hProc, address, buf, 4, out IntPtr read);
             return IntPtr.Add(IntPtr.Zero, BitConverter.ToInt32(buf, 0));
+        }
+
+        /*
+         * basePtr    - starting address to add offsets to
+         * offsets    - array of offsets for pointers
+         */
+        public IntPtr GetOffsetIntPtr(IntPtr basePtr, int[] offsets)
+        { 
+            for (int i = 0; i < offsets.Length-1; i++)
+            {
+                basePtr = ReadPtr(IntPtr.Add(basePtr, offsets[i]));
+            }
+
+            IntPtr address = IntPtr.Add(basePtr, offsets[offsets.Length-1]);
+
+            return address; 
         }
 
         ~ProcessMemoryReader()
